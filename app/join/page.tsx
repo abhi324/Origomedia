@@ -43,7 +43,7 @@ export default function JoinPage() {
             transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
             className="relative text-center"
           >
-            <h2 className="text-[12rem] font-cormorant font-bold text-white/5 leading-none absolute -top-32 left-1/2 -translate-x-1/2 whitespace-nowrap">
+            <h2 className="text-[8rem] xl:text-[12rem] font-cormorant font-bold text-white/5 leading-none absolute -top-20 xl:-top-32 left-1/2 -translate-x-1/2 whitespace-nowrap select-none">
               INNER CIRCLE
             </h2>
             <div className="relative z-10 max-w-lg">

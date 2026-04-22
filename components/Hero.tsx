@@ -23,13 +23,13 @@ export default function Hero() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           >
-            <h1 className="text-6xl md:text-8xl font-instrument text-white leading-[0.95] mb-8">
-              Where Growth <br /> <span className="italic">Begins.</span>
+            <h1 className="text-6xl md:text-8xl font-cormorant font-bold text-white leading-[0.95] mb-8">
+              Where Growth <br /> <span className="italic font-normal">Begins.</span>
             </h1>
 
             <div className="flex items-center gap-6 mb-10">
               <div className="w-12 h-px bg-white/40" />
-              <h3 className="text-xl md:text-2xl text-white font-instrument opacity-90">
+              <h3 className="text-xl md:text-2xl text-white font-cormorant font-medium opacity-90 italic">
                 Growth isn’t random—it starts with the right origin.
               </h3>
             </div>

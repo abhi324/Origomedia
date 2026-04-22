@@ -24,12 +24,10 @@ export default function Footer() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16 flex flex-col items-center gap-6"
+          className="mb-16 flex flex-col items-center gap-8"
         >
-          <div className="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center p-3 shadow-2xl">
-            <img src="/logo-v2.png" alt="ORIGO" className="w-full h-full object-contain" />
-          </div>
-          <span className="font-cormorant text-4xl tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
+          <img src="/logo-v2.png" alt="ORIGO" className="w-48 h-48 md:w-64 md:h-64 object-contain brightness-0 invert" />
+          <span className="font-cormorant text-5xl md:text-6xl tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
         </motion.div>
 
         {/* Links Grid — Refined Modern Aesthetic */}
