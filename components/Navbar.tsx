@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { useState } from "react";
+import { Facebook, Instagram } from "lucide-react";
 
 export default function Navbar() {
   const [isHidden, setIsHidden] = useState(false);
@@ -56,6 +57,14 @@ export default function Navbar() {
 
         {/* Right CTA — Clean Modern Button */}
         <div className="flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-5">
+            <a href="#" className="text-gray-400 hover:text-[#4A6357] transition-colors">
+              <Facebook className="w-5 h-5" />
+            </a>
+            <a href="#" className="text-gray-400 hover:text-[#4A6357] transition-colors">
+              <Instagram className="w-5 h-5" />
+            </a>
+          </div>
           <Link
             href="/join"
             className="px-8 py-3 bg-[#4A6357] text-white rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-[#3D5449] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-[#4A6357]/20 border border-white/10"
