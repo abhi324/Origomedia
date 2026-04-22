@@ -40,8 +40,25 @@ export default function Hero() {
             </p>
           </motion.div>
         </div>
-
-
+        {/* Instagram Badge — Re-added with User-provided Logo */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+          className="absolute right-12 md:right-32 top-1/2 -translate-y-1/2 flex flex-col items-center gap-4 bg-white/10 backdrop-blur-3xl p-10 rounded-[3rem] shadow-[0_32px_64px_-16px_rgba(0,0,0,0.3)] border border-white/20 hidden xl:flex group"
+        >
+          <div className="relative w-20 h-20 rounded-3xl flex items-center justify-center overflow-hidden transform group-hover:scale-110 transition-transform duration-500 bg-white shadow-inner">
+            <img 
+              src="/images/logo_insta.png" 
+              alt="Instagram" 
+              className="w-full h-full object-contain p-2" 
+            />
+          </div>
+          <div className="text-center">
+             <p className="text-white text-[10px] font-inter font-black tracking-[0.3em] uppercase opacity-40 mb-1">Affiliated</p>
+             <p className="text-white text-sm font-playfair italic font-bold">Powered by Instagram</p>
+          </div>
+        </motion.div>
 
         {/* Floating Brand Elements Decor */}
         <div className="absolute bottom-0 left-0 right-0 h-2.5 flex shadow-2xl">
