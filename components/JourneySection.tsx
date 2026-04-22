@@ -32,7 +32,7 @@ export default function JourneySection() {
         >
           <div className="z-10">
             <span className="text-[#4A6357] text-xs font-montserrat font-black tracking-[0.5em] uppercase mb-6 block">The Onboarding</span>
-            <h2 className="text-5xl md:text-7xl font-instrument text-gray-900 leading-[1.1]">
+            <h2 className="text-5xl md:text-7xl font-cormorant text-gray-900 leading-[1.1]">
               Start Your <br className="hidden md:block" /> Journey.
             </h2>
           </div>
@@ -61,13 +61,13 @@ export default function JourneySection() {
                         <path d={item.icon} />
                       </svg>
                       {/* Step Number Badge */}
-                      <div className="absolute -top-3 -right-3 w-10 h-10 bg-[#4A6357] text-white font-instrument text-sm flex items-center justify-center rounded-2xl border-4 border-[#FCF9F5]">
+                      <div className="absolute -top-3 -right-3 w-10 h-10 bg-[#4A6357] text-white font-cormorant text-sm flex items-center justify-center rounded-2xl border-4 border-[#FCF9F5]">
                         0{i + 1}
                       </div>
                    </div>
                 </div>
 
-                <h4 className="text-3xl font-instrument text-gray-900 mb-6">{item.step}</h4>
+                <h4 className="text-3xl font-cormorant text-gray-900 mb-6">{item.step}</h4>
                 <p className="text-gray-500 font-inter font-medium leading-relaxed max-w-[280px]">{item.desc}</p>
               </motion.div>
             ))}
