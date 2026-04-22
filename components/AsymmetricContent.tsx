@@ -24,13 +24,16 @@ export default function AsymmetricContent() {
         {/* Left Column — Sticky Brand Content */}
         <div className="w-full lg:w-[350px] shrink-0">
           <div className="lg:sticky lg:top-32">
-            <div className="relative rounded-[4rem] overflow-hidden aspect-[4/5] shadow-[0_48px_96px_-32px_rgba(0,0,0,0.2)]">
-              <motion.img
-                style={{ y }}
-                src="/images/skincare.png"
-                alt="Brand Aesthetic"
-                className="w-full h-full object-cover grayscale-[0.2]"
-              />
+            <div className="relative rounded-[4rem] overflow-hidden aspect-[4/5] shadow-[0_48px_96px_-32px_rgba(0,0,0,0.2)] bg-gray-100">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              >
+                <source src="/videos/brand-video.mp4" type="video/mp4" />
+              </video>
               <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[4rem]" />
             </div>
 

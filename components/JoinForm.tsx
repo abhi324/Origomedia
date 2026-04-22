@@ -83,7 +83,7 @@ export default function JoinForm() {
       const phoneAsNumber = BigInt(data.phone_whatsapp.replace(/\D/g, ''));
 
       const { error: supabaseError } = await supabase
-        .from("Creators")
+        .from("influencers")
         .insert([
           {
             ...data,
@@ -294,8 +294,8 @@ export default function JoinForm() {
               type="button"
               onClick={() => handleLanguageToggle(lang)}
               className={`px-8 py-3 rounded-xl text-sm font-cormorant italic transition-all border ${selectedLanguages.includes(lang)
-                  ? "bg-[#4A6357] text-white border-[#4A6357]"
-                  : "bg-transparent text-gray-400 border-gray-100 hover:border-[#4A6357]"
+                ? "bg-[#4A6357] text-white border-[#4A6357]"
+                : "bg-transparent text-gray-400 border-gray-100 hover:border-[#4A6357]"
                 }`}
             >
               {lang}

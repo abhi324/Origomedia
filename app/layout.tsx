@@ -55,7 +55,34 @@ const arvo = Arvo({
 export const metadata = {
   title: "ORIGO | Growth Starts from the Right Origin",
   description: "ORIGO connects premium brands with the right Creators. Minimal, high-end editorial brand presence and Creator networking.",
-  keywords: "Creator marketing, brand growth, origo, premium brands, marketing network",
+  keywords: ["Creator marketing", "brand growth", "origo", "premium brands", "marketing network", "beauty niche", "creator agency"],
+  authors: [{ name: "ORIGO MEDIA GROUP" }],
+  openGraph: {
+    title: "ORIGO | Growth Starts from the Right Origin",
+    description: "Connecting premium brands with elite Creators through niche expertise.",
+    url: "https://origomedia.co",
+    siteName: "ORIGO",
+    images: [
+      {
+        url: "/logo-v2.png",
+        width: 1200,
+        height: 630,
+        alt: "ORIGO Logo",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ORIGO | Growth Starts from the Right Origin",
+    description: "Connecting premium brands with elite Creators.",
+    images: ["/logo-v2.png"],
+  },
+  icons: {
+    icon: "/logo-v2.png",
+    apple: "/logo-v2.png",
+  },
 };
 
 export default function RootLayout({
