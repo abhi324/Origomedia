@@ -11,7 +11,7 @@ const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
   instagram_username: z.string().min(1, "Username is required"),
   email: z.string().email("Invalid email address"),
-  phone_whatsapp: z.string().regex(/^\d{10,15}$/, "Enter a valid numeric phone number (10-15 digits)"),
+  phone_whatsapp: z.string().regex(/^\d{10}$/, "Enter exactly 10 digits"),
   gender: z.enum(["Male", "Female", "Other", "Prefer not to say"]),
   age: z.string().optional(),
   state: z.string().min(1, "State is required"),
@@ -79,7 +79,6 @@ export default function JoinForm() {
     setIsSubmitting(true);
     setError(null);
     try {
-      // Stripping non-numeric characters and converting to Number for the database
       const phoneAsNumber = BigInt(data.phone_whatsapp.replace(/\D/g, ''));
 
       const { error: supabaseError } = await supabase
@@ -87,7 +86,7 @@ export default function JoinForm() {
         .insert([
           {
             ...data,
-            phone_whatsapp: phoneAsNumber, // Sending as BigInt/Number
+            phone_whatsapp: phoneAsNumber,
             age: data.age ? parseInt(data.age) : null,
           },
         ]);
@@ -165,8 +164,9 @@ export default function JoinForm() {
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">WhatsApp Number</label>
           <input
             {...register("phone_whatsapp")}
+            maxLength={10}
             className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
-            placeholder="91XXXXXXXXXX"
+            placeholder="XXXXXXXXXX"
           />
           {errors.phone_whatsapp && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.phone_whatsapp.message}</span>}
         </div>
