@@ -26,16 +26,16 @@ export default function Hero() {
             <h1 className="text-6xl md:text-8xl font-playfair font-bold text-white leading-[0.95] mb-8">
               Where Growth <br /> <span className="italic font-normal">Begins.</span>
             </h1>
-            
+
             <div className="flex items-center gap-6 mb-10">
-               <div className="w-12 h-px bg-white/40" />
-               <h3 className="text-xl md:text-2xl text-white font-inter font-light tracking-tight opacity-90">
-                 Growth isn’t random—it starts with the right origin.
-               </h3>
+              <div className="w-12 h-px bg-white/40" />
+              <h3 className="text-xl md:text-2xl text-white font-inter font-light tracking-tight opacity-90">
+                Growth isn’t random—it starts with the right origin.
+              </h3>
             </div>
 
             <p className="text-sm md:text-base text-white/70 font-inter font-medium max-w-md leading-relaxed uppercase tracking-widest">
-              Beauty & Skincare Creator Agency.
+              Meet your growth with us
             </p>
           </motion.div>
         </div>
