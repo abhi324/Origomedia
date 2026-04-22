@@ -28,7 +28,7 @@ export default function Footer() {
           <div className="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center p-3 shadow-2xl">
             <img src="/logo-v2.png" alt="ORIGO" className="w-full h-full object-contain" />
           </div>
-          <span className="font-instrument text-4xl tracking-tighter">ORIGO</span>
+          <span className="font-cormorant text-4xl tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
         </motion.div>
 
         {/* Links Grid — Refined Modern Aesthetic */}

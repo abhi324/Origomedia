@@ -26,6 +26,8 @@ const config: Config = {
         sans: ["var(--font-inter)", "sans-serif"],
         roboto: ["var(--font-roboto-flex)", "sans-serif"],
         arvo: ["var(--font-arvo)", "serif"],
+        cormorant: ["var(--font-cormorant)", "serif"],
+        montserrat: ["var(--font-montserrat)", "sans-serif"],
       },
       animation: {
         'fade-up': 'fadeUp 0.8s ease-out forwards',

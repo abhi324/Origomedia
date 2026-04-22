@@ -36,7 +36,7 @@ export default function Navbar() {
           <div className="w-11 h-11 overflow-hidden rounded-2xl flex items-center justify-center bg-white shadow-sm group-hover:shadow-md transition-all border border-gray-50">
             <img src="/logo-v2.png" alt="ORIGO" className="w-full h-full object-contain p-1" />
           </div>
-          <span className="font-playfair text-2xl text-gray-900 tracking-[0.4em] uppercase pl-[0.4em]">O R I G O</span>
+          <span className="font-cormorant text-2xl text-gray-900 tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
         </Link>
 
         {/* Center Nav Links — Refined Modern Aesthetic */}

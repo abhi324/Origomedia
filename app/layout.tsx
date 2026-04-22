@@ -1,4 +1,4 @@
-import { Inter, Playfair_Display, Instrument_Serif, JetBrains_Mono, Montserrat, Roboto_Flex, Arvo } from "next/font/google";
+import { Inter, Playfair_Display, Instrument_Serif, JetBrains_Mono, Montserrat, Roboto_Flex, Arvo, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({ 
@@ -10,6 +10,13 @@ const inter = Inter({
 const playfair = Playfair_Display({ 
   subsets: ["latin"],
   variable: "--font-playfair",
+  display: "swap"
+});
+
+const cormorant = Cormorant_Garamond({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-cormorant",
   display: "swap"
 });
 
@@ -57,7 +64,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${instrument.variable} ${mono.variable} ${montserrat.variable} ${robotoFlex.variable} ${arvo.variable}`}>
+    <html lang="en" className={`${inter.variable} ${playfair.variable} ${instrument.variable} ${mono.variable} ${montserrat.variable} ${robotoFlex.variable} ${arvo.variable} ${cormorant.variable}`}>
       <body className="antialiased selection:bg-origo-peach selection:text-origo-dark">
         {children}
       </body>
