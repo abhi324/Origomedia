@@ -112,12 +112,69 @@ export default function JoinForm() {
   if (isSuccess) {
     return (
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="text-center py-20"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        className="fixed inset-0 z-[100] bg-[#1a1a1a] flex items-center justify-center p-6 overflow-hidden"
       >
-        <h2 className="text-4xl font-cormorant font-bold text-gray-900 mb-6">Welcome to the Inner Circle.</h2>
-        <p className="text-gray-500 text-lg font-inter leading-relaxed">Your application is being reviewed with the utmost care. <br /> We will reach out via WhatsApp shortly to begin your journey.</p>
+        {/* Background Ambient Glow */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4A6357]/20 blur-[120px] rounded-full" />
+        
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0, y: 40 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-4xl text-center relative z-10"
+        >
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+          >
+            <span className="text-[#F5E68E] text-[10px] font-inter font-black tracking-[1em] uppercase mb-12 block ml-[1em]">The Threshold is Open</span>
+          </motion.div>
+
+          <h2 className="text-7xl md:text-9xl font-cormorant font-bold text-white mb-10 leading-[0.85] tracking-tight">
+            Welcome to the <br /> 
+            <span className="italic font-normal text-[#F5E68E]">Vanguard.</span>
+          </h2>
+
+          <motion.p 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.8 }}
+            className="text-white/40 text-xl md:text-2xl font-cormorant italic max-w-2xl mx-auto leading-relaxed mb-16"
+          >
+            "You have not just joined an agency; <br /> you have claimed your place in the new architecture of influence."
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 1.2, type: "spring", stiffness: 100 }}
+            className="mb-20"
+          >
+            <div className="w-16 h-16 rounded-full border border-[#F5E68E]/30 flex items-center justify-center mx-auto relative group">
+              <div className="absolute inset-0 rounded-full bg-[#F5E68E]/10 animate-ping" />
+              <div className="w-2 h-2 rounded-full bg-[#F5E68E]" />
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.5 }}
+          >
+            <Link 
+              href="/"
+              className="px-12 py-5 border border-white/10 text-white/50 hover:text-white hover:border-white transition-all text-[10px] font-inter font-black uppercase tracking-[0.5em] rounded-full"
+            >
+              Return to Nexus
+            </Link>
+          </motion.div>
+        </motion.div>
+
+        {/* Decorative Vertical Line */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-t from-white/10 to-transparent" />
       </motion.div>
     );
   }
