@@ -9,9 +9,9 @@ export default function Navbar() {
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (latest) => {
-    // Detect if we are near the bottom of the page (where FinalCTA is)
-    // We'll hide it when the scroll is deep into the page.
-    const threshold = document.documentElement.scrollHeight - window.innerHeight - 800;
+    // Detect if we are approaching the FinalCTA section earlier
+    // Increasing the offset to 1400px from the bottom to trigger "more early"
+    const threshold = document.documentElement.scrollHeight - window.innerHeight - 1400;
     if (latest > threshold) {
       setIsHidden(true);
     } else {
@@ -26,7 +26,8 @@ export default function Navbar() {
         y: isHidden ? -100 : 0, 
         opacity: isHidden ? 0 : 1 
       }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+      // Increased duration to 1.5s for a "slow" elegant fade
+      transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
       className="fixed top-0 left-0 right-0 z-50 bg-white/70 backdrop-blur-3xl border-b border-gray-100/50"
     >
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
