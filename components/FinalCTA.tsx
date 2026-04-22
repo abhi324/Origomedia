@@ -18,27 +18,31 @@ export default function FinalCTA() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="bg-white p-16 md:p-32 rounded-[5rem] shadow-[0_64px_128px_-32px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col items-center"
         >
-          <span className="text-[#4A6357] text-[10px] font-inter font-black tracking-[0.6em] uppercase mb-10 block">The Next Step</span>
-          <h2 className="text-5xl md:text-8xl font-playfair font-bold text-gray-900 mb-12 leading-[0.95]">
-            Ready to Find Your <br /> <span className="italic font-normal underline decoration-[#4A6357]/20 underline-offset-[12px]">Origin?</span>
+          <h2 className="text-4xl md:text-7xl font-playfair font-bold text-gray-900 mb-12 leading-[0.95] relative">
+            Ready to Land Your 
+            <br /> 
+            <span className="italic font-normal underline decoration-[#4A6357]/20 underline-offset-[12px]">Brand Collaboration?</span>
+            <span className="absolute top-1/2 -translate-y-1/2 -left-12 md:-left-40 text-[9rem] md:text-[16rem] font-serif italic font-extralight text-[#4A6357]/40 leading-none pointer-events-none select-none">
+              1<span className="text-[0.5em] align-top inline-block mt-4 md:mt-8">st</span>
+            </span>
           </h2>
           <p className="text-gray-500 text-xl font-inter font-medium mb-16 max-w-xl mx-auto leading-relaxed">
-            Join the most exclusive network of beauty and skincare creators. High-impact campaigns, guaranteed payouts, and brand-first growth.
+            We bridge creators and brands through meaningful, high-impact partnerships that actually grow.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row gap-6 items-center">
-             <Link
-                href="/join"
-                className="px-14 py-5 bg-[#4A6357] text-white rounded-xl text-lg font-playfair italic font-bold hover:bg-[#3D5449] transition-all hover:scale-[1.05] shadow-2xl shadow-[#4A6357]/30 border border-white/10"
-             >
-                Apply to Join
-             </Link>
-             <Link
-                href="#about"
-                className="px-14 py-5 bg-transparent text-gray-900 border-2 border-gray-100 rounded-xl text-lg font-playfair italic font-bold hover:bg-gray-50 transition-all"
-             >
-                Learn More
-             </Link>
+            <Link
+              href="/join"
+              className="px-14 py-5 bg-[#4A6357] text-white rounded-xl text-lg font-playfair italic font-bold hover:bg-[#3D5449] transition-all hover:scale-[1.05] shadow-2xl shadow-[#4A6357]/30 border border-white/10"
+            >
+              Apply to Join
+            </Link>
+            <Link
+              href="#about"
+              className="px-14 py-5 bg-transparent text-gray-900 border-2 border-gray-100 rounded-xl text-lg font-playfair italic font-bold hover:bg-gray-50 transition-all"
+            >
+              Learn More
+            </Link>
           </div>
         </motion.div>
       </div>
