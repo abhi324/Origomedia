@@ -20,15 +20,14 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto flex flex-col items-center">
 
         {/* Logo Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 flex flex-col items-center gap-8"
-        >
-          <img src="/logo-v2.png" alt="ORIGO" className="w-48 h-48 md:w-64 md:h-64 object-contain brightness-0 invert" />
+        <div className="mb-16 flex flex-col items-center gap-8">
+          <img
+            src="/logo-v2.png"
+            alt="ORIGO"
+            className="w-32 h-32 md:w-48 md:h-48 object-contain mix-blend-multiply brightness-[1.1]"
+          />
           <span className="font-cormorant text-5xl md:text-6xl tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
-        </motion.div>
+        </div>
 
         {/* Links Grid — Refined Modern Aesthetic */}
         <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 mb-20">
@@ -63,7 +62,7 @@ export default function Footer() {
               <Instagram className="w-4 h-4" />
             </a>
             <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
             </a>
             <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
               <Linkedin className="w-4 h-4" />
