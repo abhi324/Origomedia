@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function Hero() {
   return (
-    <section id="hero" className="w-full pt-20 bg-transparent">
+    <section id="hero" className="w-full pt-20 bg-transparent relative">
       {/* Hero Banner — Ultra High Fidelity Studio View */}
       <div className="relative w-full h-[500px] md:h-[650px] overflow-hidden">
         <img
@@ -39,31 +39,24 @@ export default function Hero() {
             </p>
           </motion.div>
         </div>
-        {/* Overlapping Transition Logo — Massive, Tilted, Centered */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-          whileInView={{ opacity: 1, scale: 1, rotate: -12 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="absolute left-1/2 -translate-x-1/2 bottom-[-150px] z-20"
-        >
-          <div className="w-[400px] h-[400px] md:w-[600px] md:h-[600px] opacity-10 md:opacity-15 pointer-events-none">
-            <img 
-              src="/images/new_logo.png" 
-              alt="Brand Logo Decoration" 
-              className="w-full h-full object-contain filter drop-shadow-2xl" 
-            />
-          </div>
-        </motion.div>
-
-        {/* Floating Brand Elements Decor */}
-        <div className="absolute bottom-0 left-0 right-0 h-2.5 flex shadow-2xl z-10">
-          <div className="flex-1 bg-[#F5E68E]" />
-          <div className="flex-1 bg-[#E09486]" />
-          <div className="flex-1 bg-[#B794C0]" />
-          <div className="flex-1 bg-[#8FBCC4]" />
-        </div>
       </div>
+
+      {/* Overlapping Transition Logo — Massive, Tilted, Submerged Watermark */}
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
+        whileInView={{ opacity: 0.3, scale: 1, rotate: -12 }}
+        viewport={{ once: true }}
+        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
+        className="absolute left-1/2 -translate-x-1/2 -bottom-[450px] z-[100] pointer-events-none"
+      >
+        <div className="w-[500px] h-[500px] md:w-[900px] md:h-[900px]">
+          <img 
+            src="/images/new_logo.png" 
+            alt="Brand Logo Decoration" 
+            className="w-full h-full object-contain filter grayscale contrast-0 brightness-0 opacity-50" 
+          />
+        </div>
+      </motion.div>
 
       <style jsx>{`
         @keyframes subtle-zoom {
