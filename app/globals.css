@@ -3,23 +3,46 @@
 @tailwind utilities;
 
 :root {
-  --background: #FCF9F5; /* Premium Silk White */
-  --foreground: #1A1A1A; /* Deep Onyx */
-  --primary: #4A6357;   /* Refined Forest Green */
-  --accent-peach: #F5E68E;
-  --accent-coral: #E09486;
-  --accent-lavender: #B794C0;
-  --accent-blue: #8FBCC4;
+  --foreground: #1a1a1a;
+  --background: #ffffff;
+  --origo-dark: #3D5449;
+  --origo-peach: #FCF9F5;
+  --fluid-padding: clamp(1.25rem, 5vw, 2.5rem);
+}
+
+* {
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  position: relative;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-  position: relative;
   /* Paper Texture Overlay */
   background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+}
+
+/* Global Fit-to-Screen Media */
+img, video, canvas, svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Force border-box for everything */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
 /* Base Grain Overlay - Kept for global visual depth */
@@ -41,6 +64,8 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.1;
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .font-inter { font-family: 'Inter', sans-serif; }

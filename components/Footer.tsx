@@ -8,7 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer id="contact" className="w-full bg-[#3D5449] text-white py-24 px-6 relative overflow-hidden">
+    <footer id="contact" className="w-full bg-[#3D5449] text-white py-14 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
       {/* Decorative Brand Accent Lines */}
       <div className="absolute top-0 left-0 right-0 h-1 flex">
         <div className="flex-1 bg-[#F5E68E]" />
@@ -47,7 +47,7 @@ export default function Footer() {
           <p className="text-[#8FBCC4] text-[10px] uppercase tracking-[0.6em] font-montserrat font-black mb-4">Inquiries</p>
           <a
             href="mailto:origomedia.co@gmail.com"
-            className="text-2xl md:text-5xl font-instrument hover:text-[#F5E68E] transition-all duration-500 relative inline-block"
+            className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-instrument hover:text-[#F5E68E] transition-all duration-500 relative inline-block break-all sm:break-normal"
           >
             origomedia.co@gmail.com
             <div className="absolute -bottom-2 left-0 right-0 h-px bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
@@ -55,7 +55,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Metadata */}
-        <div className="flex flex-col md:flex-row items-center gap-8 text-white/20 text-[10px] uppercase font-montserrat font-medium tracking-[0.15em] pt-12 border-t border-white/5 w-full justify-between">
+        <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 text-white/20 text-[10px] uppercase font-montserrat font-medium tracking-[0.15em] pt-10 sm:pt-12 border-t border-white/5 w-full justify-between text-center sm:text-left">
           <div>© {currentYear} ORIGO MEDIA GROUP. ALL RIGHTS RESERVED.</div>
           <div className="flex gap-6 items-center">
             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">

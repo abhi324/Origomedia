@@ -22,8 +22,8 @@ const steps = [
 
 export default function JourneySection() {
   return (
-    <section className="w-full py-32 bg-transparent">
-      <div className="max-w-7xl mx-auto px-6 text-center">
+    <section className="w-full py-14 sm:py-24 md:py-32 bg-transparent">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
         <motion.div
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
@@ -32,7 +32,7 @@ export default function JourneySection() {
         >
           <div className="z-10">
             <span className="text-[#4A6357] text-xs font-montserrat font-black tracking-[0.5em] uppercase mb-6 block">The Onboarding</span>
-            <h2 className="text-5xl md:text-7xl font-cormorant text-gray-900 leading-[1.1]">
+            <h2 className="text-4xl sm:text-5xl md:text-7xl font-cormorant text-gray-900 leading-[1.1]">
               Start Your <br className="hidden md:block" /> Journey.
             </h2>
           </div>
@@ -42,7 +42,7 @@ export default function JourneySection() {
           {/* Subtle connecting line decoration */}
           <div className="absolute top-[60px] left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-gray-200 to-transparent hidden md:block" />
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-20 relative">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 sm:gap-16 md:gap-20 relative">
             {steps.map((item, i) => (
               <motion.div 
                 key={item.step}
@@ -56,7 +56,7 @@ export default function JourneySection() {
                    {/* Background aura */}
                    <div className="absolute inset-0 bg-[#4A6357]/5 blur-3xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
                    
-                   <div className="relative w-28 h-28 bg-white rounded-[2.5rem] flex items-center justify-center shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] border border-gray-100 z-10 group-hover:-translate-y-2 group-hover:shadow-[0_32px_64px_-16px_rgba(74,99,87,0.15)] transition-all duration-700">
+                   <div className="relative w-20 h-20 sm:w-28 sm:h-28 bg-white rounded-[2rem] sm:rounded-[2.5rem] flex items-center justify-center shadow-[0_20px_40px_-12px_rgba(0,0,0,0.05)] border border-gray-100 z-10 group-hover:-translate-y-2 group-hover:shadow-[0_32px_64px_-16px_rgba(74,99,87,0.15)] transition-all duration-700">
                       <svg className="w-10 h-10 text-[#4A6357]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="1.2">
                         <path d={item.icon} />
                       </svg>

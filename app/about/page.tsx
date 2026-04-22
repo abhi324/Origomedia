@@ -1,14 +1,10 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 
 export default function AboutPage() {
   return (
     <main className="min-h-screen bg-white">
-      <Navbar />
-      
       <section className="pt-40 pb-24 px-6 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -16,7 +12,7 @@ export default function AboutPage() {
           transition={{ duration: 0.8 }}
         >
           <span className="text-[10px] font-inter font-black tracking-[0.5em] uppercase text-gray-400 mb-6 block">Our Essence</span>
-          <h1 className="text-7xl md:text-9xl font-cormorant font-bold text-gray-900 leading-[0.9] mb-12">
+          <h1 className="text-4xl sm:text-7xl md:text-8xl font-cormorant font-bold text-gray-900 leading-[0.9]">
             Redefining the <br /> 
             <span className="italic font-normal">Modern Narrative.</span>
           </h1>
@@ -50,7 +46,7 @@ export default function AboutPage() {
               <motion.div
                 key={index}
                 whileHover={{ y: -5 }}
-                className="bg-white p-12 border border-gray-100 flex flex-col justify-between h-[300px]"
+                className="bg-white p-6 sm:p-10 border border-gray-100 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-500 min-h-[350px]"
               >
                 <span className="text-[10px] font-inter font-black tracking-[0.3em] uppercase text-[#4A6357]">0{index + 1}</span>
                 <div>
@@ -87,7 +83,6 @@ export default function AboutPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

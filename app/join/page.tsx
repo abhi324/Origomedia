@@ -1,15 +1,11 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import JoinForm from "@/components/JoinForm";
 import { motion } from "framer-motion";
 
 export default function JoinPage() {
   return (
     <main className="min-h-screen bg-[#FCF9F5] selection:bg-[#4A6357]/20 flex flex-col">
-      <Navbar />
-      
       {/* Split Hero Section — Form First Design */}
       <section className="flex-1 flex flex-col lg:flex-row pt-32 lg:pt-0 min-h-screen">
         {/* Left Side — Functional Form */}
@@ -22,7 +18,7 @@ export default function JoinPage() {
           >
             <div className="mb-12">
               <span className="text-[#4A6357] text-[10px] font-inter font-black tracking-[0.6em] uppercase mb-4 block">Application Form</span>
-              <h1 className="text-5xl md:text-6xl font-cormorant font-bold text-gray-900 leading-[0.95]">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-cormorant font-bold text-gray-900 leading-[0.95]">
                 Step into the <br /> <span className="italic font-normal">Inner Circle.</span>
               </h1>
             </div>
@@ -61,7 +57,6 @@ export default function JoinPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

@@ -134,7 +134,7 @@ export default function JoinForm() {
             <span className="text-[#F5E68E] text-[10px] font-inter font-black tracking-[0.4em] md:tracking-[1em] uppercase mb-12 block md:ml-[1em]">The Threshold is Open</span>
           </motion.div>
 
-          <h2 className="text-5xl md:text-7xl lg:text-9xl font-cormorant font-bold text-white mb-10 leading-[0.85] tracking-tight">
+          <h2 className="text-4xl sm:text-7xl lg:text-9xl font-cormorant font-bold text-white mb-10 leading-[0.85] tracking-tight">
             Welcome to the <br />
             <span className="italic font-normal text-[#F5E68E]">Vanguard.</span>
           </h2>

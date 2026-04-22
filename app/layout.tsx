@@ -85,6 +85,15 @@ export const metadata = {
   },
 };
 
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+};
+
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -92,8 +101,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`${inter.variable} ${playfair.variable} ${instrument.variable} ${mono.variable} ${montserrat.variable} ${robotoFlex.variable} ${arvo.variable} ${cormorant.variable}`}>
-      <body className="antialiased selection:bg-origo-peach selection:text-origo-dark">
-        {children}
+      <body className="antialiased selection:bg-origo-peach selection:text-origo-dark overflow-x-hidden w-full">
+        <div className="relative w-full flex flex-col min-h-screen">
+          <Navbar />
+          <main className="flex-grow w-full max-w-full">
+            {children}
+          </main>
+          <Footer />
+        </div>
       </body>
     </html>
   );

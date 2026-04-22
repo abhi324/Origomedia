@@ -20,9 +20,9 @@ export default function Hero() {
   }, []);
 
   return (
-    <section id="hero" className="w-full pt-20 bg-transparent relative">
-      {/* Hero Banner — Ultra High Fidelity Dynamic View */}
-      <div className="relative w-full h-[500px] md:h-[650px] overflow-hidden">
+    <section id="hero" className="w-full pt-16 sm:pt-20 bg-transparent relative">
+      {/* Hero Banner */}
+      <div className="relative w-full h-[420px] sm:h-[500px] md:h-[650px] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.img
             key={currentImageIndex}
@@ -36,42 +36,43 @@ export default function Hero() {
           />
         </AnimatePresence>
         
-        {/* Multilayered Gradient Overlay for Depth */}
+        {/* Multilayered Gradient Overlay */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent z-10" />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10" />
 
         {/* Text Content */}
-        <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-24 lg:px-32 max-w-4xl z-20">
+        <div className="absolute inset-0 flex flex-col justify-center px-5 sm:px-8 md:px-24 lg:px-32 z-20">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            className="max-w-2xl"
           >
-            <h1 className="text-6xl md:text-8xl font-cormorant font-bold text-white leading-[0.95] mb-8">
+            <h1 className="text-4xl sm:text-6xl md:text-8xl font-cormorant font-bold text-white leading-[0.95] mb-5 sm:mb-8">
               Where Growth <br /> <span className="italic font-normal">Begins.</span>
             </h1>
 
-            <div className="flex items-center gap-6 mb-10">
-              <div className="w-12 h-px bg-white/40" />
-              <h3 className="text-xl md:text-2xl text-white font-cormorant font-medium opacity-90 italic">
-                Growth isn’t random—it starts with the right origin.
+            <div className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-10">
+              <div className="w-8 sm:w-12 h-px bg-white/40 shrink-0" />
+              <h3 className="text-base sm:text-xl md:text-2xl text-white font-cormorant font-medium opacity-90 italic leading-snug">
+                Growth isn't random—it starts with the right origin.
               </h3>
             </div>
 
-            <p className="text-sm md:text-base text-white/70 font-montserrat font-medium max-w-md leading-relaxed uppercase tracking-widest">
+            <p className="text-[10px] sm:text-sm md:text-base text-white/70 font-montserrat font-medium max-w-md leading-relaxed uppercase tracking-widest">
               Meet your growth with us
             </p>
           </motion.div>
         </div>
       </div>
 
-      {/* Overlapping Transition Logo — Massive, Tilted, Submerged Watermark */}
+      {/* Overlapping Watermark — Hidden on mobile to prevent overflow */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
         whileInView={{ opacity: 0.3, scale: 1, rotate: -12 }}
         viewport={{ once: true }}
         transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute left-1/2 -translate-x-1/2 -bottom-[450px] z-[100] pointer-events-none"
+        className="hidden sm:block absolute left-1/2 -translate-x-1/2 -bottom-[450px] z-[100] pointer-events-none"
       >
         <div className="w-[500px] h-[500px] md:w-[900px] md:h-[900px]">
           <img 
@@ -81,16 +82,6 @@ export default function Hero() {
           />
         </div>
       </motion.div>
-
-      <style jsx>{`
-        @keyframes subtle-zoom {
-          0% { transform: scale(1); }
-          100% { transform: scale(1.05); }
-        }
-        .animate-subtle-zoom {
-          animation: subtle-zoom 20s infinite alternate ease-in-out;
-        }
-      `}</style>
     </section>
   );
 }

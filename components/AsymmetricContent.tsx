@@ -1,7 +1,9 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useScroll, useTransform, motion, useInView } from "framer-motion";
+import { useEffect, useRef } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 const specializations = [
   { name: "SKINCARE", image: "/images/skincare_niche.png", accent: "#F5E68E" },
@@ -10,49 +12,55 @@ const specializations = [
 
 export default function AsymmetricContent() {
   const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
+  const stickyRef = useRef(null);
 
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
+  useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
+    
+    const mm = gsap.matchMedia();
+    
+    mm.add("(min-width: 1024px)", () => {
+      ScrollTrigger.create({
+        trigger: containerRef.current,
+        start: "top 40px",
+        end: "bottom bottom",
+        pin: stickyRef.current,
+        pinSpacing: false,
+        scrub: true,
+      });
+    });
+
+    return () => mm.revert();
+  }, []);
 
   return (
-    <section ref={containerRef} className="w-full bg-transparent py-40">
-      <div className="max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row gap-16 lg:gap-32">
+    <section ref={containerRef} className="w-full bg-transparent py-16 sm:py-24 md:py-40">
+      <div className="max-w-[1400px] mx-auto px-4 sm:px-8 md:px-16 flex flex-col lg:flex-row gap-12 lg:gap-32">
 
         {/* Left Column — Sticky Brand Content */}
-        <div className="w-full lg:w-[350px] shrink-0">
-          <div className="lg:sticky lg:top-32">
-            <div className="relative rounded-[4rem] overflow-hidden aspect-[4/5] shadow-[0_48px_96px_-32px_rgba(0,0,0,0.2)] bg-gray-100">
-              <video
-                autoPlay
-                muted
-                loop
-                playsInline
+        <div className="w-full lg:w-[400px] shrink-0 z-20">
+          <div ref={stickyRef} className="w-full lg:w-[400px]">
+            <div className="relative mx-auto lg:mx-0 rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden aspect-square lg:aspect-[3/4] max-h-[300px] lg:max-h-none shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] bg-gray-100">
+              <img
+                src="/images/new-khali-jagah.png"
+                alt="Origo Media brand visual"
                 className="w-full h-full object-cover"
-              >
-                <source src="/videos/brand-video.mp4" type="video/mp4" />
-              </video>
-              <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[4rem]" />
+              />
             </div>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mt-12 md:mt-16 pl-6 border-l-2 border-[#4A6357]/10"
+              className="mt-16 sm:mt-24 pl-0 lg:pl-8"
             >
-              <h4 className="font-inter font-black text-[#4A6357] text-[10px] tracking-[0.4em] uppercase mb-4">The Origo Origin</h4>
-              <p className="text-gray-500 text-base leading-relaxed max-w-[280px] font-medium">
-                We bridge the gap between niche expertise and commercial success, curating the next generation of beauty voices.
-              </p>
+
             </motion.div>
           </div>
         </div>
 
         {/* Right Column — Main Content */}
-        <div className="flex-1 w-full flex flex-col gap-48">
+        <div className="flex-1 w-full flex flex-col gap-24 sm:gap-48 md:gap-80">
 
           {/* 1. Specialization Grid */}
           <div id="creators">
@@ -60,9 +68,9 @@ export default function AsymmetricContent() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="mb-20"
+              className="mb-12 sm:mb-20 text-center lg:text-left"
             >
-              <h2 className="text-5xl md:text-7xl font-playfair font-bold text-gray-900 leading-[0.95]">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-playfair font-bold text-gray-900 leading-[0.95]">
                 Excel in Your <br /> <span className="italic font-normal">Specialization.</span>
               </h2>
             </motion.div>
@@ -106,17 +114,17 @@ export default function AsymmetricContent() {
             {/* Background Blob Decor */}
             <div className="absolute -inset-10 bg-[#4A6357]/5 blur-[120px] rounded-[5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
 
-            <div className="relative bg-white p-12 md:p-24 rounded-[4rem] border border-gray-100 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.03)] group-hover:shadow-[0_64px_128px_-32px_rgba(0,0,0,0.08)] transition-all duration-1000">
+            <div className="relative bg-white p-6 sm:p-12 md:p-24 rounded-[3rem] sm:rounded-[4rem] border border-gray-100 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.03)] group-hover:shadow-[0_64px_128px_-32px_rgba(0,0,0,0.08)] transition-all duration-1000">
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
               >
                 <span className="text-[#4A6357] text-[10px] font-inter font-black tracking-[0.5em] uppercase mb-8 block">Exclusive Membership</span>
-                <h2 className="text-4xl md:text-6xl font-playfair font-bold text-gray-900 mb-10 leading-[1.1]">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-playfair font-bold text-gray-900 mb-6 sm:mb-10 leading-[1.1]">
                   Founding Creator <br /> <span className="italic font-normal">Partner Program.</span>
                 </h2>
-                <p className="text-gray-500 text-xl mb-16 leading-relaxed max-w-2xl font-medium font-inter">
+                <p className="text-gray-500 text-base sm:text-xl mb-8 sm:mb-16 leading-relaxed max-w-2xl font-medium font-inter">
                   Become part of our exclusive foundation. Early creators receive premium placements and first-look opportunities with global beauty conglomerates.
                 </p>
               </motion.div>

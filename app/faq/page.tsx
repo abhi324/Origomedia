@@ -1,7 +1,5 @@
 "use client";
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { Plus } from "lucide-react";
 
@@ -35,8 +33,6 @@ export default function FAQPage() {
 
   return (
     <main className="min-h-screen bg-[#fafafa]">
-      <Navbar />
-      
       <section className="pt-40 pb-24 px-6 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -45,7 +41,7 @@ export default function FAQPage() {
           className="text-center mb-24"
         >
           <span className="text-[10px] font-inter font-black tracking-[0.5em] uppercase text-gray-400 mb-6 block">Common Queries</span>
-          <h1 className="text-7xl md:text-8xl font-cormorant font-bold text-gray-900 leading-[0.9]">
+          <h1 className="text-4xl sm:text-7xl md:text-8xl font-cormorant font-bold text-gray-900 leading-[0.9]">
             The <span className="italic font-normal">Architecture</span> <br /> of Understanding.
           </h1>
         </motion.div>
@@ -58,7 +54,7 @@ export default function FAQPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
-              className="bg-white p-10 border border-gray-100 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-500 min-h-[350px]"
+              className="bg-white p-6 sm:p-10 border border-gray-100 flex flex-col justify-between shadow-sm hover:shadow-xl transition-all duration-500 min-h-[350px]"
             >
               <div>
                 <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center mb-8">
@@ -85,7 +81,6 @@ export default function FAQPage() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }
