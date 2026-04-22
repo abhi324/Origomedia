@@ -589,7 +589,7 @@ Long landing page:
 - **Expertise:** Use "Expert-verified" or professional headshots.
 - **Certifications:** Trust seals (Norton, ISO, HIPAA).
 - **Media:** "As seen on TechCrunch/Forbes" logos.
-- **Endorsements:** Testimonials from industry leaders or influencers.
+- **Endorsements:** Testimonials from industry leaders or Creators.
 - **Language:** Confident, professional, and accurate copy.
 - **History:** "Established in 1950" to imply longevity and trust.
 

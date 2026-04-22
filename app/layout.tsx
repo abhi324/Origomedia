@@ -1,13 +1,13 @@
 import { Inter, Playfair_Display, Instrument_Serif, JetBrains_Mono, Montserrat, Roboto_Flex, Arvo, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
-const inter = Inter({ 
+const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
   display: "swap"
 });
 
-const playfair = Playfair_Display({ 
+const playfair = Playfair_Display({
   subsets: ["latin"],
   variable: "--font-playfair",
   display: "swap"
@@ -54,8 +54,8 @@ const arvo = Arvo({
 
 export const metadata = {
   title: "ORIGO | Growth Starts from the Right Origin",
-  description: "ORIGO connects premium brands with the right influencers. Minimal, high-end editorial brand presence and influencer networking.",
-  keywords: "influencer marketing, brand growth, origo, premium brands, marketing network",
+  description: "ORIGO connects premium brands with the right Creators. Minimal, high-end editorial brand presence and Creator networking.",
+  keywords: "Creator marketing, brand growth, origo, premium brands, marketing network",
 };
 
 export default function RootLayout({

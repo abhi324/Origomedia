@@ -60,7 +60,7 @@ export default function Navbar() {
             href="/join"
             className="px-8 py-3 bg-[#4A6357] text-white rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-[#3D5449] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-[#4A6357]/20 border border-white/10"
           >
-            Join as Influencer
+            Join as Creator
           </Link>
         </div>
       </div>

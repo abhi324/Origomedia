@@ -83,7 +83,7 @@ export default function JoinForm() {
       const phoneAsNumber = BigInt(data.phone_whatsapp.replace(/\D/g, ''));
 
       const { error: supabaseError } = await supabase
-        .from("influencers")
+        .from("Creators")
         .insert([
           {
             ...data,
@@ -112,14 +112,14 @@ export default function JoinForm() {
 
   if (isSuccess) {
     return (
-      <motion.div 
+      <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         className="fixed inset-0 z-[100] bg-[#1a1a1a] flex items-center justify-center p-6 overflow-hidden"
       >
         {/* Background Ambient Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4A6357]/20 blur-[120px] rounded-full" />
-        
+
         <motion.div
           initial={{ scale: 0.8, opacity: 0, y: 40 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -135,11 +135,11 @@ export default function JoinForm() {
           </motion.div>
 
           <h2 className="text-5xl md:text-7xl lg:text-9xl font-cormorant font-bold text-white mb-10 leading-[0.85] tracking-tight">
-            Welcome to the <br /> 
+            Welcome to the <br />
             <span className="italic font-normal text-[#F5E68E]">Vanguard.</span>
           </h2>
 
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.8 }}
@@ -165,7 +165,7 @@ export default function JoinForm() {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
           >
-            <Link 
+            <Link
               href="/"
               className="px-12 py-5 border border-white/10 text-white/50 hover:text-white hover:border-white transition-all text-[10px] font-inter font-black uppercase tracking-[0.5em] rounded-full"
             >
@@ -293,11 +293,10 @@ export default function JoinForm() {
               key={lang}
               type="button"
               onClick={() => handleLanguageToggle(lang)}
-              className={`px-8 py-3 rounded-xl text-sm font-cormorant italic transition-all border ${
-                selectedLanguages.includes(lang) 
-                  ? "bg-[#4A6357] text-white border-[#4A6357]" 
+              className={`px-8 py-3 rounded-xl text-sm font-cormorant italic transition-all border ${selectedLanguages.includes(lang)
+                  ? "bg-[#4A6357] text-white border-[#4A6357]"
                   : "bg-transparent text-gray-400 border-gray-100 hover:border-[#4A6357]"
-              }`}
+                }`}
             >
               {lang}
             </button>
