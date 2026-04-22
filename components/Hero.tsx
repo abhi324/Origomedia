@@ -39,21 +39,7 @@ export default function Hero() {
             </p>
           </motion.div>
         </div>
-        {/* Clean Logo Badge — User-provided "New Logo" */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="absolute right-12 md:right-32 top-1/2 -translate-y-1/2 hidden xl:flex group"
-        >
-          <div className="relative w-72 h-72 flex items-center justify-center overflow-hidden transform group-hover:scale-110 transition-transform duration-500">
-            <img 
-              src="/images/new_logo.png" 
-              alt="Brand Logo" 
-              className="w-full h-full object-contain" 
-            />
-          </div>
-        </motion.div>
+
 
         {/* Floating Brand Elements Decor */}
         <div className="absolute bottom-0 left-0 right-0 h-2.5 flex shadow-2xl">

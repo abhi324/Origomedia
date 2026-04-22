@@ -28,8 +28,17 @@ export default function JourneySection() {
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           className="mb-24"
+           className="mb-24 flex flex-col items-center"
         >
+          {/* Shifted Brand Logo */}
+          <div className="w-32 h-32 mb-12 transform hover:scale-110 transition-transform duration-500">
+            <img 
+              src="/images/new_logo.png" 
+              alt="Brand Logo" 
+              className="w-full h-full object-contain" 
+            />
+          </div>
+
           <span className="text-[#4A6357] text-xs font-inter font-black tracking-[0.5em] uppercase mb-6 block">The Onboarding</span>
           <h2 className="text-5xl md:text-7xl font-playfair font-bold text-gray-900">
             Start Your Journey.
