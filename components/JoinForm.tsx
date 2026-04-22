@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { supabase } from "@/lib/supabase";
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const formSchema = z.object({
   name: z.string().min(2, "Name is required"),
