@@ -8,7 +8,7 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="w-full bg-[#3D5449] text-white py-24 px-6 relative overflow-hidden">
+    <footer id="contact" className="w-full bg-[#3D5449] text-white py-24 px-6 relative overflow-hidden">
       {/* Decorative Brand Accent Lines */}
       <div className="absolute top-0 left-0 right-0 h-1 flex">
         <div className="flex-1 bg-[#F5E68E]" />

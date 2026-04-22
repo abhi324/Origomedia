@@ -43,15 +43,15 @@ export default function Navbar() {
 
         {/* Center Nav Links — Refined Modern Aesthetic */}
         <div className="hidden md:flex items-center gap-10">
-          {["About", "FAQ", "Contact"].map((item) => (
-            <Link
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className="text-[11px] uppercase text-gray-500 hover:text-[#4A6357] transition-all font-montserrat font-semibold tracking-[0.2em]"
-            >
-              {item}
-            </Link>
-          ))}
+          <Link href="/about" className="text-[11px] uppercase text-gray-500 hover:text-[#4A6357] transition-all font-montserrat font-semibold tracking-[0.2em]">
+            About
+          </Link>
+          <Link href="/faq" className="text-[11px] uppercase text-gray-500 hover:text-[#4A6357] transition-all font-montserrat font-semibold tracking-[0.2em]">
+            FAQ
+          </Link>
+          <Link href="#contact" className="text-[11px] uppercase text-gray-500 hover:text-[#4A6357] transition-all font-montserrat font-semibold tracking-[0.2em]">
+            Contact
+          </Link>
         </div>
 
         {/* Right CTA — Clean Modern Button */}
