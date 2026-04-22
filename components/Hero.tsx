@@ -44,9 +44,9 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9, rotate: -2 }}
           animate={{ opacity: 1, scale: 1, rotate: 0 }}
           transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
-          className="absolute right-12 md:right-32 top-1/2 -translate-y-1/2 flex items-center justify-center bg-white/10 backdrop-blur-3xl p-12 rounded-[4rem] shadow-[0_48px_96px_-16px_rgba(0,0,0,0.4)] border border-white/20 hidden xl:flex group"
+          className="absolute right-12 md:right-32 top-1/2 -translate-y-1/2 hidden xl:flex group"
         >
-          <div className="relative w-48 h-48 flex items-center justify-center overflow-hidden transform group-hover:scale-110 transition-transform duration-500">
+          <div className="relative w-72 h-72 flex items-center justify-center overflow-hidden transform group-hover:scale-110 transition-transform duration-500">
             <img 
               src="/images/new_logo.png" 
               alt="Brand Logo" 
