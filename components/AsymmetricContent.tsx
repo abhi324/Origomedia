@@ -4,61 +4,65 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const specializations = [
-  { name: "SKINCARE", image: "/images/skincare_growth.png", color: "#F5EFE8" },
-  { name: "DERMACOSMETICS", image: "/images/skincare_strategy.png", color: "#EEF0F5" },
-  { name: "PERFUMES", image: "/images/banner_1.png", color: "#F5F0EE" },
-  { name: "MAKEUP", image: "/images/skincare_work.png", color: "#F0EEF5" },
+  { name: "SKINCARE", image: "/images/skincare_growth.png", accent: "#F5E68E" },
+  { name: "DERMACOSMETICS", image: "/images/skincare_strategy.png", accent: "#E09486" },
+  { name: "PERFUMES", image: "/images/banner_1.png", accent: "#B794C0" },
+  { name: "MAKEUP", image: "/images/skincare_work.png", accent: "#8FBCC4" },
 ];
 
 export default function AsymmetricContent() {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
-    offset: ["start end", "end start"],
+    offset: ["start end", "end start"]
   });
 
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 5]);
+  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   return (
-    <section ref={containerRef} className="w-full bg-[#FCF9F5] py-40 relative z-10">
-      <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row gap-24">
+    <section ref={containerRef} className="w-full bg-transparent py-40">
+      <div className="max-w-7xl mx-auto px-6 flex flex-col lg:flex-row gap-24">
         
-        {/* Left Column — Sticky Premium Image */}
-        <div className="hidden md:block md:w-2/5">
+        {/* Left Column — Sticky Parallax Brand Image */}
+        <div className="hidden lg:block lg:w-[35%]">
           <div className="sticky top-32">
-            <motion.div 
-              style={{ rotate }}
-              className="rounded-[5rem] overflow-hidden aspect-[4/5] shadow-[0_50px_100px_-20px_rgba(0,0,0,0.15)] bg-white border-8 border-white group"
-            >
-              <img 
+            <div className="relative rounded-[4rem] overflow-hidden aspect-[4/5] shadow-[0_48px_96px_-32px_rgba(0,0,0,0.2)]">
+               <motion.img 
+                style={{ y }}
                 src="/images/skincare_growth.png" 
                 alt="Brand Aesthetic" 
-                className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[2s]"
+                className="w-full h-[120%] object-cover absolute top-0"
               />
-            </motion.div>
-            <div className="mt-16 pl-8 border-l-2 border-[#5F7F6F]/20">
-              <h4 className="font-montserrat font-bold text-[#5F7F6F] text-xs tracking-[0.5em] uppercase mb-8">The Origo Philosophy</h4>
-              <p className="text-gray-500 text-lg leading-relaxed max-w-sm font-medium italic">
-                "We believe growth isn't just about numbers—it's about the depth of the story you tell."
-              </p>
+              <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[4rem]" />
             </div>
+            
+            <motion.div 
+               initial={{ opacity: 0, y: 20 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true }}
+               className="mt-16 pl-8 border-l-2 border-[#4A6357]/10"
+            >
+              <h4 className="font-inter font-black text-[#4A6357] text-[10px] tracking-[0.5em] uppercase mb-6">The Origo Origin</h4>
+              <p className="text-gray-500 text-base leading-relaxed max-w-xs font-medium">
+                We bridge the gap between niche expertise and commercial success, curating the next generation of beauty voices.
+              </p>
+            </motion.div>
           </div>
         </div>
 
-        {/* Right Column — Narrative Content */}
-        <div className="w-full md:w-3/5 flex flex-col gap-48">
+        {/* Right Column — Main Content */}
+        <div className="w-full lg:w-[65%] flex flex-col gap-48">
           
-          {/* Specialization Grid */}
+          {/* 1. Specialization Grid */}
           <div id="creators">
             <motion.div
-               initial={{ opacity: 0, y: 30 }}
+               initial={{ opacity: 0, y: 20 }}
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
                className="mb-20"
             >
-              <span className="text-[#5F7F6F] font-black text-[10px] tracking-[0.4em] uppercase mb-6 block">Categories</span>
-              <h2 className="text-5xl md:text-8xl font-montserrat font-bold text-gray-900 leading-[0.9] tracking-tighter">
-                Excel in Your <br/> <span className="text-[#5F7F6F]">Specialization.</span>
+              <h2 className="text-5xl md:text-7xl font-playfair font-bold text-gray-900 leading-[0.95]">
+                Excel in Your <br/> <span className="italic font-normal">Specialization.</span>
               </h2>
             </motion.div>
             
@@ -69,71 +73,80 @@ export default function AsymmetricContent() {
                   initial={{ opacity: 0, y: 40 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.1, duration: 0.8 }}
-                  whileHover={{ y: -12 }}
-                  className="group cursor-pointer rounded-[3rem] overflow-hidden bg-white border border-gray-100 shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(0,0,0,0.1)] transition-all duration-700"
+                  transition={{ duration: 0.8, delay: i * 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="group relative cursor-pointer rounded-[3rem] overflow-hidden bg-white shadow-[0_4px_24px_-8px_rgba(0,0,0,0.05)] hover:shadow-[0_48px_96px_-32px_rgba(0,0,0,0.15)] transition-all duration-700"
                 >
-                  <div className="aspect-[1/1] overflow-hidden" style={{ backgroundColor: spec.color }}>
+                  <div className="aspect-[4/5] overflow-hidden bg-gray-50">
                     <img
                       src={spec.image}
                       alt={spec.name}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000 grayscale-[20%] group-hover:grayscale-0"
+                      className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
                     />
+                    {/* Color Accent Overlay */}
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-10 bg-gradient-to-t from-black transition-opacity duration-700" />
                   </div>
-                  <div className="py-8 text-center bg-white">
-                    <span className="text-[11px] font-black tracking-[0.4em] text-gray-400 group-hover:text-[#5F7F6F] transition-colors uppercase">
-                      {spec.name}
-                    </span>
+                  
+                  <div className="absolute bottom-0 left-0 right-0 p-10 bg-gradient-to-t from-white via-white/95 to-transparent pt-20 translate-y-2 group-hover:translate-y-0 transition-transform duration-700">
+                    <div className="flex items-center gap-4 mb-2">
+                       <div className="w-8 h-[1px] bg-gray-200 group-hover:w-12 group-hover:bg-[#4A6357] transition-all duration-700" />
+                       <span className="text-[10px] font-inter font-black tracking-[0.4em] text-gray-400 group-hover:text-[#4A6357] uppercase transition-colors duration-700">
+                         {spec.name}
+                       </span>
+                    </div>
+                    <h3 className="text-2xl font-playfair font-bold text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">Explore Niche</h3>
                   </div>
                 </motion.div>
               ))}
             </div>
           </div>
 
-          {/* Partner Program */}
-          <div id="about" className="bg-white p-12 md:p-24 rounded-[5rem] border border-gray-100 shadow-[0_30px_60px_-15px_rgba(0,0,0,0.05)] relative overflow-hidden group">
-            {/* Background Accent */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-[#5F7F6F]/5 rounded-full blur-[100px] -mr-32 -mt-32 group-hover:bg-[#5F7F6F]/10 transition-colors duration-1000" />
+          {/* 2. Founding Creator Partner Program */}
+          <div id="about" className="relative group">
+            {/* Background Blob Decor */}
+            <div className="absolute -inset-10 bg-[#4A6357]/5 blur-[120px] rounded-[5rem] opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
             
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-4xl md:text-6xl font-montserrat font-bold text-gray-900 mb-12 leading-[1.1] tracking-tight">
-                Founding Creator <br/> Partner Program.
-              </h2>
-              <p className="text-gray-500 text-xl mb-16 leading-relaxed max-w-xl font-medium">
-                Become part of our exclusive foundation. Early creators receive premium placements and first-look opportunities with global beauty conglomerates.
-              </p>
-              
-              <div className="grid grid-cols-1 gap-12">
-                {[
-                  { title: "Direct Access", desc: "Skip the queue and go straight to brand selection.", icon: "M13 10V3L4 14h7v7l9-11h-7z" },
-                  { title: "Guaranteed Payouts", desc: "No more chasing invoices. Transparent, timely payments.", icon: "M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" },
-                  { title: "Early Growth", desc: "Scale your audience with agency-backed collaborations.", icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" }
-                ].map((point, i) => (
-                  <motion.div 
-                    key={point.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.15 }}
-                    className="flex items-start gap-8 group/item"
-                  >
-                    <div className="w-14 h-14 rounded-2xl bg-[#5F7F6F]/5 flex items-center justify-center shrink-0 group-hover/item:bg-[#5F7F6F] group-hover/item:text-white transition-all duration-500">
-                      <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2">
-                        <path strokeLinecap="round" strokeLinejoin="round" d={point.icon} />
-                      </svg>
-                    </div>
-                    <div>
-                      <h4 className="text-2xl font-bold text-gray-900 mb-2">{point.title}</h4>
-                      <p className="text-gray-500 text-base font-medium leading-relaxed">{point.desc}</p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+            <div className="relative bg-white p-12 md:p-24 rounded-[4rem] border border-gray-100 shadow-[0_4px_24px_-8px_rgba(0,0,0,0.03)] group-hover:shadow-[0_64px_128px_-32px_rgba(0,0,0,0.08)] transition-all duration-1000">
+               <motion.div
+                 initial={{ opacity: 0, y: 20 }}
+                 whileInView={{ opacity: 1, y: 0 }}
+                 viewport={{ once: true }}
+               >
+                 <span className="text-[#4A6357] text-[10px] font-inter font-black tracking-[0.5em] uppercase mb-8 block">Exclusive Membership</span>
+                 <h2 className="text-4xl md:text-6xl font-playfair font-bold text-gray-900 mb-10 leading-[1.1]">
+                   Founding Creator <br/> <span className="italic font-normal">Partner Program.</span>
+                 </h2>
+                 <p className="text-gray-500 text-xl mb-16 leading-relaxed max-w-2xl font-medium font-inter">
+                   Become part of our exclusive foundation. Early creators receive premium placements and first-look opportunities with global beauty conglomerates.
+                 </p>
+               </motion.div>
+               
+               <div className="grid grid-cols-1 gap-12">
+                 {[
+                   { title: "Direct Access", desc: "Skip the queue and go straight to brand selection with high-priority status." },
+                   { title: "Guaranteed Payouts", desc: "No more chasing invoices. Transparent, automated, and timely payments for every campaign." },
+                   { title: "Early Growth", desc: "Scale your audience with agency-backed collaborations and cross-brand networking." }
+                 ].map((point, i) => (
+                   <motion.div 
+                     key={point.title}
+                     initial={{ opacity: 0, x: -20 }}
+                     whileInView={{ opacity: 1, x: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ duration: 0.8, delay: i * 0.15, ease: "easeOut" }}
+                     className="flex items-start gap-8 group/item"
+                   >
+                     <div className="w-12 h-12 mt-1 rounded-2xl bg-[#4A6357]/5 group-hover/item:bg-[#4A6357] flex items-center justify-center shrink-0 transition-colors duration-500">
+                       <svg className="w-5 h-5 text-[#4A6357] group-hover/item:text-white transition-colors duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+                         <path d="M5 13l4 4L19 7" />
+                       </svg>
+                     </div>
+                     <div className="pt-1">
+                       <h4 className="text-xl font-playfair font-bold text-gray-900 mb-2">{point.title}</h4>
+                       <p className="text-gray-500 text-base font-medium font-inter leading-relaxed max-w-lg">{point.desc}</p>
+                     </div>
+                   </motion.div>
+                 ))}
+               </div>
+            </div>
           </div>
 
         </div>

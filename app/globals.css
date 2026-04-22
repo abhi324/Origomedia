@@ -3,9 +3,13 @@
 @tailwind utilities;
 
 :root {
-  --background: #FCF9F5; /* Off-white / Cream */
-  --foreground: #2A2A2A; /* Dark Grey for text */
-  --primary: #5F7F6F;   /* Muted Green */
+  --background: #FCF9F5; /* Premium Silk White */
+  --foreground: #1A1A1A; /* Deep Onyx */
+  --primary: #4A6357;   /* Refined Forest Green */
+  --accent-peach: #F5E68E;
+  --accent-coral: #E09486;
+  --accent-lavender: #B794C0;
+  --accent-blue: #8FBCC4;
 }
 
 body {
@@ -14,6 +18,8 @@ body {
   font-family: 'Inter', sans-serif;
   overflow-x: hidden;
   position: relative;
+  /* Paper Texture Overlay */
+  background-image: url("https://www.transparenttextures.com/patterns/felt.png");
 }
 
 /* Base Grain Overlay - Kept for global visual depth */
@@ -31,10 +37,14 @@ body::after {
 
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Playfair Display', serif;
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.015em;
+  line-height: 1.1;
 }
+
+.font-inter { font-family: 'Inter', sans-serif; }
+.font-playfair { font-family: 'Playfair Display', serif; }
 
 /* Lenis Recommended Styles */
 html.lenis {
