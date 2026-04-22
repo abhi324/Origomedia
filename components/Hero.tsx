@@ -1,83 +1,66 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function Hero() {
-  const containerRef = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"],
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1.05, 1.2]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
-
   return (
-    <section 
-      ref={containerRef}
-      className="relative w-full h-[110vh] overflow-hidden flex items-center justify-center bg-[#FCF9F5]"
-    >
-      {/* Cinematic Studio Background with subtle parallax/zoom */}
-      <motion.div 
-        style={{ y, scale }}
-        className="absolute inset-0 z-0"
-      >
-        <img 
-          src="/images/origo_hero_studio.png" 
-          alt="Studio Photography" 
-          className="w-full h-full object-cover brightness-[0.95]"
+    <section id="hero" className="w-full pt-20 bg-transparent">
+      {/* Hero Banner — Ultra High Fidelity Studio View */}
+      <div className="relative w-full h-[500px] md:h-[650px] overflow-hidden">
+        <img
+          src="/hero-studio.png"
+          alt="Creator Studio"
+          className="w-full h-full object-cover object-center scale-105 animate-subtle-zoom"
         />
-        {/* Soft paper-like gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FCF9F5]" />
-      </motion.div>
+        {/* Multilayered Gradient Overlay for Depth */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
 
-      {/* Main Content */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 pt-20 text-center">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          style={{ opacity }}
-        >
-          <h4 className="text-[#4A6357] font-inter font-black text-[10px] tracking-[0.8em] uppercase mb-10">The Premier Beauty Syndicate</h4>
-          
-          <h1 className="text-7xl md:text-[10rem] font-playfair font-bold text-gray-900 leading-[0.85] tracking-tighter mb-12">
-            Elevate Your <br /> <span className="italic font-normal serif">Influence.</span>
-          </h1>
+        {/* Text Content */}
+        <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-24 lg:px-32 max-w-4xl">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <h1 className="text-6xl md:text-8xl font-playfair font-bold text-white leading-[0.95] mb-8">
+              Where Growth <br /> <span className="italic font-normal">Begins.</span>
+            </h1>
+            
+            <div className="flex items-center gap-6 mb-10">
+               <div className="w-12 h-px bg-white/40" />
+               <h3 className="text-xl md:text-2xl text-white font-inter font-light tracking-tight opacity-90">
+                 Growth isn’t random—it starts with the right origin.
+               </h3>
+            </div>
 
-          <div className="flex flex-col md:flex-row items-center justify-center gap-12 mt-16">
-             <div className="flex flex-col items-center gap-4">
-                <div className="w-px h-16 bg-gray-200" />
-                <p className="text-gray-400 text-[10px] font-inter font-black tracking-[0.4em] uppercase">Beauty Focused</p>
-             </div>
-             
-             <div className="flex flex-col items-center gap-4">
-                <div className="w-px h-16 bg-gray-200" />
-                <p className="text-gray-400 text-[10px] font-inter font-black tracking-[0.4em] uppercase">Skincare Strategy</p>
-             </div>
+            <p className="text-sm md:text-base text-white/70 font-inter font-medium max-w-md leading-relaxed uppercase tracking-widest">
+              Beauty & Skincare Creator Agency, <br/>
+              powered by micro & nano creators.
+            </p>
+          </motion.div>
+        </div>
 
-             <div className="flex flex-col items-center gap-4">
-                <div className="w-px h-16 bg-gray-200" />
-                <p className="text-gray-400 text-[10px] font-inter font-black tracking-[0.4em] uppercase">Global Reach</p>
-             </div>
-          </div>
-        </motion.div>
+
+
+        {/* Floating Brand Elements Decor */}
+        <div className="absolute bottom-0 left-0 right-0 h-2.5 flex shadow-2xl">
+          <div className="flex-1 bg-[#F5E68E]" />
+          <div className="flex-1 bg-[#E09486]" />
+          <div className="flex-1 bg-[#B794C0]" />
+          <div className="flex-1 bg-[#8FBCC4]" />
+        </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 z-10"
-      >
-        <div className="flex flex-col items-center gap-4">
-          <span className="text-[9px] font-inter font-black uppercase tracking-[0.5em] text-gray-400">Scroll</span>
-          <div className="w-[1px] h-12 bg-gradient-to-b from-gray-300 to-transparent" />
-        </div>
-      </motion.div>
+      <style jsx>{`
+        @keyframes subtle-zoom {
+          0% { transform: scale(1); }
+          100% { transform: scale(1.05); }
+        }
+        .animate-subtle-zoom {
+          animation: subtle-zoom 20s infinite alternate ease-in-out;
+        }
+      `}</style>
     </section>
   );
 }
