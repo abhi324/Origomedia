@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { Instagram, Linkedin } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -33,7 +34,7 @@ export default function Footer() {
 
         {/* Links Grid — Refined Modern Aesthetic */}
         <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 mb-20">
-          {["Contact", "FAQ", "Privacy Policy", "Terms of Service", "Instagram"].map((link) => (
+          {["Contact", "FAQ", "Privacy Policy", "Terms of Service"].map((link) => (
             <Link
               key={link}
               href={`/${link.toLowerCase().replace(/ /g, '-')}`}
@@ -59,9 +60,16 @@ export default function Footer() {
         {/* Bottom Metadata */}
         <div className="flex flex-col md:flex-row items-center gap-8 text-white/20 text-[10px] uppercase font-montserrat font-medium tracking-[0.15em] pt-12 border-t border-white/5 w-full justify-between">
           <div>© {currentYear} ORIGO MEDIA GROUP. ALL RIGHTS RESERVED.</div>
-          <div className="flex gap-8">
-            <span className="hover:text-white transition-colors cursor-pointer">Studio Paris</span>
-            <span className="hover:text-white transition-colors cursor-pointer">Studio London</span>
+          <div className="flex gap-6 items-center">
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              <Instagram className="w-4 h-4" />
+            </a>
+            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            </a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+              <Linkedin className="w-4 h-4" />
+            </a>
           </div>
         </div>
       </div>
