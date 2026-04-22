@@ -4,8 +4,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const specializations = [
-  { name: "SKINCARE", image: "/images/skincare.png", accent: "#F5E68E" },
-  { name: "MAKEUP", image: "/images/makeup.png", accent: "#8FBCC4" },
+  { name: "SKINCARE", image: "/images/skincare_niche.png", accent: "#F5E68E" },
+  { name: "MAKEUP", image: "/images/makeup_niche.png", accent: "#8FBCC4" },
 ];
 
 export default function AsymmetricContent() {
