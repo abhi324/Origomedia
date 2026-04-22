@@ -33,9 +33,11 @@ export default function Navbar() {
       <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-4 group">
-          <div className="w-11 h-11 overflow-hidden rounded-2xl flex items-center justify-center bg-white shadow-sm group-hover:shadow-md transition-all border border-gray-50">
-            <img src="/logo-v2.png" alt="ORIGO" className="w-full h-full object-contain p-1" />
-          </div>
+          <img
+            src="/logo-v2.png"
+            alt="ORIGO"
+            className="w-14 h-14 object-contain group-hover:scale-105 transition-transform duration-500"
+          />
           <span className="font-cormorant text-2xl text-gray-900 tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
         </Link>
 
