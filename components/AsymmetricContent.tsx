@@ -4,10 +4,8 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 
 const specializations = [
-  { name: "SKINCARE", image: "/images/skincare_growth.png", accent: "#F5E68E" },
-  { name: "DERMACOSMETICS", image: "/images/skincare_strategy.png", accent: "#E09486" },
-  { name: "PERFUMES", image: "/images/banner_1.png", accent: "#B794C0" },
-  { name: "MAKEUP", image: "/images/skincare_work.png", accent: "#8FBCC4" },
+  { name: "SKINCARE", image: "/images/skincare.png", accent: "#F5E68E" },
+  { name: "MAKEUP", image: "/images/makeup.png", accent: "#8FBCC4" },
 ];
 
 export default function AsymmetricContent() {
@@ -22,25 +20,25 @@ export default function AsymmetricContent() {
   return (
     <section ref={containerRef} className="w-full bg-transparent py-40">
       <div className="max-w-[1400px] mx-auto px-8 md:px-16 flex flex-col lg:flex-row gap-16 lg:gap-32">
-        
+
         {/* Left Column — Sticky Brand Content */}
         <div className="w-full lg:w-[350px] shrink-0">
           <div className="lg:sticky lg:top-32">
             <div className="relative rounded-[4rem] overflow-hidden aspect-[4/5] shadow-[0_48px_96px_-32px_rgba(0,0,0,0.2)]">
               <motion.img
                 style={{ y }}
-                src="/images/skincare_growth.png"
+                src="/images/skincare.png"
                 alt="Brand Aesthetic"
                 className="w-full h-full object-cover grayscale-[0.2]"
               />
               <div className="absolute inset-0 ring-1 ring-inset ring-black/10 rounded-[4rem]" />
             </div>
 
-            <motion.div 
-               initial={{ opacity: 0, y: 20 }}
-               whileInView={{ opacity: 1, y: 0 }}
-               viewport={{ once: true }}
-               className="mt-12 md:mt-16 pl-6 border-l-2 border-[#4A6357]/10"
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="mt-12 md:mt-16 pl-6 border-l-2 border-[#4A6357]/10"
             >
               <h4 className="font-inter font-black text-[#4A6357] text-[10px] tracking-[0.4em] uppercase mb-4">The Origo Origin</h4>
               <p className="text-gray-500 text-base leading-relaxed max-w-[280px] font-medium">
