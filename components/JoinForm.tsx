@@ -116,8 +116,8 @@ export default function JoinForm() {
         animate={{ opacity: 1, y: 0 }}
         className="text-center py-20"
       >
-        <h2 className="text-4xl font-playfair font-bold text-gray-900 mb-6">Welcome to the Origin.</h2>
-        <p className="text-gray-500 text-lg font-inter">Your application has been received. Our team will review your profile and reach out via WhatsApp/Email shortly.</p>
+        <h2 className="text-4xl font-cormorant font-bold text-gray-900 mb-6">Welcome to the Inner Circle.</h2>
+        <p className="text-gray-500 text-lg font-inter leading-relaxed">Your application is being reviewed with the utmost care. <br /> We will reach out via WhatsApp shortly to begin your journey.</p>
       </motion.div>
     );
   }
@@ -130,7 +130,7 @@ export default function JoinForm() {
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">Full Name</label>
           <input
             {...register("name")}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-cormorant text-xl transition-all placeholder:opacity-30"
             placeholder="John Doe"
           />
           {errors.name && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.name.message}</span>}
@@ -141,7 +141,7 @@ export default function JoinForm() {
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">Instagram Username</label>
           <input
             {...register("instagram_username")}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-cormorant text-xl transition-all placeholder:opacity-30"
             placeholder="@username"
           />
           {errors.instagram_username && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.instagram_username.message}</span>}
@@ -153,7 +153,7 @@ export default function JoinForm() {
           <input
             {...register("email")}
             type="email"
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-cormorant text-xl transition-all placeholder:opacity-30"
             placeholder="john@example.com"
           />
           {errors.email && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.email.message}</span>}
@@ -165,7 +165,7 @@ export default function JoinForm() {
           <input
             {...register("phone_whatsapp")}
             maxLength={10}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-cormorant text-xl transition-all placeholder:opacity-30"
             placeholder="XXXXXXXXXX"
           />
           {errors.phone_whatsapp && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.phone_whatsapp.message}</span>}
@@ -176,7 +176,7 @@ export default function JoinForm() {
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">Gender</label>
           <select
             {...register("gender")}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all cursor-pointer"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-cormorant text-xl transition-all cursor-pointer"
           >
             <option value="">Select Gender</option>
             <option value="Male">Male</option>
@@ -193,7 +193,7 @@ export default function JoinForm() {
           <input
             {...register("age")}
             type="number"
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-cormorant text-xl transition-all placeholder:opacity-30"
             placeholder="24"
           />
         </div>
@@ -203,7 +203,7 @@ export default function JoinForm() {
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">State</label>
           <select
             {...register("state")}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all cursor-pointer"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-cormorant text-xl transition-all cursor-pointer"
           >
             <option value="">Select State</option>
             {Object.keys(stateCityData).sort().map(s => <option key={s} value={s}>{s}</option>)}
@@ -217,7 +217,7 @@ export default function JoinForm() {
           <select
             {...register("city")}
             disabled={!selectedState}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-cormorant text-xl transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <option value="">Select City</option>
             {cities.map(c => <option key={c} value={c}>{c}</option>)}
@@ -235,7 +235,7 @@ export default function JoinForm() {
               key={lang}
               type="button"
               onClick={() => handleLanguageToggle(lang)}
-              className={`px-8 py-3 rounded-xl text-sm font-playfair italic transition-all border ${
+              className={`px-8 py-3 rounded-xl text-sm font-cormorant italic transition-all border ${
                 selectedLanguages.includes(lang) 
                   ? "bg-[#4A6357] text-white border-[#4A6357]" 
                   : "bg-transparent text-gray-400 border-gray-100 hover:border-[#4A6357]"
