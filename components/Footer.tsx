@@ -28,16 +28,16 @@ export default function Footer() {
           <div className="w-20 h-20 bg-white rounded-[2rem] flex items-center justify-center p-3 shadow-2xl">
             <img src="/logo-v2.png" alt="ORIGO" className="w-full h-full object-contain" />
           </div>
-          <span className="font-playfair font-bold text-4xl tracking-tighter">ORIGO</span>
+          <span className="font-instrument text-4xl tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
         </motion.div>
 
-        {/* Links Grid — Formal Serif Aesthetic */}
+        {/* Links Grid — Refined Modern Aesthetic */}
         <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 mb-20">
           {["Contact", "FAQ", "Privacy Policy", "Terms of Service", "Instagram"].map((link) => (
             <Link 
               key={link} 
               href={`/${link.toLowerCase().replace(/ /g, '-')}`}
-              className="text-white/50 hover:text-white transition-all text-base font-playfair italic"
+              className="text-white/40 hover:text-white transition-all text-[11px] uppercase font-montserrat font-semibold tracking-[0.2em]"
             >
               {link}
             </Link>
@@ -46,10 +46,10 @@ export default function Footer() {
 
         {/* Contact Email Section */}
         <div className="mb-20 text-center group cursor-pointer">
-          <p className="text-[#8FBCC4] text-[10px] uppercase tracking-[0.6em] font-black mb-4">Inquiries</p>
+          <p className="text-[#8FBCC4] text-[10px] uppercase tracking-[0.6em] font-montserrat font-black mb-4">Inquiries</p>
           <a 
             href="mailto:hello@origomedia.com" 
-            className="text-2xl md:text-5xl font-playfair font-bold hover:text-[#F5E68E] transition-all duration-500 relative inline-block"
+            className="text-2xl md:text-5xl font-instrument hover:text-[#F5E68E] transition-all duration-500 relative inline-block"
           >
             hello@origomedia.com
             <div className="absolute -bottom-2 left-0 right-0 h-px bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Metadata */}
-        <div className="flex flex-col md:flex-row items-center gap-8 text-white/20 text-[11px] font-playfair italic pt-12 border-t border-white/5 w-full justify-between">
+        <div className="flex flex-col md:flex-row items-center gap-8 text-white/20 text-[10px] uppercase font-montserrat font-medium tracking-[0.15em] pt-12 border-t border-white/5 w-full justify-between">
           <div>© {currentYear} ORIGO MEDIA GROUP. ALL RIGHTS RESERVED.</div>
           <div className="flex gap-8">
              <span className="hover:text-white transition-colors cursor-pointer">Studio Paris</span>

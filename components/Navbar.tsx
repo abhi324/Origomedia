@@ -36,27 +36,27 @@ export default function Navbar() {
           <div className="w-11 h-11 overflow-hidden rounded-2xl flex items-center justify-center bg-white shadow-sm group-hover:shadow-md transition-all border border-gray-50">
             <img src="/logo-v2.png" alt="ORIGO" className="w-full h-full object-contain p-1" />
           </div>
-          <span className="font-playfair font-bold text-2xl text-gray-900 tracking-tight">ORIGO</span>
+          <span className="font-instrument text-2xl text-gray-900 tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
         </Link>
 
-        {/* Center Nav Links — Formal Serif Aesthetic */}
+        {/* Center Nav Links — Refined Modern Aesthetic */}
         <div className="hidden md:flex items-center gap-10">
           {["Creators", "About", "FAQ", "Contact"].map((item) => (
             <Link
               key={item}
               href={`#${item.toLowerCase()}`}
-              className="text-sm text-gray-600 hover:text-[#4A6357] transition-all font-playfair italic font-medium tracking-wide"
+              className="text-[11px] uppercase text-gray-500 hover:text-[#4A6357] transition-all font-montserrat font-semibold tracking-[0.2em]"
             >
               {item}
             </Link>
           ))}
         </div>
 
-        {/* Right CTA — Formal Serif Button */}
+        {/* Right CTA — Clean Modern Button */}
         <div className="flex items-center gap-8">
           <Link
             href="/join"
-            className="px-8 py-3 bg-[#4A6357] text-white rounded-xl text-sm font-playfair italic font-bold hover:bg-[#3D5449] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-[#4A6357]/20 border border-white/10"
+            className="px-8 py-3 bg-[#4A6357] text-white rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-[#3D5449] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-[#4A6357]/20 border border-white/10"
           >
             Join as Influencer
           </Link>
