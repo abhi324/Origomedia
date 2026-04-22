@@ -39,10 +39,25 @@ export default function Hero() {
             </p>
           </motion.div>
         </div>
-
+        {/* Overlapping Transition Logo — Massive, Tilted, Centered */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
+          whileInView={{ opacity: 1, scale: 1, rotate: -12 }}
+          viewport={{ once: true }}
+          transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
+          className="absolute left-1/2 -translate-x-1/2 bottom-[-150px] z-20"
+        >
+          <div className="w-[400px] h-[400px] md:w-[600px] md:h-[600px] opacity-10 md:opacity-15 pointer-events-none">
+            <img 
+              src="/images/new_logo.png" 
+              alt="Brand Logo Decoration" 
+              className="w-full h-full object-contain filter drop-shadow-2xl" 
+            />
+          </div>
+        </motion.div>
 
         {/* Floating Brand Elements Decor */}
-        <div className="absolute bottom-0 left-0 right-0 h-2.5 flex shadow-2xl">
+        <div className="absolute bottom-0 left-0 right-0 h-2.5 flex shadow-2xl z-10">
           <div className="flex-1 bg-[#F5E68E]" />
           <div className="flex-1 bg-[#E09486]" />
           <div className="flex-1 bg-[#B794C0]" />

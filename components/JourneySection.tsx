@@ -28,22 +28,13 @@ export default function JourneySection() {
            initial={{ opacity: 0, y: 20 }}
            whileInView={{ opacity: 1, y: 0 }}
            viewport={{ once: true }}
-           className="mb-24 relative flex flex-col items-center justify-center text-center"
+           className="mb-24 flex flex-col items-center justify-center text-center"
         >
           <div className="z-10">
             <span className="text-[#4A6357] text-xs font-inter font-black tracking-[0.5em] uppercase mb-6 block">The Onboarding</span>
             <h2 className="text-5xl md:text-7xl font-playfair font-bold text-gray-900 leading-[1.1]">
               Start Your <br className="hidden md:block" /> Journey.
             </h2>
-          </div>
-
-          {/* Parallel Brand Logo — Positioned to the right of centered text */}
-          <div className="md:absolute md:right-0 mt-12 md:mt-0 w-48 h-48 md:w-64 md:h-64 transform hover:scale-110 transition-transform duration-500 shrink-0 opacity-80 md:opacity-100">
-            <img 
-              src="/images/new_logo.png" 
-              alt="Brand Logo" 
-              className="w-full h-full object-contain" 
-            />
           </div>
         </motion.div>
 
