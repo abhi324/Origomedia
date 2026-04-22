@@ -41,7 +41,7 @@ export default function Navbar() {
 
         {/* Center Nav Links — Refined Modern Aesthetic */}
         <div className="hidden md:flex items-center gap-10">
-          {["Creators", "About", "FAQ", "Contact"].map((item) => (
+          {["About", "FAQ", "Contact"].map((item) => (
             <Link
               key={item}
               href={`#${item.toLowerCase()}`}
