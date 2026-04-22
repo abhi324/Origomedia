@@ -31,13 +31,13 @@ export default function Footer() {
           <span className="font-playfair font-bold text-4xl tracking-tighter">ORIGO</span>
         </motion.div>
 
-        {/* Links Grid */}
+        {/* Links Grid — Formal Serif Aesthetic */}
         <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 mb-20">
           {["Contact", "FAQ", "Privacy Policy", "Terms of Service", "Instagram"].map((link) => (
             <Link 
               key={link} 
               href={`/${link.toLowerCase().replace(/ /g, '-')}`}
-              className="text-white/40 hover:text-white transition-all text-xs font-inter font-black uppercase tracking-[0.4em]"
+              className="text-white/50 hover:text-white transition-all text-base font-playfair italic"
             >
               {link}
             </Link>
@@ -57,7 +57,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Metadata */}
-        <div className="flex flex-col md:flex-row items-center gap-8 text-white/20 text-[10px] font-inter font-black uppercase tracking-[0.3em] pt-12 border-t border-white/5 w-full justify-between">
+        <div className="flex flex-col md:flex-row items-center gap-8 text-white/20 text-[11px] font-playfair italic pt-12 border-t border-white/5 w-full justify-between">
           <div>© {currentYear} ORIGO MEDIA GROUP. ALL RIGHTS RESERVED.</div>
           <div className="flex gap-8">
              <span className="hover:text-white transition-colors cursor-pointer">Studio Paris</span>

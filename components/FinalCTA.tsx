@@ -29,13 +29,13 @@ export default function FinalCTA() {
           <div className="flex flex-col sm:flex-row gap-6 items-center">
              <Link
                 href="/join"
-                className="px-12 py-5 bg-[#4A6357] text-white rounded-[2rem] text-sm font-inter font-black uppercase tracking-[0.3em] hover:bg-[#3D5449] transition-all hover:scale-[1.05] shadow-2xl shadow-[#4A6357]/30"
+                className="px-14 py-5 bg-[#4A6357] text-white rounded-xl text-lg font-playfair italic font-bold hover:bg-[#3D5449] transition-all hover:scale-[1.05] shadow-2xl shadow-[#4A6357]/30 border border-white/10"
              >
                 Apply to Join
              </Link>
              <Link
                 href="#about"
-                className="px-12 py-5 bg-transparent text-gray-900 border-2 border-gray-100 rounded-[2rem] text-sm font-inter font-black uppercase tracking-[0.3em] hover:bg-gray-50 transition-all"
+                className="px-14 py-5 bg-transparent text-gray-900 border-2 border-gray-100 rounded-xl text-lg font-playfair italic font-bold hover:bg-gray-50 transition-all"
              >
                 Learn More
              </Link>
