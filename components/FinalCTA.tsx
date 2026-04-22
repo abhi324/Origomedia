@@ -22,7 +22,7 @@ export default function FinalCTA() {
             Ready to Land Your 
             <br /> 
             <span className="italic font-normal">Brand Collaboration?</span>
-            <span className="absolute top-[-10%] -translate-y-1/2 -left-8 md:-left-24 text-[9rem] md:text-[16rem] font-serif italic font-extralight text-[#F28C4A]/40 leading-none pointer-events-none select-none">
+            <span className="absolute top-1/2 md:top-[-10%] -translate-y-1/2 -left-8 md:-left-24 text-[9rem] md:text-[16rem] font-serif italic font-extralight text-[#F28C4A]/40 leading-none pointer-events-none select-none">
               1<span className="text-[0.5em] align-top inline-block mt-4 md:mt-8">st</span>
             </span>
           </h2>
