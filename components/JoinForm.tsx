@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -22,13 +22,31 @@ const formSchema = z.object({
 
 type FormValues = z.infer<typeof formSchema>;
 
-const statesOfIndia = [
-  "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", 
-  "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", 
-  "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", 
-  "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", 
-  "Uttarakhand", "West Bengal", "Delhi"
-];
+const stateCityData: Record<string, string[]> = {
+  "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Thane", "Nashik", "Aurangabad", "Solapur", "Other"],
+  "Delhi": ["New Delhi", "North Delhi", "South Delhi", "East Delhi", "West Delhi", "Other"],
+  "Karnataka": ["Bangalore", "Mysore", "Hubli", "Mangalore", "Belgaum", "Other"],
+  "Tamil Nadu": ["Chennai", "Coimbatore", "Madurai", "Tiruchirappalli", "Salem", "Other"],
+  "Telangana": ["Hyderabad", "Warangal", "Nizamabad", "Karimnagar", "Other"],
+  "Gujarat": ["Ahmedabad", "Surat", "Vadodara", "Rajkot", "Bhavnagar", "Other"],
+  "Uttar Pradesh": ["Lucknow", "Kanpur", "Ghaziabad", "Agra", "Varanasi", "Noida", "Other"],
+  "West Bengal": ["Kolkata", "Howrah", "Durgapur", "Asansol", "Siliguri", "Other"],
+  "Rajasthan": ["Jaipur", "Jodhpur", "Kota", "Udaipur", "Bikaner", "Other"],
+  "Punjab": ["Ludhiana", "Amritsar", "Jalandhar", "Patiala", "Other"],
+  "Haryana": ["Gurgaon", "Faridabad", "Panipat", "Ambala", "Other"],
+  "Madhya Pradesh": ["Indore", "Bhopal", "Jabalpur", "Gwalior", "Other"],
+  "Andhra Pradesh": ["Visakhapatnam", "Vijayawada", "Guntur", "Nellore", "Other"],
+  "Bihar": ["Patna", "Gaya", "Bhagalpur", "Muzaffarpur", "Other"],
+  "Assam": ["Guwahati", "Silchar", "Dibrugarh", "Other"],
+  "Kerala": ["Kochi", "Trivandrum", "Kozhikode", "Thrissur", "Other"],
+  "Jharkhand": ["Ranchi", "Jamshedpur", "Dhanbad", "Other"],
+  "Chhattisgarh": ["Raipur", "Bhilai", "Bilaspur", "Other"],
+  "Odisha": ["Bhubaneswar", "Cuttack", "Rourkela", "Other"],
+  "Uttarakhand": ["Dehradun", "Haridwar", "Haldwani", "Other"],
+  "Himachal Pradesh": ["Shimla", "Dharamshala", "Other"],
+  "Goa": ["Panaji", "Vasco da Gama", "Margao", "Other"],
+  "Other": ["Other City"]
+};
 
 export default function JoinForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -49,7 +67,14 @@ export default function JoinForm() {
     },
   });
 
+  const selectedState = watch("state");
   const selectedLanguages = watch("languages");
+  const cities = selectedState ? stateCityData[selectedState] || ["Other City"] : [];
+
+  // Reset city if state changes
+  useEffect(() => {
+    setValue("city", "");
+  }, [selectedState, setValue]);
 
   const onSubmit = async (data: FormValues) => {
     setIsSubmitting(true);
@@ -65,7 +90,6 @@ export default function JoinForm() {
         ]);
 
       if (supabaseError) throw supabaseError;
-
       setIsSuccess(true);
     } catch (err: any) {
       setError(err.message || "An error occurred. Please try again.");
@@ -104,7 +128,7 @@ export default function JoinForm() {
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">Full Name</label>
           <input
             {...register("name")}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
             placeholder="John Doe"
           />
           {errors.name && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.name.message}</span>}
@@ -115,7 +139,7 @@ export default function JoinForm() {
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">Instagram Username</label>
           <input
             {...register("instagram_username")}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
             placeholder="@username"
           />
           {errors.instagram_username && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.instagram_username.message}</span>}
@@ -127,7 +151,7 @@ export default function JoinForm() {
           <input
             {...register("email")}
             type="email"
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
             placeholder="john@example.com"
           />
           {errors.email && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.email.message}</span>}
@@ -138,7 +162,7 @@ export default function JoinForm() {
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">WhatsApp Number</label>
           <input
             {...register("phone_whatsapp")}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
             placeholder="+91 XXXXX XXXXX"
           />
           {errors.phone_whatsapp && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.phone_whatsapp.message}</span>}
@@ -166,7 +190,7 @@ export default function JoinForm() {
           <input
             {...register("age")}
             type="number"
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all"
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all placeholder:opacity-30"
             placeholder="24"
           />
         </div>
@@ -179,19 +203,22 @@ export default function JoinForm() {
             className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all cursor-pointer"
           >
             <option value="">Select State</option>
-            {statesOfIndia.map(s => <option key={s} value={s}>{s}</option>)}
+            {Object.keys(stateCityData).sort().map(s => <option key={s} value={s}>{s}</option>)}
           </select>
           {errors.state && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.state.message}</span>}
         </div>
 
-        {/* City */}
+        {/* City Dropdown */}
         <div className="flex flex-col gap-2">
           <label className="text-[10px] font-inter font-black uppercase tracking-[0.3em] text-gray-400">City</label>
-          <input
+          <select
             {...register("city")}
-            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all"
-            placeholder="Mumbai"
-          />
+            disabled={!selectedState}
+            className="bg-transparent border-b border-gray-200 py-3 focus:border-[#4A6357] outline-none font-playfair text-xl transition-all cursor-pointer disabled:opacity-30 disabled:cursor-not-allowed"
+          >
+            <option value="">Select City</option>
+            {cities.map(c => <option key={c} value={c}>{c}</option>)}
+          </select>
           {errors.city && <span className="text-red-500 text-[10px] uppercase font-black tracking-widest">{errors.city.message}</span>}
         </div>
       </div>
