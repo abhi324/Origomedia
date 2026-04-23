@@ -60,7 +60,7 @@ body::after {
 
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: var(--font-cormorant), serif;
   font-weight: 700;
   letter-spacing: -0.015em;
   line-height: 1.1;
@@ -69,7 +69,26 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .font-inter { font-family: 'Inter', sans-serif; }
-.font-playfair { font-family: 'Playfair Display', serif; }
+.font-cormorant { font-family: var(--font-cormorant), serif; }
+.font-montserrat { font-family: var(--font-montserrat), sans-serif; }
+
+/* Premium Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3D5449;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #2D3F37;
+}
 
 /* Lenis Recommended Styles */
 html.lenis {

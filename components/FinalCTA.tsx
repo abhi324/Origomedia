@@ -18,7 +18,7 @@ export default function FinalCTA() {
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="bg-white p-6 sm:p-12 md:p-16 lg:p-32 rounded-[2rem] sm:rounded-[5rem] shadow-[0_64px_128px_-32px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col items-center"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-playfair font-bold text-gray-900 mb-6 sm:mb-12 leading-[0.95] text-center">
+          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-cormorant font-bold text-gray-900 mb-6 sm:mb-12 leading-[0.95] text-center">
             Ready to Land Your
             <br />
             <span className="italic font-normal">Brand Collaboration?</span>

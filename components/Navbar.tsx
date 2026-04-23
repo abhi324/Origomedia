@@ -44,7 +44,7 @@ export default function Navbar() {
               alt="ORIGO"
               className="w-8 h-8 sm:w-14 sm:h-14 object-contain group-hover:scale-105 transition-transform duration-500"
             />
-            <span className="font-cormorant text-lg sm:text-2xl text-gray-900 tracking-[0.2em] sm:tracking-[0.4em] uppercase pl-[0.2em] sm:pl-[0.4em] truncate">ORIGO</span>
+            <span className="font-montserrat font-medium text-lg sm:text-2xl text-gray-900 tracking-[0.2em] sm:tracking-[0.4em] uppercase pl-[0.2em] sm:pl-[0.4em] truncate">ORIGO</span>
           </Link>
 
           {/* Desktop Nav Links */}
@@ -60,24 +60,24 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* Desktop CTA */}
-          <div className="hidden md:flex items-center">
+          {/* Action Area (Join + Hamburger) */}
+          <div className="flex items-center gap-2 sm:gap-4">
             <Link
               href="/join"
-              className="px-6 py-3 bg-[#4A6357] text-white rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-[#3D5449] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-[#4A6357]/20 border border-white/10"
+              className="px-4 py-2 sm:px-6 sm:py-3 bg-[#4A6357] text-white rounded-xl text-[9px] sm:text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-[#3D5449] transition-all hover:scale-[1.02] active:scale-[0.98] shadow-xl shadow-[#4A6357]/20 border border-white/10 whitespace-nowrap"
             >
               Join as Creator
             </Link>
-          </div>
 
-          {/* Mobile Hamburger */}
-          <button
-            onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors shrink-0"
-            aria-label="Toggle menu"
-          >
-            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
-          </button>
+            {/* Mobile Hamburger */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden p-1.5 sm:p-2 rounded-lg text-gray-700 hover:bg-gray-100 transition-colors shrink-0"
+              aria-label="Toggle menu"
+            >
+              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Dropdown Menu */}
@@ -101,13 +101,6 @@ export default function Navbar() {
                     {link.label}
                   </Link>
                 ))}
-                <Link
-                  href="/join"
-                  onClick={() => setMobileOpen(false)}
-                  className="mt-4 px-10 py-4 bg-[#4A6357] text-white rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest text-center hover:bg-[#3D5449] transition-all shadow-lg shadow-[#4A6357]/20 w-full max-w-[280px]"
-                >
-                  Join as Creator
-                </Link>
               </div>
             </motion.div>
           )}

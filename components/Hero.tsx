@@ -31,7 +31,7 @@ export default function Hero() {
             animate={{ opacity: 1, scale: 1.05 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 2, ease: "easeInOut" }}
-            alt="Creator Studio"
+            alt="Professional Beauty and Skincare Creator Studio - Origo Media"
             className="w-full h-full object-cover object-center absolute inset-0"
           />
         </AnimatePresence>
@@ -66,21 +66,22 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Overlapping Watermark — Hidden on mobile to prevent overflow */}
+      {/* Overlapping Watermark — Now visible on mobile */}
       <motion.div
         initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-        whileInView={{ opacity: 0.3, scale: 1, rotate: -12 }}
+        whileInView={{ opacity: 0.2, scale: 1, rotate: -12 }}
         viewport={{ once: true }}
         transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-        className="hidden sm:block absolute left-1/2 -translate-x-1/2 -bottom-[450px] z-[100] pointer-events-none"
+        className="block absolute -left-16 -bottom-[250px] sm:left-1/2 sm:-translate-x-1/2 sm:-bottom-[300px] z-[100] pointer-events-none mix-blend-multiply"
       >
-        <div className="w-[500px] h-[500px] md:w-[900px] md:h-[900px]">
-          <img 
-            src="/images/new_logo.png" 
-            alt="Brand Logo Decoration" 
-            className="w-full h-full object-contain filter grayscale contrast-0 brightness-0 opacity-50" 
-          />
-        </div>
+          {/* Mobile & Desktop: Instagram Logo */}
+          <div className="w-full h-full">
+            <img 
+              src="/images/logo_insta.png" 
+              alt="Origo Media Brand Presence" 
+              className="w-full h-full object-contain" 
+            />
+          </div>
       </motion.div>
     </section>
   );

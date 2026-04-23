@@ -42,9 +42,14 @@ export default function AsymmetricContent() {
           <div ref={stickyRef} className="w-full lg:w-[400px]">
             <div className="relative mx-auto lg:mx-0 rounded-[2.5rem] lg:rounded-[3rem] overflow-hidden aspect-square lg:aspect-[3/4] max-h-[300px] lg:max-h-none shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] bg-gray-100">
               <img
+                src="/images/khali_jagah_phone.png"
+                alt="Beauty and Skincare Influencer Networking at Origo Media"
+                className="w-full h-full object-cover block lg:hidden"
+              />
+              <img
                 src="/images/new-khali-jagah.png"
-                alt="Origo Media brand visual"
-                className="w-full h-full object-cover"
+                alt="Premium Creator and Brand Partnership Visual for Origo Media"
+                className="w-full h-full object-cover hidden lg:block"
               />
             </div>
 
@@ -70,7 +75,7 @@ export default function AsymmetricContent() {
               viewport={{ once: true }}
               className="mb-12 sm:mb-20 text-center lg:text-left"
             >
-              <h2 className="text-4xl sm:text-5xl md:text-7xl font-playfair font-bold text-gray-900 leading-[0.95]">
+              <h2 className="text-4xl sm:text-5xl md:text-7xl font-cormorant font-bold text-gray-900 leading-[0.95]">
                 Excel in Your <br /> <span className="italic font-normal">Specialization.</span>
               </h2>
             </motion.div>
@@ -88,7 +93,7 @@ export default function AsymmetricContent() {
                   <div className="aspect-[4/5] overflow-hidden bg-gray-50">
                     <img
                       src={spec.image}
-                      alt={spec.name}
+                      alt={`${spec.name} Influencer Niche for Beauty and Skincare Marketing`}
                       className="w-full h-full object-cover grayscale-[0.3] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
                     />
                     {/* Color Accent Overlay */}
@@ -102,7 +107,7 @@ export default function AsymmetricContent() {
                         {spec.name}
                       </span>
                     </div>
-                    <h3 className="text-xl md:text-2xl font-playfair font-bold text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">Explore Niche</h3>
+                    <h3 className="text-xl md:text-2xl font-cormorant font-bold text-gray-900 opacity-0 group-hover:opacity-100 transition-opacity duration-700 delay-100">Explore Niche</h3>
                   </div>
                 </motion.div>
               ))}
@@ -121,7 +126,7 @@ export default function AsymmetricContent() {
                 viewport={{ once: true }}
               >
                 <span className="text-[#4A6357] text-[10px] font-inter font-black tracking-[0.5em] uppercase mb-8 block">Exclusive Membership</span>
-                <h2 className="text-3xl sm:text-4xl md:text-6xl font-playfair font-bold text-gray-900 mb-6 sm:mb-10 leading-[1.1]">
+                <h2 className="text-3xl sm:text-4xl md:text-6xl font-cormorant font-bold text-gray-900 mb-6 sm:mb-10 leading-[1.1]">
                   Founding Creator <br /> <span className="italic font-normal">Partner Program.</span>
                 </h2>
                 <p className="text-gray-500 text-base sm:text-xl mb-8 sm:mb-16 leading-relaxed max-w-2xl font-medium font-inter">
@@ -149,7 +154,7 @@ export default function AsymmetricContent() {
                       </svg>
                     </div>
                     <div className="pt-1">
-                      <h4 className="text-xl font-playfair font-bold text-gray-900 mb-2">{point.title}</h4>
+                      <h4 className="text-xl font-cormorant font-bold text-gray-900 mb-2">{point.title}</h4>
                       <p className="text-gray-500 text-base font-medium font-inter leading-relaxed max-w-lg">{point.desc}</p>
                     </div>
                   </motion.div>

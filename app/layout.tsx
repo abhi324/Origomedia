@@ -1,15 +1,9 @@
-import { Inter, Playfair_Display, Instrument_Serif, JetBrains_Mono, Montserrat, Roboto_Flex, Arvo, Cormorant_Garamond } from "next/font/google";
+import { Inter, Montserrat, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
-  display: "swap"
-});
-
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
   display: "swap"
 });
 
@@ -20,51 +14,29 @@ const cormorant = Cormorant_Garamond({
   display: "swap"
 });
 
-const instrument = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument",
-  display: "swap"
-});
-
-const mono = JetBrains_Mono({
-  subsets: ["latin"],
-  variable: "--font-mono",
-  display: "swap"
-});
-
 const montserrat = Montserrat({
   subsets: ["latin"],
   variable: "--font-montserrat",
   display: "swap"
 });
 
-const robotoFlex = Roboto_Flex({
-  subsets: ["latin"],
-  variable: "--font-roboto-flex",
-  display: "swap"
-});
-
-const arvo = Arvo({
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  variable: "--font-arvo",
-  display: "swap"
-});
-
 export const metadata = {
-  title: "ORIGO | Growth Starts from the Right Origin",
-  description: "ORIGO connects premium brands with the right Creators. Minimal, high-end editorial brand presence and Creator networking.",
-  keywords: ["Creator marketing", "brand growth", "origo", "premium brands", "marketing network", "beauty niche", "creator agency"],
+  metadataBase: new URL("https://origomedia.co"),
+  title: {
+    default: "ORIGO | Beauty & Skincare Influencer Marketing Agency",
+    template: "%s | ORIGO"
+  },
+  description: "ORIGO bridges the gap between visionary creators and institutional excellence in beauty and skincare through precision-matched influencer marketing.",
+  keywords: ["Beauty Influencer Agency", "Skincare Marketing Agency", "Nano Influencer Network", "Micro Creator Partnerships", "Beauty Brand Growth", "Intentional Influence"],
   authors: [{ name: "ORIGO MEDIA GROUP" }],
   openGraph: {
-    title: "ORIGO | Growth Starts from the Right Origin",
-    description: "Connecting premium brands with elite Creators through niche expertise.",
+    title: "ORIGO | Bridging Vision and Voice",
+    description: "Specialized influencer marketing for beauty and skincare. We curate intentional collaborations that resonate.",
     url: "https://origomedia.co",
     siteName: "ORIGO",
     images: [
       {
-        url: "/logo-v2.png",
+        url: "https://origomedia.co/logo-v2.png",
         width: 1200,
         height: 630,
         alt: "ORIGO Logo",
@@ -77,7 +49,7 @@ export const metadata = {
     card: "summary_large_image",
     title: "ORIGO | Growth Starts from the Right Origin",
     description: "Connecting premium brands with elite Creators.",
-    images: ["/logo-v2.png"],
+    images: ["https://origomedia.co/logo-v2.png"],
   },
   icons: {
     icon: "/logo-v2.png",
@@ -100,10 +72,31 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable} ${instrument.variable} ${mono.variable} ${montserrat.variable} ${robotoFlex.variable} ${arvo.variable} ${cormorant.variable}`}>
+    <html lang="en" className={`${inter.variable} ${montserrat.variable} ${cormorant.variable}`}>
       <body className="antialiased selection:bg-origo-peach selection:text-origo-dark overflow-x-hidden w-full">
         <div className="relative w-full flex flex-col min-h-screen">
           <Navbar />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                "name": "ORIGO MEDIA GROUP",
+                "url": "https://origomedia.co",
+                "logo": "https://origomedia.co/logo-v2.png",
+                "description": "Premium brand and creator networking agency.",
+                "contactPoint": {
+                  "@type": "ContactPoint",
+                  "email": "origomedia.co@gmail.com",
+                  "contactType": "customer service"
+                },
+                "sameAs": [
+                  "https://instagram.com/origomedia"
+                ]
+              })
+            }}
+          />
           <main className="flex-grow w-full max-w-full">
             {children}
           </main>

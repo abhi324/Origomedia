@@ -26,7 +26,7 @@ export default function Footer() {
             alt="ORIGO"
             className="w-32 h-32 md:w-48 md:h-48 object-contain mix-blend-multiply brightness-[1.1]"
           />
-          <span className="font-cormorant text-5xl md:text-6xl tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
+          <span className="font-montserrat font-medium text-5xl md:text-6xl tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
         </div>
 
         {/* Links Grid — Refined Modern Aesthetic */}
