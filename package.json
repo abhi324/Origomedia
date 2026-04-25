@@ -6,7 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "zip": "node -e \"const{execSync}=require('child_process');const fs=require('fs');const path=require('path');if(!fs.existsSync('out'))throw new Error('Run npm run build first');const out=path.resolve('origomedia.zip');try{fs.unlinkSync(out)}catch{};execSync(`powershell -NoProfile -Command \\\"Compress-Archive -Path out\\\\* -DestinationPath '${out}' -Force\\\"`,{stdio:'inherit'});console.log('Created',out)\"",
+    "deploy": "npm run build && npm run zip"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

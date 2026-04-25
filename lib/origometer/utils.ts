@@ -44,12 +44,15 @@ export function creatorScoreColor(score: number | null): string {
   return "text-red-500";
 }
 
+const API_BASE =
+  process.env.NEXT_PUBLIC_ORIGOMETER_API_URL || "http://127.0.0.1:8000";
+
 /**
  * Wrap an Instagram CDN image URL through the backend proxy to bypass
- * Referer/expiration blocks. Same-origin: Next.js rewrites the request.
+ * Referer/expiration blocks. Static export → absolute backend URL.
  */
 export function proxyImage(url: string | null | undefined): string {
   if (!url) return "";
   if (!url.startsWith("http")) return url;
-  return `/api/v1/media/proxy-image?url=${encodeURIComponent(url)}`;
+  return `${API_BASE}/api/v1/media/proxy-image?url=${encodeURIComponent(url)}`;
 }

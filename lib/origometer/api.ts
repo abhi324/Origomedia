@@ -7,10 +7,14 @@ import type {
   VerificationRequest,
 } from "@/types/origometer";
 
-// Same-origin: Next.js rewrites /api/v1/* → backend container.
-// Browser only ever sees origomedia.co.
+// Static export: no Next.js rewrites. The browser hits the backend directly,
+// so the URL must be baked in at build time via NEXT_PUBLIC_ORIGOMETER_API_URL.
+// Backend must allow CORS from origomedia.co.
+const API_BASE =
+  process.env.NEXT_PUBLIC_ORIGOMETER_API_URL || "http://127.0.0.1:8000";
+
 const client = axios.create({
-  baseURL: "",
+  baseURL: API_BASE,
   timeout: 60_000,
 });
 
