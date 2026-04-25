@@ -25,10 +25,6 @@ import {
   Pie,
   Cell,
   ResponsiveContainer,
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
   Tooltip,
 } from "recharts";
 import toast from "react-hot-toast";
@@ -124,10 +120,7 @@ function CreatorAnalyticsInner() {
           <ReelEngagement creator={creator} />
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          <AudienceGender />
-          <AudienceDemographics />
-        </div>
+        <EngagementQuality creator={creator} />
 
         <CredibilityCard creator={creator} />
 
@@ -459,92 +452,124 @@ function EngagementCard({
   );
 }
 
-function AudienceGender() {
-  const data = [
-    { name: "Female", value: 68, color: PALETTE.peach },
-    { name: "Male", value: 30, color: PALETTE.greenSoft },
-    { name: "Other", value: 2, color: PALETTE.muted },
+// All cells here are computed from public scraper data — no estimates.
+function EngagementQuality({ creator }: { creator: Creator }) {
+  const followers = creator.followers ?? 0;
+  const following = creator.following ?? 0;
+  const avgLikes = creator.avg_likes ?? 0;
+  const avgComments = creator.avg_comments ?? 0;
+  const totalPosts = creator.total_posts ?? 0;
+
+  // Follower : following ratio. Healthy creators have far more followers than
+  // following (>10:1 typical). A near-1:1 ratio suggests a follow-for-follow
+  // account; very high ratios suggest a curator/celebrity profile.
+  const followRatio =
+    following > 0 ? followers / following : null;
+  const followRatioLabel =
+    followRatio == null
+      ? "—"
+      : followRatio >= 100
+        ? `${(followRatio / 1).toFixed(0)}:1`
+        : `${followRatio.toFixed(1)}:1`;
+
+  // Like : comment ratio. Healthy ratios are 20:1 to 100:1. A very low ratio
+  // (e.g. <10:1) often means engagement pods or comment-for-comment groups;
+  // very high (>200:1) suggests passive double-tap engagement.
+  const likeCommentRatio =
+    avgComments > 0 ? avgLikes / avgComments : null;
+  const likeCommentLabel =
+    likeCommentRatio == null
+      ? "—"
+      : likeCommentRatio >= 100
+        ? `${likeCommentRatio.toFixed(0)}:1`
+        : `${likeCommentRatio.toFixed(1)}:1`;
+
+  // Comments per 1k followers — direct measure of how many people care enough
+  // to type, normalized so it's comparable across creator sizes.
+  const commentsPer1k =
+    followers > 0 ? (avgComments / followers) * 1000 : null;
+  const commentsPer1kLabel =
+    commentsPer1k == null
+      ? "—"
+      : commentsPer1k.toFixed(1);
+
+  const cells: { label: string; value: string; hint: string }[] = [
+    {
+      label: "Follower : Following",
+      value: followRatioLabel,
+      hint:
+        followRatio == null
+          ? "Insufficient data"
+          : followRatio >= 50
+            ? "Curator / public figure"
+            : followRatio >= 5
+              ? "Healthy creator profile"
+              : followRatio >= 1
+                ? "Mutual / consumer-leaning"
+                : "Following more than followed",
+    },
+    {
+      label: "Likes : Comments",
+      value: likeCommentLabel,
+      hint:
+        likeCommentRatio == null
+          ? "No comment data"
+          : likeCommentRatio < 20
+            ? "Comment-heavy (engaged)"
+            : likeCommentRatio < 100
+              ? "Healthy mix"
+              : "Like-heavy (passive)",
+    },
+    {
+      label: "Comments per 1K followers",
+      value: commentsPer1kLabel,
+      hint:
+        commentsPer1k == null
+          ? "—"
+          : commentsPer1k >= 5
+            ? "Strong audience pull"
+            : commentsPer1k >= 1
+              ? "Average for the size tier"
+              : "Quiet audience",
+    },
+    {
+      label: "Posts in feed",
+      value: totalPosts > 0 ? totalPosts.toLocaleString() : "—",
+      hint:
+        totalPosts >= 100
+          ? "Established account"
+          : totalPosts >= 30
+            ? "Growing account"
+            : totalPosts > 0
+              ? "Newer account"
+              : "—",
+    },
   ];
 
   return (
     <div className="card">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="eyebrow text-[#4A6357]">Audience Gender</h3>
-        <span className="badge bg-[#EFEFED] text-gray-400 border border-gray-200/60">
-          Estimated
+      <div className="flex items-center justify-between mb-5">
+        <h3 className="eyebrow text-[#4A6357]">Engagement Quality</h3>
+        <span className="text-[9px] uppercase tracking-[0.2em] font-montserrat font-semibold text-gray-400">
+          Computed from public data
         </span>
       </div>
-      <div className="h-52">
-        <ResponsiveContainer width="100%" height="100%">
-          <PieChart>
-            <Pie
-              data={data}
-              dataKey="value"
-              innerRadius={52}
-              outerRadius={84}
-              paddingAngle={2}
-              stroke="none"
-            >
-              {data.map((d, i) => (
-                <Cell key={i} fill={d.color} />
-              ))}
-            </Pie>
-            <Tooltip formatter={(v: number) => `${v}%`} />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
-      <div className="flex justify-around text-[10px] uppercase tracking-[0.2em] font-montserrat font-semibold">
-        {data.map((d) => (
-          <div key={d.name} className="flex items-center gap-2">
-            <span className="w-2.5 h-2.5 rounded-full" style={{ background: d.color }} />
-            <span className="text-gray-500">{d.name}</span>
-            <span className="text-[#3D5449]">{d.value}%</span>
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+        {cells.map((c) => (
+          <div
+            key={c.label}
+            className="flex flex-col gap-1.5 border-l-2 border-[#3D5449]/15 pl-4"
+          >
+            <p className="eyebrow-sm text-gray-400">{c.label}</p>
+            <p className="text-2xl font-cormorant font-bold text-gray-900 leading-none">
+              {c.value}
+            </p>
+            <p className="text-[10px] text-gray-500 font-inter leading-snug">
+              {c.hint}
+            </p>
           </div>
         ))}
       </div>
-      <p className="text-[9px] uppercase tracking-[0.2em] font-montserrat font-semibold text-gray-300 mt-3 text-center">
-        Estimated from niche &amp; regional averages
-      </p>
-    </div>
-  );
-}
-
-function AudienceDemographics() {
-  const data = [
-    { age: "13-17", percent: 8 },
-    { age: "18-24", percent: 34 },
-    { age: "25-34", percent: 38 },
-    { age: "35-44", percent: 14 },
-    { age: "45-54", percent: 4 },
-    { age: "55+", percent: 2 },
-  ];
-
-  return (
-    <div className="card">
-      <div className="flex items-center justify-between mb-4">
-        <h3 className="eyebrow text-[#4A6357]">Age Distribution</h3>
-        <span className="badge bg-[#EFEFED] text-gray-400 border border-gray-200/60">
-          Estimated
-        </span>
-      </div>
-      <div className="h-52">
-        <ResponsiveContainer width="100%" height="100%">
-          <BarChart data={data}>
-            <XAxis
-              dataKey="age"
-              tick={{ fontSize: 10, fill: PALETTE.muted, fontFamily: "var(--font-montserrat)" }}
-              axisLine={false}
-              tickLine={false}
-            />
-            <YAxis hide />
-            <Tooltip formatter={(v: number) => `${v}%`} cursor={{ fill: "#EFEFED" }} />
-            <Bar dataKey="percent" fill={PALETTE.green} radius={[4, 4, 0, 0]} />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-      <p className="text-[9px] uppercase tracking-[0.2em] font-montserrat font-semibold text-gray-300 mt-3 text-center">
-        Estimated from niche &amp; regional averages
-      </p>
     </div>
   );
 }
