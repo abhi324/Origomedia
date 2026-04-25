@@ -3,11 +3,13 @@ import { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "FAQ | ORIGO",
-  description: "How ORIGO selects creators, what a brand campaign looks like, and how nano and micro creators can join.",
+  description:
+    "How ORIGO selects creators, what a brand campaign looks like, and how nano and micro creators across every category can join.",
   alternates: { canonical: "/faq" },
   openGraph: {
     title: "FAQ | ORIGO",
-    description: "Common questions about working with ORIGO as a beauty or skincare brand, and applying as a creator.",
+    description:
+      "Common questions about working with ORIGO as a brand, and applying as a creator.",
     url: "https://origomedia.co/faq",
     images: ["/logo-v2.png"],
   },

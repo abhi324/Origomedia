@@ -22,8 +22,13 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "sans-serif"],
+        inter: ["var(--font-inter)", "Inter", "sans-serif"],
         cormorant: ["var(--font-cormorant)", "serif"],
         montserrat: ["var(--font-montserrat)", "sans-serif"],
+      },
+      boxShadow: {
+        editorial: "0 4px 24px -8px rgba(0,0,0,0.04)",
+        "editorial-hover": "0 16px 48px -12px rgba(0,0,0,0.08)",
       },
       animation: {
         "fade-up": "fadeUp 0.8s ease-out forwards",

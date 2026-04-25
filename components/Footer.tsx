@@ -7,10 +7,11 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const links = [
-    { label: "About", href: "/about" },
-    { label: "FAQ", href: "/faq" },
-    { label: "Join", href: "/join" },
-    { label: "Contact", href: "mailto:origomedia.co@gmail.com" },
+    { label: "About", href: "/about", external: false },
+    { label: "Origometer", href: "/origometer", external: false },
+    { label: "FAQ", href: "/faq", external: false },
+    { label: "Join", href: "/join", external: false },
+    { label: "Contact", href: "mailto:origomedia.co@gmail.com", external: true },
   ];
 
   return (
@@ -35,15 +36,25 @@ export default function Footer() {
         </div>
 
         <nav className="flex flex-wrap justify-center gap-x-10 sm:gap-x-14 gap-y-4 mb-14 sm:mb-16">
-          {links.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="text-white/50 hover:text-white transition-all text-[11px] uppercase font-montserrat font-semibold tracking-[0.2em]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {links.map((link) =>
+            link.external ? (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-white/50 hover:text-white transition-all text-[11px] uppercase font-montserrat font-semibold tracking-[0.2em]"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-white/50 hover:text-white transition-all text-[11px] uppercase font-montserrat font-semibold tracking-[0.2em]"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </nav>
 
         <div className="mb-14 sm:mb-16 text-center group">

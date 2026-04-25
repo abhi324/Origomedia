@@ -6,9 +6,9 @@ import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "About", href: "/about" },
-  { label: "FAQ", href: "/faq" },
-  { label: "Contact", href: "mailto:origomedia.co@gmail.com" },
+  { label: "About", href: "/about", external: false },
+  { label: "Origometer", href: "/origometer", external: false },
+  { label: "FAQ", href: "/faq", external: false },
 ];
 
 export default function Navbar() {
@@ -54,15 +54,25 @@ export default function Navbar() {
         </Link>
 
         <div className="hidden md:flex items-center gap-9">
-          {navLinks.map((link) => (
-            <Link
-              key={link.label}
-              href={link.href}
-              className="text-[11px] uppercase text-gray-500 hover:text-[#4A6357] transition-all font-montserrat font-semibold tracking-[0.2em]"
-            >
-              {link.label}
-            </Link>
-          ))}
+          {navLinks.map((link) =>
+            link.external ? (
+              <a
+                key={link.label}
+                href={link.href}
+                className="text-[11px] uppercase text-gray-500 hover:text-[#4A6357] transition-all font-montserrat font-semibold tracking-[0.2em]"
+              >
+                {link.label}
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                href={link.href}
+                className="text-[11px] uppercase text-gray-500 hover:text-[#4A6357] transition-all font-montserrat font-semibold tracking-[0.2em]"
+              >
+                {link.label}
+              </Link>
+            )
+          )}
         </div>
 
         <div className="flex items-center gap-2 sm:gap-3">
@@ -95,16 +105,27 @@ export default function Navbar() {
             style={{ backgroundColor: "#FAFAF8", backdropFilter: "blur(20px)", WebkitBackdropFilter: "blur(20px)" }}
           >
             <div className="px-6 py-6 flex flex-col gap-4 items-center text-center">
-              {navLinks.map((link) => (
-                <Link
-                  key={link.label}
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="text-sm uppercase text-gray-600 hover:text-[#4A6357] transition-colors font-montserrat font-semibold tracking-[0.2em] w-full py-2"
-                >
-                  {link.label}
-                </Link>
-              ))}
+              {navLinks.map((link) =>
+                link.external ? (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-sm uppercase text-gray-600 hover:text-[#4A6357] transition-colors font-montserrat font-semibold tracking-[0.2em] w-full py-2"
+                  >
+                    {link.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="text-sm uppercase text-gray-600 hover:text-[#4A6357] transition-colors font-montserrat font-semibold tracking-[0.2em] w-full py-2"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </div>
           </motion.div>
         )}

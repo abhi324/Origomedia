@@ -104,6 +104,67 @@ h1, h2, h3, h4, h5, h6 {
   will-change: transform;
 }
 
+@layer components {
+  /* Editorial card */
+  .card {
+    @apply grain-bg rounded-2xl border border-gray-200/60 p-6 shadow-editorial;
+  }
+
+  /* Eyebrow label */
+  .eyebrow {
+    @apply text-[10px] font-montserrat font-bold tracking-[0.4em] uppercase;
+  }
+
+  .eyebrow-sm {
+    @apply text-[9px] font-montserrat font-bold tracking-[0.35em] uppercase;
+  }
+
+  /* Subtle outlined badge */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-1 rounded-full
+           text-[10px] uppercase tracking-[0.2em] font-montserrat font-semibold;
+  }
+
+  /* Primary CTA — solid origo green */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg
+           bg-[#3D5449] text-white text-[11px] uppercase font-montserrat font-bold tracking-widest
+           hover:bg-[#2D3F37] active:scale-[0.98] transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Secondary CTA — outline */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg
+           grain-bg border border-gray-300/70 text-[#3D5449] text-[11px] uppercase font-montserrat font-bold tracking-widest
+           hover:border-[#3D5449] hover:bg-white active:scale-[0.98] transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  /* Accent CTA — peach */
+  .btn-accent {
+    @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-lg
+           bg-[#C8503A] text-white text-[11px] uppercase font-montserrat font-bold tracking-widest
+           hover:bg-[#b04432] active:scale-[0.98] transition-all duration-200
+           disabled:opacity-50 disabled:cursor-not-allowed;
+  }
+
+  .input {
+    @apply w-full rounded-lg border border-gray-300/70 grain-bg px-4 py-3 text-sm font-inter
+           placeholder:text-gray-400 text-gray-900
+           focus:outline-none focus:ring-1 focus:ring-[#3D5449] focus:border-[#3D5449]
+           transition-all duration-150;
+  }
+
+  .editorial-divider {
+    @apply w-full h-px bg-gray-200/80;
+  }
+
+  .editorial-divider-dark {
+    @apply w-full h-px bg-white/10;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;

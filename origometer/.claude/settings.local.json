@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm --version)",
+      "Bash(python -m pip install --upgrade pip)",
+      "Bash(python -m pip install fastapi uvicorn[standard] httpx beautifulsoup4 lxml python-dotenv pydantic pydantic-settings tenacity)",
+      "Bash(python -m pip install playwright)",
+      "Bash(python -m playwright install chromium)",
+      "Bash(python -c \"from main import app; print\\('Import OK'\\)\")",
+      "Bash(python -m uvicorn main:app --host 127.0.0.1 --port 8000)",
+      "Bash(curl -s http://127.0.0.1:8000/health)",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/v1/lookup -H \"Content-Type: application/json\" -d '{\"username\":\"hudabeauty\",\"platform\":\"instagram\"}')",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/v1/lookup -H \"Content-Type: application/json\" -d '{\"username\":\"hudabeauty\",\"platform\":\"instagram\",\"force_refresh\":true}')",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(json.dumps\\(d, indent=2\\)[:1500]\\)\")",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\)['data']; print\\('Name:', d['profile_name']\\); print\\('Followers:', d['followers'], '\\(', d['followers_formatted'], '\\)'\\); print\\('Following:', d['following']\\); print\\('Posts:', d['total_posts']\\); print\\('Niche:', d['primary_niche']\\); print\\('Score:', d['creator_score']\\); print\\('Confidence:', d['confidence_score']\\); print\\('Bio:', \\(d['bio'] or ''\\)[:100]\\)\")",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Bash(curl -s http://localhost:3000 -o /dev/null -w \"%{http_code}\")",
+      "Bash(curl -s http://localhost:3000 -o /dev/null -w \"HTTP %{http_code} | %{size_download} bytes\\\\n\")",
+      "Bash(curl -s http://localhost:3002 -o /dev/null -w \"Frontend: HTTP %{http_code}\\\\n\")",
+      "Bash(curl -s http://127.0.0.1:8000/health -w \" | Backend: %{http_code}\\\\n\")",
+      "Bash(python -m pip install supabase)",
+      "Bash(curl -s -X POST http://127.0.0.1:8000/api/v1/lookup -H \"Content-Type: application/json\" -d '{\"username\":\"jamescharles\",\"platform\":\"youtube\",\"force_refresh\":true}')",
+      "Bash(python -c \"import sys,json; d=json.load\\(sys.stdin\\)['data']; print\\('Name:', d.get\\('profile_name'\\)\\); print\\('Followers:', d.get\\('followers'\\)\\); print\\('Posts:', d.get\\('total_posts'\\)\\); print\\('Confidence:', d.get\\('confidence_score'\\)\\); print\\('Source:', d.get\\('data_source'\\)\\)\")",
+      "WebFetch(domain:bhrisa.com)"
+    ]
+  }
+}

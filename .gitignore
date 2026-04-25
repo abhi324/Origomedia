@@ -23,7 +23,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
+.env
+.env.local
 .env*.local
+!.env.example
 
 # vercel
 .vercel
@@ -31,3 +34,18 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# python (origometer/backend)
+__pycache__/
+*.pyc
+*.pyo
+.python-version
+venv/
+.venv/
+
+# editor / IDE
+.idea/
+.vscode/
+
+# OS
+Thumbs.db

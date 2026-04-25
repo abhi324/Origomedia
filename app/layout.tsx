@@ -26,16 +26,16 @@ export const metadata = {
     default: "ORIGO | Influencer Marketing Agency",
     template: "%s | ORIGO"
   },
-  description: "ORIGO is an influencer marketing agency for beauty and skincare. We connect brands with vetted nano and micro creators, curated by fit.",
+  description: "ORIGO is an influencer marketing agency that connects brands with vetted nano and micro creators across every category, curated by fit over volume.",
   keywords: [
-    "beauty influencer agency",
-    "skincare marketing agency",
-    "nano influencer agency India",
+    "influencer marketing agency",
+    "nano influencer agency",
     "micro creator agency",
-    "beauty creator network",
-    "skincare influencer marketing",
-    "dermacosmetics creators",
-    "makeup creators",
+    "creator marketing agency India",
+    "brand creator partnerships",
+    "creator network",
+    "creator vetting tool",
+    "influencer analytics",
     "ORIGO Media",
     "origomedia",
   ],
@@ -58,7 +58,7 @@ export const metadata = {
   },
   openGraph: {
     title: "ORIGO | Turn your content into income.",
-    description: "A creator-first agency for beauty and skincare. Nano and micro creators, curated for fit.",
+    description: "A creator-first influencer marketing agency. Nano and micro creators across every category, curated for fit.",
     url: "https://origomedia.co",
     siteName: "ORIGO",
     images: [
@@ -66,7 +66,7 @@ export const metadata = {
         url: "/logo-v2.png",
         width: 1200,
         height: 630,
-        alt: "ORIGO — Beauty & skincare influencer marketing agency",
+        alt: "ORIGO — Influencer marketing agency",
       },
     ],
     locale: "en_US",
@@ -95,6 +95,7 @@ export const viewport = {
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Toaster } from "react-hot-toast";
 
 export default function RootLayout({
   children,
@@ -123,7 +124,7 @@ export default function RootLayout({
                   "width": 512,
                   "height": 512
                 },
-                "description": "An influencer marketing agency for beauty and skincare, connecting brands with vetted nano and micro creators.",
+                "description": "An influencer marketing agency connecting brands with vetted nano and micro creators across every category.",
                 "contactPoint": {
                   "@type": "ContactPoint",
                   "email": "origomedia.co@gmail.com",
@@ -146,7 +147,7 @@ export default function RootLayout({
                 "@id": "https://origomedia.co/#website",
                 "url": "https://origomedia.co",
                 "name": "ORIGO",
-                "description": "Beauty & skincare influencer marketing agency connecting brands with nano and micro creators.",
+                "description": "Influencer marketing agency connecting brands with vetted nano and micro creators across every category.",
                 "publisher": { "@id": "https://origomedia.co/#organization" },
                 "inLanguage": "en-US"
               })
@@ -157,6 +158,20 @@ export default function RootLayout({
           </main>
           <Footer />
         </div>
+        <Toaster
+          position="bottom-center"
+          toastOptions={{
+            style: {
+              background: "#3D5449",
+              color: "#FAFAF8",
+              borderRadius: "8px",
+              fontSize: "12px",
+              fontFamily: "var(--font-montserrat), sans-serif",
+              letterSpacing: "0.05em",
+              padding: "12px 16px",
+            },
+          }}
+        />
       </body>
     </html>
   );
