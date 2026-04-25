@@ -140,29 +140,35 @@ class InstagramScraper(BaseScraper):
                 page = await ctx.new_page()
                 page.on("response", handle_response)
 
-                # Block heavy resources
-                await page.route(
-                    "**/*.{woff,woff2,ttf,mp4,webm}",
-                    lambda route: route.abort(),
-                )
+                # Block everything we don't need to extract data — we never
+                # render this visually, only sniff JSON responses. Blocking
+                # images/css/media is worth ~3-5s on a typical scrape.
+                async def _block_heavy(route):
+                    rt = route.request.resource_type
+                    if rt in ("image", "media", "font", "stylesheet", "manifest", "websocket"):
+                        await route.abort()
+                    else:
+                        await route.continue_()
+                await page.route("**/*", _block_heavy)
 
-                await throttle("instagram.com", min_delay=1.0, max_delay=3.0)
+                await throttle("instagram.com", min_delay=0.4, max_delay=1.0)
                 try:
-                    await page.goto(url, wait_until="domcontentloaded", timeout=25_000)
+                    await page.goto(url, wait_until="domcontentloaded", timeout=12_000)
                 except PWTimeout:
                     pass
 
-                # Let initial GraphQL fire
-                await asyncio.sleep(2.5)
+                # Let initial GraphQL fire — used to be 2.5s, lowered.
+                await asyncio.sleep(1.0)
 
-                # Scroll the page in chunks to trigger lazy-loaded post batches.
-                # Each scroll fires a graphql query that our handler captures.
-                for _ in range(4):
-                    try:
-                        await page.evaluate("window.scrollBy(0, document.body.scrollHeight);")
-                    except Exception:
-                        break
-                    await asyncio.sleep(1.5)
+                # One scroll to trigger the first lazy-loaded batch. The
+                # in-page web_profile_info + feed/user fetches below already
+                # give us the canonical post list, so deeper scrolling is
+                # mostly redundant and costs ~6s.
+                try:
+                    await page.evaluate("window.scrollBy(0, document.body.scrollHeight);")
+                    await asyncio.sleep(0.7)
+                except Exception:
+                    pass
 
                 # ── Always run the official web API from within the page context ───
                 # Even if we already captured something, this gives us the canonical

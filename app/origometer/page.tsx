@@ -1,12 +1,20 @@
 "use client";
 
+import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { motion } from "framer-motion";
 import { SearchPanel } from "@/components/origometer/SearchPanel";
+import { pingBackend } from "@/lib/origometer/api";
 import type { Platform } from "@/types/origometer";
 
 export default function OrigometerHome() {
   const router = useRouter();
+
+  // Wake the backend the moment the user lands here so the cold-start
+  // (Render free tier sleeps after 15 min) is happening while they type.
+  useEffect(() => {
+    pingBackend();
+  }, []);
 
   async function handleSearch(username: string, _platform: Platform) {
     const clean = username.trim().replace(/^@/, "").toLowerCase();

@@ -27,9 +27,7 @@ import {
   ResponsiveContainer,
   Tooltip,
 } from "recharts";
-import toast from "react-hot-toast";
-
-import { lookupCreator } from "@/lib/origometer/api";
+import { lookupCreator, pingBackend } from "@/lib/origometer/api";
 import { formatNumber, proxyImage } from "@/lib/origometer/utils";
 import type { Creator } from "@/types/origometer";
 import { VerificationRequestForm } from "@/components/origometer/VerificationRequestForm";
@@ -59,13 +57,25 @@ function CreatorAnalyticsInner() {
   const username = (searchParams.get("u") ?? "").replace(/^@/, "").trim();
   const [creator, setCreator] = useState<Creator | null>(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const [attempt, setAttempt] = useState(0);
   const [showVerifyForm, setShowVerifyForm] = useState(false);
+
+  useEffect(() => {
+    // Wake the backend immediately — by the time we issue the actual lookup
+    // (which happens in this same effect), it's hopefully already warm.
+    pingBackend();
+  }, []);
 
   useEffect(() => {
     if (!username) {
       router.push("/origometer");
       return;
     }
+    let cancelled = false;
+    setLoading(true);
+    setError(null);
+
     (async () => {
       try {
         let res = await lookupCreator(username, "instagram");
@@ -74,22 +84,38 @@ function CreatorAnalyticsInner() {
         if (!hasBreakdown) {
           res = await lookupCreator(username, "instagram", true);
         }
-        setCreator(res.data);
+        if (!cancelled) setCreator(res.data);
       } catch (err: any) {
+        if (cancelled) return;
         const detail = err?.response?.data?.detail;
         const msg =
           typeof detail === "string"
             ? detail
-            : detail?.error ?? "Could not load creator analytics";
-        toast.error(msg, { duration: 6000 });
-        router.push("/origometer");
+            : detail?.error ??
+              (err?.code === "ECONNABORTED"
+                ? "Took too long to respond — Instagram may be rate-limiting. Try again."
+                : "Couldn't load this creator. Try again or check the username.");
+        setError(msg);
       } finally {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       }
     })();
-  }, [username, router]);
+
+    return () => {
+      cancelled = true;
+    };
+  }, [username, router, attempt]);
 
   if (loading) return <LoadingState username={username} />;
+  if (error) {
+    return (
+      <ErrorState
+        username={username}
+        message={error}
+        onRetry={() => setAttempt((a) => a + 1)}
+      />
+    );
+  }
   if (!creator) return null;
 
   return (
@@ -110,7 +136,7 @@ function CreatorAnalyticsInner() {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto px-5 sm:px-8 py-10 sm:py-14 space-y-8">
+      <main className="max-w-6xl mx-auto px-4 sm:px-8 py-8 sm:py-14 space-y-6 sm:space-y-8">
         <ProfileCard creator={creator} onVerify={() => setShowVerifyForm(true)} />
         <ImpactOverview creator={creator} />
 
@@ -162,64 +188,64 @@ function ProfileCard({
     <motion.div
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
-      className="card relative overflow-hidden p-7 sm:p-9"
+      className="card relative overflow-hidden p-5 sm:p-9"
     >
       <div className="absolute top-0 right-0 w-72 h-72 bg-[#F5E68E]/15 rounded-full -mr-36 -mt-36 blur-3xl pointer-events-none" />
 
-      <div className="relative flex flex-col md:flex-row items-start md:items-center gap-6">
-        <div className="relative shrink-0">
+      <div className="relative flex flex-col md:flex-row items-start md:items-center gap-5 sm:gap-6">
+        <div className="relative shrink-0 mx-auto md:mx-0">
           {creator.profile_image_url ? (
             <img
               src={proxyImage(creator.profile_image_url)}
               alt={creator.profile_name ?? creator.username}
-              className="w-24 h-24 sm:w-28 sm:h-28 rounded-full object-cover ring-1 ring-gray-200/80"
+              className="w-20 h-20 sm:w-28 sm:h-28 rounded-full object-cover ring-1 ring-gray-200/80"
               onError={(e) => {
                 (e.target as HTMLImageElement).src = `https://ui-avatars.com/api/?name=${creator.username}&background=3D5449&color=fff&size=112`;
               }}
             />
           ) : (
-            <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full bg-[#3D5449] flex items-center justify-center text-white text-3xl font-cormorant font-bold">
+            <div className="w-20 h-20 sm:w-28 sm:h-28 rounded-full bg-[#3D5449] flex items-center justify-center text-white text-2xl sm:text-3xl font-cormorant font-bold">
               {(creator.profile_name ?? creator.username)[0].toUpperCase()}
             </div>
           )}
           {creator.is_platform_verified && (
-            <CheckCircle className="absolute -bottom-1 -right-1 w-6 h-6 text-[#3D5449] fill-white" />
+            <CheckCircle className="absolute -bottom-1 -right-1 w-5 h-5 sm:w-6 sm:h-6 text-[#3D5449] fill-white" />
           )}
         </div>
 
-        <div className="flex-1 min-w-0">
-          <span className="eyebrow text-[#4A6357] mb-2 block">
+        <div className="flex-1 min-w-0 text-center md:text-left">
+          <span className="eyebrow text-[#4A6357] mb-2 block capitalize">
             {creator.primary_niche} &middot; {creator.platform}
           </span>
-          <h1 className="font-cormorant font-bold text-3xl sm:text-4xl md:text-5xl text-gray-900 leading-[1.05] mb-2">
+          <h1 className="font-cormorant font-bold text-2xl sm:text-4xl md:text-5xl text-gray-900 leading-[1.05] mb-2 break-words">
             {creator.profile_name ?? creator.username}
           </h1>
-          <p className="text-sm text-gray-400 mb-3 font-inter">
+          <p className="text-sm text-gray-400 mb-3 font-inter break-all sm:break-normal">
             @{creator.username}
           </p>
           {creator.bio && (
-            <p className="text-base text-gray-600 max-w-2xl leading-relaxed font-inter">
+            <p className="text-sm sm:text-base text-gray-600 max-w-2xl leading-relaxed font-inter">
               {creator.bio}
             </p>
           )}
           {creator.is_verified && (
-            <span className="badge bg-[#F5E68E]/40 text-[#3D5449] border border-[#F5E68E] mt-4">
+            <span className="badge bg-[#F5E68E]/40 text-[#3D5449] border border-[#F5E68E] mt-3 sm:mt-4">
               <CheckCircle className="w-3 h-3" /> ORIGO Verified
             </span>
           )}
         </div>
 
-        <div className="flex flex-col gap-2.5 shrink-0 w-full md:w-auto">
-          <button className="btn-secondary text-[10px] !py-2.5">
-            <Calendar className="w-3 h-3" /> Schedule Meeting
+        <div className="flex flex-row md:flex-col gap-2 shrink-0 w-full md:w-auto">
+          <button className="btn-secondary text-[10px] !py-2.5 flex-1 md:flex-none">
+            <Calendar className="w-3 h-3" /> <span className="hidden sm:inline">Schedule</span> Meeting
           </button>
-          <button className="btn-primary text-[10px] !py-2.5">
-            <Send className="w-3 h-3" /> Invite to Campaign
+          <button className="btn-primary text-[10px] !py-2.5 flex-1 md:flex-none">
+            <Send className="w-3 h-3" /> <span className="hidden sm:inline">Invite to</span> Campaign
           </button>
           {!creator.is_verified && (
             <button
               onClick={onVerify}
-              className="text-[10px] uppercase font-montserrat font-bold tracking-[0.2em] text-[#C8503A] hover:underline flex items-center justify-center gap-1.5 mt-1"
+              className="hidden md:flex text-[10px] uppercase font-montserrat font-bold tracking-[0.2em] text-[#C8503A] hover:underline items-center justify-center gap-1.5 mt-1"
             >
               <Shield className="w-3 h-3" /> Request Verification
             </button>
@@ -579,14 +605,14 @@ function CredibilityCard({ creator }: { creator: Creator }) {
   const ring = `conic-gradient(#3D5449 0% ${score}%, #EFEFED ${score}% 100%)`;
 
   return (
-    <div className="card flex flex-col sm:flex-row items-center gap-7 p-7 sm:p-9 relative overflow-hidden">
+    <div className="card flex flex-col sm:flex-row items-center gap-5 sm:gap-7 p-5 sm:p-9 relative overflow-hidden">
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#F5E68E]/15 rounded-full -mr-32 -mt-32 blur-3xl pointer-events-none" />
       <div
-        className="w-28 h-28 rounded-full flex items-center justify-center shrink-0 relative"
+        className="w-24 h-24 sm:w-28 sm:h-28 rounded-full flex items-center justify-center shrink-0 relative"
         style={{ background: ring }}
       >
-        <div className="w-24 h-24 rounded-full grain-bg flex flex-col items-center justify-center">
-          <span className="text-3xl font-cormorant font-bold text-[#3D5449] leading-none">
+        <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full grain-bg flex flex-col items-center justify-center">
+          <span className="text-2xl sm:text-3xl font-cormorant font-bold text-[#3D5449] leading-none">
             {Math.round(score)}
           </span>
           <span className="eyebrow-sm text-gray-400 mt-1">/100</span>
@@ -597,7 +623,7 @@ function CredibilityCard({ creator }: { creator: Creator }) {
           <Sparkles className="w-3.5 h-3.5" />
           Credibility Score
         </span>
-        <h3 className="font-cormorant font-bold text-2xl sm:text-3xl text-gray-900 mb-2 leading-tight">
+        <h3 className="font-cormorant font-bold text-xl sm:text-3xl text-gray-900 mb-2 leading-tight">
           A signal of partnership fit.
         </h3>
         <p className="text-sm text-gray-500 leading-relaxed max-w-xl font-inter">
@@ -609,17 +635,79 @@ function CredibilityCard({ creator }: { creator: Creator }) {
   );
 }
 
+// Cycling status copy — keeps the user oriented during the 5-30s a fresh
+// scrape can take (worst case: cold-start + first-time creator).
+const LOADING_STAGES = [
+  "Looking up the profile",
+  "Reading public posts",
+  "Calculating engagement",
+  "Crunching the credibility score",
+  "Almost there — first lookups can be slow",
+];
+
 function LoadingState({ username }: { username: string }) {
+  const [stageIdx, setStageIdx] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => {
+      setStageIdx((i) => Math.min(i + 1, LOADING_STAGES.length - 1));
+    }, 4000);
+    return () => clearInterval(t);
+  }, []);
+
   return (
-    <div className="w-full min-h-[60vh] flex items-center justify-center">
-      <div className="text-center">
+    <div className="w-full min-h-[60vh] flex items-center justify-center px-5">
+      <div className="text-center max-w-md">
         <div className="inline-block w-12 h-12 border-2 border-gray-200 border-t-[#3D5449] rounded-full animate-spin mb-5" />
-        <p className="font-cormorant font-bold text-2xl text-gray-900 mb-1.5">
-          Analyzing @{username}
+        <p className="font-cormorant font-bold text-2xl sm:text-3xl text-gray-900 mb-2">
+          Analyzing @{username || "creator"}
         </p>
-        <p className="text-[10px] uppercase tracking-[0.25em] font-montserrat font-semibold text-gray-400">
-          Fetching public Instagram data
+        <p className="text-[10px] uppercase tracking-[0.25em] font-montserrat font-semibold text-gray-400 mb-3">
+          {LOADING_STAGES[stageIdx]}
         </p>
+      </div>
+    </div>
+  );
+}
+
+function ErrorState({
+  username,
+  message,
+  onRetry,
+}: {
+  username: string;
+  message: string;
+  onRetry: () => void;
+}) {
+  return (
+    <div className="w-full min-h-[60vh] flex items-center justify-center px-5 py-10">
+      <div className="text-center max-w-md card !p-8">
+        <div className="w-12 h-12 mx-auto mb-5 rounded-full bg-[#C8503A]/10 border border-[#C8503A]/30 flex items-center justify-center">
+          <svg
+            className="w-5 h-5 text-[#C8503A]"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            strokeWidth="2"
+            aria-hidden="true"
+          >
+            <path d="M12 9v3.75m9-.75a9 9 0 1 1-18 0 9 9 0 0 1 18 0Zm-9 3.75h.008v.008H12v-.008Z" />
+          </svg>
+        </div>
+        <p className="eyebrow text-[#4A6357] mb-3">Lookup failed</p>
+        <p className="font-cormorant font-bold text-2xl sm:text-3xl text-gray-900 mb-2 leading-tight">
+          We couldn&rsquo;t pull @{username || "that creator"}.
+        </p>
+        <p className="text-sm text-gray-500 font-inter leading-relaxed mb-6">
+          {message}
+        </p>
+        <div className="flex flex-col sm:flex-row gap-2 justify-center">
+          <button onClick={onRetry} className="btn-primary !py-3">
+            Try again
+          </button>
+          <Link href="/origometer" className="btn-secondary !py-3">
+            New search
+          </Link>
+        </div>
       </div>
     </div>
   );

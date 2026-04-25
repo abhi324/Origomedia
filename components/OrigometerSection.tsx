@@ -11,7 +11,7 @@ import {
   Sparkles,
   AlertCircle,
 } from "lucide-react";
-import { lookupCreator } from "@/lib/origometer/api";
+import { lookupCreator, pingBackend } from "@/lib/origometer/api";
 import {
   formatNumber,
   proxyImage,
@@ -134,7 +134,10 @@ export default function OrigometerSection() {
             <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#F5E68E]/30 blur-[120px] rounded-full pointer-events-none" />
             <div className="absolute -bottom-12 -left-8 w-72 h-72 bg-[#B794C0]/25 blur-[120px] rounded-full pointer-events-none" />
 
-            <div className="relative grain-bg rounded-[1.75rem] sm:rounded-[2rem] border border-gray-200/60 shadow-[0_24px_64px_-24px_rgba(0,0,0,0.12)] overflow-hidden">
+            <div
+              className="relative grain-bg rounded-[1.75rem] sm:rounded-[2rem] border border-gray-200/60 shadow-[0_24px_64px_-24px_rgba(0,0,0,0.12)] overflow-hidden"
+              onMouseEnter={() => pingBackend()}
+            >
               {/* Brand mosaic stripe */}
               <div className="h-1 flex">
                 <div className="flex-1 bg-[#F5E68E]" />
@@ -143,15 +146,16 @@ export default function OrigometerSection() {
                 <div className="flex-1 bg-[#8FBCC4]" />
               </div>
 
-              <div className="p-6 sm:p-8">
+              <div className="p-5 sm:p-8">
                 {/* Search row — real form */}
                 <form onSubmit={handleSubmit} className="flex items-center gap-2 mb-6">
-                  <div className="flex-1 flex items-center gap-2 px-4 py-3 rounded-lg border border-gray-300/70 bg-white/80 focus-within:border-[#3D5449] focus-within:ring-1 focus-within:ring-[#3D5449] transition-all">
+                  <div className="flex-1 flex items-center gap-2 px-3 sm:px-4 py-3 rounded-lg border border-gray-300/70 bg-white/80 focus-within:border-[#3D5449] focus-within:ring-1 focus-within:ring-[#3D5449] transition-all">
                     <span className="font-cormorant font-semibold text-[#4A6357] shrink-0">
                       @
                     </span>
                     <input
                       type="text"
+                      onFocus={() => pingBackend()}
                       value={username}
                       onChange={(e) => {
                         setUsername(e.target.value);

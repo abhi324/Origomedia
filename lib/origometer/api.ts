@@ -18,6 +18,23 @@ const client = axios.create({
   timeout: 60_000,
 });
 
+/**
+ * Fire-and-forget request to /health that wakes Render's free tier container
+ * (~30s cold start otherwise). Call this when the user lands on a page where
+ * a lookup is likely — e.g. /origometer or the homepage section. Cheap, idempotent,
+ * never blocks UI.
+ */
+let _pingedAt = 0;
+export function pingBackend(): void {
+  // Only ping at most once per 5 minutes — anything more is wasted requests.
+  const now = Date.now();
+  if (now - _pingedAt < 5 * 60_000) return;
+  _pingedAt = now;
+  fetch(`${API_BASE}/health`, { mode: "cors", cache: "no-store" }).catch(() => {
+    // Silent — this is purely a wake-up call.
+  });
+}
+
 export async function lookupCreator(
   username: string,
   platform: Platform,
