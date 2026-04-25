@@ -2,13 +2,21 @@ import FAQContent from "@/components/FAQContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Influencer Marketing FAQ | Beauty & Skincare Brand Strategy | ORIGO",
-  description: "Have questions about how ORIGO connects beauty brands with micro-creators? Explore our FAQ to learn about our intentional selection process and partnership model.",
+  title: "FAQ | ORIGO",
+  description: "How ORIGO selects creators, what a brand campaign looks like, and how nano and micro creators can join.",
+  alternates: { canonical: "/faq" },
   openGraph: {
-    title: "ORIGO FAQ | Understanding Intentional Influence",
-    description: "Find answers to common questions about influencer marketing strategies, creator selection, and beauty brand partnerships at ORIGO.",
+    title: "FAQ | ORIGO",
+    description: "Common questions about working with ORIGO as a beauty or skincare brand, and applying as a creator.",
     url: "https://origomedia.co/faq",
-  }
+    images: ["/logo-v2.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "ORIGO | FAQ",
+    description: "How we work with brands and creators.",
+    images: ["/logo-v2.png"],
+  },
 };
 
 export default function FAQPage() {

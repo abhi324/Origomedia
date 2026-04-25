@@ -5,41 +5,42 @@ import Link from "next/link";
 
 export default function FinalCTA() {
   return (
-    <section className="w-full py-16 sm:py-28 md:py-40 bg-transparent relative overflow-hidden">
-      {/* Decorative Blur Orbs */}
-      <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-[#4A6357]/5 blur-[120px] rounded-full" />
-      <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-[#B794C0]/5 blur-[120px] rounded-full" />
+    <section className="w-full py-20 sm:py-28 md:py-36 bg-transparent relative overflow-hidden">
+      <div className="absolute top-0 left-1/4 w-[400px] h-[400px] bg-[#4A6357]/5 blur-[120px] rounded-full pointer-events-none" />
+      <div className="absolute bottom-0 right-1/4 w-[320px] h-[320px] bg-[#B794C0]/5 blur-[120px] rounded-full pointer-events-none" />
 
-      <div className="max-w-5xl mx-auto px-6 relative text-center">
+      <div className="max-w-4xl mx-auto px-5 sm:px-8 relative">
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
+          initial={{ opacity: 0, scale: 0.97 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
-          transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-          className="bg-white p-6 sm:p-12 md:p-16 lg:p-32 rounded-[2rem] sm:rounded-[5rem] shadow-[0_64px_128px_-32px_rgba(0,0,0,0.08)] border border-gray-100 flex flex-col items-center"
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-white p-8 sm:p-14 md:p-20 rounded-[2rem] sm:rounded-[2.5rem] shadow-[0_36px_72px_-24px_rgba(0,0,0,0.08)] border border-gray-100 text-center"
         >
-          <h2 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-cormorant font-bold text-gray-900 mb-6 sm:mb-12 leading-[0.95] text-center">
-            Ready to Land Your
-            <br />
-            <span className="italic font-normal">Brand Collaboration?</span>
+          <span className="text-[#4A6357] text-[10px] font-montserrat font-bold tracking-[0.4em] uppercase mb-5 block">
+            Apply now
+          </span>
+          <h2 className="text-3xl sm:text-4xl md:text-6xl font-cormorant font-bold text-gray-900 mb-5 sm:mb-7 leading-[1.05]">
+            Ready to land your <br className="hidden sm:block" />
+            <span className="italic font-normal">first paid campaign?</span>
           </h2>
-          <p className="text-gray-500 text-base sm:text-xl font-inter font-medium mb-8 sm:mb-16 max-w-xl mx-auto leading-relaxed text-center">
-            We bridge creators and brands through meaningful, high-impact partnerships that actually grow.
+          <p className="text-base sm:text-lg text-gray-500 font-inter mb-8 sm:mb-12 max-w-lg mx-auto leading-relaxed">
+            Apply in 3 minutes. We&rsquo;ll review and get back inside a week.
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-4 items-stretch sm:items-center w-full sm:w-auto">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center justify-center">
             <Link
               href="/join"
-              className="px-8 sm:px-14 py-4 sm:py-5 bg-[#4A6357] text-white rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-[#3D5449] transition-all hover:scale-[1.05] shadow-2xl shadow-[#4A6357]/30 border border-white/10 text-center"
+              className="px-8 sm:px-10 py-4 bg-[#3D5449] text-white rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-[#2D3F37] transition-all text-center"
             >
-              Join as Creator
+              Apply as a Founding Creator
             </Link>
-            <Link
-              href="#about"
-              className="px-8 sm:px-14 py-4 sm:py-5 bg-transparent text-gray-900 border-2 border-gray-100 rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-gray-50 transition-all text-center"
+            <a
+              href="mailto:origomedia.co@gmail.com?subject=Brand%20enquiry"
+              className="px-8 sm:px-10 py-4 bg-transparent text-gray-900 border border-gray-200 rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-gray-50 transition-all text-center"
             >
-              Learn More
-            </Link>
+              Brands: start a campaign
+            </a>
           </div>
         </motion.div>
       </div>

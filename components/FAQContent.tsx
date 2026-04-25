@@ -1,102 +1,141 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Plus } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Plus, Minus } from "lucide-react";
+
+const faqs = [
+  {
+    q: "What does Origo actually do?",
+    a: "We&rsquo;re an influencer marketing agency for beauty and skincare. We connect brands with vetted nano and micro creators, then run the campaign end to end&mdash;briefing, creator matching, and content review.",
+  },
+  {
+    q: "Who can join as a creator?",
+    a: "Nano and micro creators in skincare, dermacosmetics, or makeup. We don&rsquo;t require a minimum follower count. We look at audience trust, content quality, and niche fit.",
+  },
+  {
+    q: "How do you select creators for a brand?",
+    a: "We match by niche, audience demographics, content tone, and engagement quality&mdash;not just follower count. We&rsquo;d rather suggest 5 creators who fit than 50 who don&rsquo;t.",
+  },
+  {
+    q: "What does a brand campaign look like?",
+    a: "We scope the brief with the brand, shortlist creators who fit, handle outreach and briefing, then review content end to end. You see the shortlist before anything goes live.",
+  },
+  {
+    q: "What makes Origo different from an influencer marketplace?",
+    a: "Marketplaces optimise for volume; we optimise for fit. Every shortlist is curated by our team, not an algorithm, and we only work in three niches&mdash;skincare, dermacosmetics, and makeup&mdash;so the matches actually land.",
+  },
+  {
+    q: "How long does a typical campaign run?",
+    a: "Most campaigns run two to four weeks end to end&mdash;brief, shortlist, content production, and review. Bigger or staggered rollouts can run longer; we&rsquo;ll scope the timeline with you up front.",
+  },
+  {
+    q: "How do I get in touch?",
+    a: "Creators: apply via the Join page. Brands: email origomedia.co@gmail.com. We reply within a week.",
+  },
+];
+
+const decodeEntities = (s: string) =>
+  s
+    .replace(/&mdash;/g, "—")
+    .replace(/&ndash;/g, "–")
+    .replace(/&rsquo;/g, "’")
+    .replace(/&lsquo;/g, "‘")
+    .replace(/&ldquo;/g, "“")
+    .replace(/&rdquo;/g, "”")
+    .replace(/&amp;/g, "&");
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((f) => ({
+    "@type": "Question",
+    "name": decodeEntities(f.q),
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": decodeEntities(f.a),
+    },
+  })),
+};
 
 export default function FAQContent() {
-  const faqs = [
-    {
-      q: "What do we do?",
-      a: "We architect the future of digital influence. Beyond simple management, we build institutional brands for creators using high-level strategy, psychological precision, and elite media production."
-    },
-    {
-      q: "How you can connect?",
-      a: "The path begins at the 'Join Us' threshold. Fill out our application with precision. If your vision aligns with the Vanguard, we will reach out via our private channels."
-    },
-    {
-      q: "Who is this for?",
-      a: "We exclusively partner with the top 1% of visionary creators—those who aren't just looking for a manager, but an architect for their legacy."
-    },
-    {
-      q: "What is the Inner Circle?",
-      a: "The Inner Circle is our most exclusive partnership tier. It involves deep integration with our strategy team, access to proprietary growth models, and private networking with the world's most elite digital minds."
-    },
-    {
-      q: "Why Origo?",
-      a: "Because the era of the 'generic agency' is over. We don't follow trends; we define the architecture that creates them. We are for those who demand excellence over convenience."
-    },
-    {
-      q: "Where are we based?",
-      a: "Origo is a borderless entity. While our roots are in the world's media capitals, our influence is global and our operations are decentralized for maximum agility."
-    }
-  ];
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <main className="min-h-screen bg-[#fafafa]">
-      <section className="pt-40 pb-24 px-6 max-w-7xl mx-auto">
+    <main className="min-h-screen bg-[#FCF9F5]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <section className="pt-32 sm:pt-40 pb-20 sm:pb-28 px-5 sm:px-8 max-w-3xl mx-auto">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-24"
+          className="mb-14 sm:mb-20"
         >
-          <span className="text-[10px] font-inter font-black tracking-[0.5em] uppercase text-gray-400 mb-6 block">Common Queries</span>
-          <h1 className="text-4xl sm:text-7xl md:text-8xl font-cormorant font-bold text-gray-900 leading-[0.9]">
-            The <span className="italic font-normal">Architecture</span> <br /> of Understanding.
+          <span className="text-[#4A6357] text-[10px] font-montserrat font-bold tracking-[0.4em] uppercase mb-5 block">
+            FAQ
+          </span>
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-cormorant font-bold text-gray-900 leading-[1.0]">
+            Common <span className="italic font-normal">questions.</span>
           </h1>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-              className="bg-white p-6 sm:p-10 border border-gray-100 flex flex-col justify-between items-center md:items-start text-center md:text-left shadow-sm hover:shadow-xl transition-all duration-500 min-h-[350px]"
-            >
-              <div className="flex flex-col items-center md:items-start">
-                <div className="w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center mb-8">
-                  <Plus className="w-4 h-4 text-gray-400" />
-                </div>
-                <h3 className="text-2xl font-cormorant font-bold text-gray-900 mb-6 leading-tight">{faq.q}</h3>
-                <p className="text-gray-500 font-inter text-sm leading-relaxed">{faq.a}</p>
+        <div className="border-t border-gray-200">
+          {faqs.map((faq, i) => {
+            const isOpen = openIndex === i;
+            return (
+              <div key={i} className="border-b border-gray-200">
+                <button
+                  type="button"
+                  onClick={() => setOpenIndex(isOpen ? null : i)}
+                  className="w-full flex items-start justify-between gap-6 py-6 sm:py-8 text-left group"
+                  aria-expanded={isOpen}
+                >
+                  <h3 className="text-lg sm:text-2xl font-cormorant font-bold text-gray-900 leading-snug flex-1">
+                    {faq.q}
+                  </h3>
+                  <div className="w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center shrink-0 mt-1 group-hover:border-[#4A6357] transition-colors">
+                    {isOpen ? (
+                      <Minus className="w-4 h-4 text-[#4A6357]" />
+                    ) : (
+                      <Plus className="w-4 h-4 text-gray-400" />
+                    )}
+                  </div>
+                </button>
+
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: "easeInOut" }}
+                      className="overflow-hidden"
+                    >
+                      <p
+                        className="pb-6 sm:pb-8 pr-12 text-sm sm:text-base text-gray-600 font-inter leading-relaxed"
+                        dangerouslySetInnerHTML={{ __html: faq.a }}
+                      />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
               </div>
-              
-              <div className="mt-8 pt-8 border-t border-gray-50">
-                <span className="text-[9px] font-inter font-black tracking-[0.3em] uppercase text-[#4A6357]">Reference 0{index + 1}</span>
-              </div>
-            </motion.div>
-          ))}
+            );
+          })}
+        </div>
+
+        <div className="mt-16 text-center">
+          <p className="text-sm text-gray-500 font-inter mb-5">Still have a question?</p>
+          <a
+            href="mailto:origomedia.co@gmail.com"
+            className="inline-block px-8 py-4 bg-[#3D5449] text-white rounded-xl text-[11px] uppercase font-montserrat font-bold tracking-widest hover:bg-[#2D3F37] transition-all"
+          >
+            Email us
+          </a>
         </div>
       </section>
-
-      {/* Decorative Final Section */}
-      <section className="py-24 px-6 border-t border-gray-100">
-        <div className="max-w-3xl mx-auto text-center">
-          <p className="text-2xl font-cormorant italic text-gray-400 leading-relaxed">
-            "Clarity is the foundation of vision. If your questions remain unanswered, the Nexus is always listening."
-          </p>
-        </div>
-      </section>
-      {/* Decorative Watermark */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-        whileInView={{ opacity: 0.2, scale: 1, rotate: -12 }}
-        viewport={{ once: true }}
-        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute -bottom-[250px] sm:-bottom-[400px] -left-20 z-[-1] pointer-events-none mix-blend-multiply"
-      >
-        <div className="w-[500px] h-[500px] sm:w-[700px] sm:h-[700px] md:w-[1000px] md:h-[1000px]">
-          <img 
-            src="/images/logo_insta.png" 
-            alt="Origo Media Brand Presence" 
-            className="w-full h-full object-contain" 
-          />
-        </div>
-      </motion.div>
-
     </main>
   );
 }

@@ -2,13 +2,21 @@ import AboutContent from "@/components/AboutContent";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Our Story | Beauty & Skincare Influencer Agency | ORIGO",
-  description: "Discover the genesis of ORIGO. We bridge the gap between beauty brands and authentic creators through intentional, precision-matched influencer marketing strategy.",
+  title: "About ORIGO | Fit over volume in influencer marketing",
+  description: "ORIGO is an influencer marketing agency for beauty and skincare. We work with nano and micro creators, curated by niche, audience, and tone.",
+  alternates: { canonical: "/about" },
   openGraph: {
-    title: "The Origo Story | Intentional Influence in Beauty & Skincare",
-    description: "Learn how Origo builds the bridge between brand vision and authentic creator voice in the beauty and skincare space.",
+    title: "About ORIGO | We don't chase volume. We curate fit.",
+    description: "An influencer marketing agency for beauty and skincare, built for fit over volume.",
     url: "https://origomedia.co/about",
-  }
+    images: ["/logo-v2.png"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About ORIGO",
+    description: "We don't chase volume. We curate fit.",
+    images: ["/logo-v2.png"],
+  },
 };
 
 export default function AboutPage() {

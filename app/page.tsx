@@ -1,26 +1,30 @@
 import { Metadata } from "next";
 import Hero from "@/components/Hero";
+import Problem from "@/components/Problem";
+import Solution from "@/components/Solution";
 import JourneySection from "@/components/JourneySection";
-import AsymmetricContent from "@/components/AsymmetricContent";
-import FinalCTA from "@/components/FinalCTA";
+import CreatorTiers from "@/components/CreatorTiers";
+import FoundingProgram from "@/components/FoundingProgram";
 
 export const metadata: Metadata = {
   title: "ORIGO | Beauty & Skincare Influencer Marketing Agency",
-  description: "ORIGO is a premier influencer marketing agency specializing in beauty and skincare. We connect authentic nano and micro creators with visionary brands through intentional, high-impact partnerships.",
+  description: "Origo connects beauty and skincare brands with vetted nano and micro creators. Curated fit over volume.",
   openGraph: {
-    title: "ORIGO | The Genesis of Intentional Influence",
-    description: "Specialized influencer marketing for the beauty and skincare industry. Connecting authentic voices with visionary brands.",
+    title: "ORIGO | Turn your content into income.",
+    description: "A creator-first agency for beauty and skincare. Nano and micro creators, curated for fit.",
     url: "https://origomedia.co",
-  }
+  },
 };
 
 export default function Home() {
   return (
     <main className="min-h-screen selection:bg-[#4A6357]/20">
       <Hero />
+      <Problem />
+      <Solution />
       <JourneySection />
-      <AsymmetricContent />
-      <FinalCTA />
+      <CreatorTiers />
+      <FoundingProgram />
     </main>
   );
 }

@@ -5,73 +5,66 @@ import { motion } from "framer-motion";
 
 export default function JoinContent() {
   return (
-    <main className="min-h-screen bg-[#FCF9F5] selection:bg-[#4A6357]/20 flex flex-col">
-      {/* Split Hero Section — Form First Design */}
-      <section className="flex-1 flex flex-col lg:flex-row pt-32 lg:pt-0 min-h-screen">
-        {/* Left Side — Functional Form */}
-        <div className="w-full lg:w-[45%] flex items-center justify-center p-6 lg:p-20 bg-white z-10">
+    <main className="min-h-screen bg-[#FCF9F5] selection:bg-[#4A6357]/20">
+      <section className="flex flex-col lg:flex-row pt-28 lg:pt-0 min-h-screen">
+        <div className="w-full lg:w-[55%] flex items-center justify-center p-6 sm:p-12 lg:p-20 bg-white">
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
             className="w-full max-w-xl"
           >
-            <div className="mb-12">
-              <span className="text-[#4A6357] text-[10px] font-inter font-black tracking-[0.6em] uppercase mb-4 block">Application Form</span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl font-cormorant font-bold text-gray-900 leading-[0.95]">
-                Step into the <br /> <span className="italic font-normal">Inner Circle.</span>
+            <div className="mb-10 sm:mb-12">
+              <span className="text-[#4A6357] text-[10px] font-montserrat font-bold tracking-[0.4em] uppercase mb-4 block">
+                Creator application
+              </span>
+              <h1 className="text-3xl sm:text-4xl md:text-5xl font-cormorant font-bold text-gray-900 leading-[1.05]">
+                Apply to join the <br />
+                <span className="italic font-normal">creator network.</span>
               </h1>
+              <p className="text-sm sm:text-base text-gray-500 font-inter mt-5 leading-relaxed max-w-md">
+                Takes about 3 minutes. We&rsquo;ll review and reach out within a week if you&rsquo;re a fit.
+              </p>
             </div>
             <JoinForm />
           </motion.div>
         </div>
 
-        {/* Right Side — Editorial Visuals */}
-        <div className="hidden lg:flex flex-1 bg-[#3D5449] relative overflow-hidden items-center justify-center p-20">
-          {/* Subtle Background Pattern */}
-          <div className="absolute inset-0 opacity-10 pointer-events-none">
-            <div className="absolute inset-0" style={{ backgroundImage: "url('/noise.png')", backgroundRepeat: 'repeat' }}></div>
-          </div>
+        <div className="hidden lg:flex flex-1 bg-[#3D5449] relative overflow-hidden items-center justify-center p-16 xl:p-20">
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[400px] bg-[#F5E68E]/10 blur-[120px] rounded-full" />
+          <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-[#B794C0]/10 blur-[120px] rounded-full" />
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-            className="relative text-center"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1.2, delay: 0.3 }}
+            className="relative text-center max-w-md"
           >
-            <h2 className="text-[8rem] xl:text-[12rem] font-cormorant font-bold text-white/5 leading-none absolute -top-20 xl:-top-32 left-1/2 -translate-x-1/2 whitespace-nowrap select-none">
-              INNER CIRCLE
-            </h2>
-            <div className="relative z-10 max-w-lg">
-              <p className="text-white/80 text-3xl font-cormorant italic leading-relaxed mb-12">
-                "We provide the strategy; <br /> you provide the voice."
-              </p>
-              <div className="w-px h-32 bg-gradient-to-b from-white/40 to-transparent mx-auto" />
-            </div>
+            <p className="text-white/80 text-2xl xl:text-3xl font-cormorant italic leading-relaxed mb-10">
+              &ldquo;Creators shouldn&rsquo;t work for free.&rdquo;
+            </p>
+            <div className="w-px h-20 bg-gradient-to-b from-white/40 to-transparent mx-auto mb-10" />
+            <ul className="text-left space-y-4 text-white/70 font-inter text-sm">
+              <li className="flex gap-3 items-start">
+                <span className="text-[#F5E68E] mt-0.5">&#10003;</span>
+                <span>Collaborations with beauty &amp; skincare brands that actually fit.</span>
+              </li>
+              <li className="flex gap-3 items-start">
+                <span className="text-[#F5E68E] mt-0.5">&#10003;</span>
+                <span>Briefs matched to your niche, audience, and tone.</span>
+              </li>
+              <li className="flex gap-3 items-start">
+                <span className="text-[#F5E68E] mt-0.5">&#10003;</span>
+                <span>No application fee. Limited founding slots.</span>
+              </li>
+            </ul>
           </motion.div>
 
-          {/* Decorative Corner Element */}
-          <div className="absolute bottom-12 right-12 text-white/20 text-[10px] font-inter font-black tracking-[0.4em] uppercase">
-            ORIGO MEDIA GROUP / MMXXVI
+          <div className="absolute bottom-10 right-10 text-white/20 text-[10px] font-montserrat font-bold tracking-[0.3em] uppercase">
+            Origo Media Group
           </div>
         </div>
       </section>
-      <motion.div
-        initial={{ opacity: 0, scale: 0.8, rotate: -15 }}
-        whileInView={{ opacity: 0.2, scale: 1, rotate: -12 }}
-        viewport={{ once: true }}
-        transition={{ duration: 2.5, ease: [0.16, 1, 0.3, 1] }}
-        className="fixed -bottom-20 -left-20 z-0 lg:hidden pointer-events-none opacity-[0.05] mix-blend-multiply"
-      >
-        <div className="w-[450px] h-[450px] sm:w-[600px] sm:h-[600px]">
-          <img 
-            src="/images/new_logo_v3.png" 
-            alt="Origo Media - Premium Creator Network Membership Signature"
-            className="w-full h-full object-contain" 
-          />
-        </div>
-      </motion.div>
-
     </main>
   );
 }

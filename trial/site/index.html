@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Origo — Creator-first marketing for beauty & skincare brands.</title>
+  <meta name="description" content="Origo is a creator-first marketing agency for beauty, skincare, and ritual brands. Paid in 15 days. Curated, not scraped." />
+  <meta name="theme-color" content="#122018" />
+  <link rel="icon" type="image/png" href="assets/logo-mark.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Custom cursor -->
+  <div class="cursor" aria-hidden="true"></div>
+  <div class="cursor-ring" aria-hidden="true"></div>
+
+  <!-- Scroll progress -->
+  <div class="scroll-progress" aria-hidden="true"></div>
+
+  <!-- ===== NAV ===== -->
+  <nav class="nav" id="nav">
+    <div class="container wide nav-inner">
+      <a href="index.html" class="brand">
+        <img src="assets/logo-mark.png" alt="Origo" class="brand-mark" />
+        <span class="brand-name">ORIGO</span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="creators.html">For Creators</a>
+        <a href="brands.html">For Brands</a>
+        <a href="work.html">Work</a>
+        <a href="manifesto.html">Manifesto</a>
+        <a href="journal.html">Journal</a>
+        <a href="contact.html">Contact</a>
+        <a href="apply.html" class="btn btn-ember magnetic" style="padding:12px 22px;font-size:13px;">Apply
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span></button>
+    </div>
+  </nav>
+
+  <!-- ===== HERO — CINEMATIC ===== -->
+  <header class="hero-cinema">
+    <!-- Background: real image with grid overlay -->
+    <div class="hc-bg">
+      <img src="assets/beauty.png" alt="" role="presentation" />
+      <div class="hc-overlay"></div>
+      <div class="hc-grid" aria-hidden="true"></div>
+    </div>
+
+    <div class="hc-inner container wide">
+      <!-- Status badge -->
+      <div class="hc-status reveal">
+        <span class="dot"></span>
+        Founding Cohort · Now Open &nbsp;·&nbsp; Mumbai · Everywhere
+      </div>
+
+      <!-- Big display -->
+      <h1 class="hc-display">
+        <span class="reveal delay-1">Creators</span>
+        <span class="reveal delay-2"><em class="italic">first.</em></span>
+        <span class="reveal delay-3">Brands <span class="ember">second.</span></span>
+        <span class="reveal delay-4">
+          Built for
+          <span class="rotator" id="rotator" aria-live="polite">
+            <span class="word in">craft.</span>
+          </span>
+        </span>
+      </h1>
+
+      <!-- Bottom row -->
+      <div class="hc-bottom reveal delay-5">
+        <p class="lede">
+          An influencer marketing agency that starts with the creator.
+          Paid in 15 days. Curated, not scraped. Briefs built <em>with</em> you,
+          not at you.
+        </p>
+        <div class="actions">
+          <a href="apply.html" class="btn btn-ember magnetic">Apply as Creator
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+          </a>
+          <a href="brands.html" class="btn" style="color:var(--bone);border:1px solid rgba(243,235,220,.28);background:rgba(243,235,220,.06);">I'm a Brand</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll hint -->
+    <div class="hc-scroll" aria-hidden="true">
+      <div class="hc-scroll-line"></div>
+      <span>Scroll</span>
+    </div>
+  </header>
+
+  <!-- ===== EMBER MARQUEE ===== -->
+  <div class="marquee ember" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Creators first.</span><span class="dot"></span>
+      <span>Paid in 15 days.</span><span class="dot"></span>
+      <span>No middlemen.</span><span class="dot"></span>
+      <span>Curated, not scraped.</span><span class="dot"></span>
+      <span>Built for craft.</span><span class="dot"></span>
+      <span>Your voice. Your rules.</span><span class="dot"></span>
+      <span>Creators first.</span><span class="dot"></span>
+      <span>Paid in 15 days.</span><span class="dot"></span>
+      <span>No middlemen.</span><span class="dot"></span>
+      <span>Curated, not scraped.</span><span class="dot"></span>
+      <span>Built for craft.</span><span class="dot"></span>
+      <span>Your voice. Your rules.</span><span class="dot"></span>
+    </div>
+  </div>
+
+  <!-- ===== STATS STRIP ===== -->
+  <div class="stats-strip" aria-label="Key metrics">
+    <div class="stat" data-n="01">
+      <div class="stat-num-wrap">
+        <span class="num count" data-target="200">0</span>
+        <span class="suf">+</span>
+      </div>
+      <span class="lbl">Campaigns delivered</span>
+    </div>
+    <div class="stat" data-n="02">
+      <div class="stat-num-wrap">
+        <span class="num count" data-target="15">0</span>
+        <span class="suf">days</span>
+      </div>
+      <span class="lbl">Average payout cycle</span>
+    </div>
+    <div class="stat" data-n="03">
+      <div class="stat-num-wrap">
+        <span class="num">6.2M</span>
+      </div>
+      <span class="lbl">Organic reach in 2025</span>
+    </div>
+    <div class="stat" data-n="04">
+      <div class="stat-num-wrap">
+        <span class="num count" data-target="98">0</span>
+        <span class="suf">%</span>
+      </div>
+      <span class="lbl">Creator satisfaction</span>
+    </div>
+  </div>
+
+  <!-- ===== PROMISE PILLARS ===== -->
+  <section class="section-tight">
+    <div class="container wide">
+      <div class="section-meta">
+        <div class="num">001 / PROMISE</div>
+        <div class="label">Three things we don't compromise</div>
+      </div>
+    </div>
+    <div class="container wide">
+      <div class="pillars">
+        <div class="pillar reveal">
+          <span class="num">01 —</span>
+          <h3>Transparent<br/>payouts.</h3>
+          <p>Creators are paid within 15 days of deliverable acceptance. Rate cards are public. No chasing, no "next quarter."</p>
+        </div>
+        <div class="pillar reveal delay-1">
+          <span class="num">02 —</span>
+          <h3>Briefs built<br/><em class="italic">with you.</em></h3>
+          <p>Every campaign is co-authored. You keep your voice. Brands keep their strategy. The content earns its place on the feed.</p>
+        </div>
+        <div class="pillar reveal delay-2">
+          <span class="num">03 —</span>
+          <h3>Fit over<br/>follower count.</h3>
+          <p>We match on taste, tone, and audience quality — not a dashboard number. Smaller lists. Louder results.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPLIT: CREATORS vs BRANDS ===== -->
+  <section class="split" aria-label="For creators and brands">
+    <div class="split-pane creators">
+      <span class="deco-ring" aria-hidden="true"></span>
+      <span class="eyebrow"><span class="sq"></span> For Creators</span>
+      <h2 style="margin-top:24px;max-width:12ch;">
+        Your audience<br/>is the product.<br/>
+        <span class="italic" style="color:var(--ember-2);">Treat it that way.</span>
+      </h2>
+      <p style="margin-top:26px;max-width:44ch;font-size:1.05rem;">
+        If you make beauty, skincare, or ritual content and your audience
+        actually listens to you — the cohort is open. Small. Selective. Paid.
+      </p>
+      <ul class="list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Paid campaigns on a 15-day payout cycle.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Briefs that respect your voice and aesthetic.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> No middlemen. No "exposure" offers.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> A team that texts back within the hour.</li>
+      </ul>
+      <div class="cta-row">
+        <a href="apply.html" class="btn btn-ember magnetic">Apply to the cohort
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="creators.html" class="btn btn-ghost" style="border-color:rgba(243,235,220,.28);color:var(--bone);">Creator details</a>
+      </div>
+    </div>
+
+    <div class="split-pane brands">
+      <span class="deco-ring" aria-hidden="true" style="background:conic-gradient(from 180deg,var(--sage) 0 30%,var(--butter) 30% 55%,var(--lilac) 55% 80%,var(--ember) 80% 100%);"></span>
+      <span class="eyebrow"><span class="sq sage"></span> For Brands</span>
+      <h2 style="margin-top:24px;max-width:14ch;">
+        Fewer creators.<br/>
+        <span class="italic ember">Sharper signal.</span>
+      </h2>
+      <p style="margin-top:26px;max-width:44ch;font-size:1.05rem;">
+        Skip the spray-and-pray. We hand-pick a tight roster whose audiences
+        look like your best customers — then run the campaign end to end.
+      </p>
+      <ul class="list">
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Curated creator shortlists in 72 hours.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Fixed-price packages. No hidden fees.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Content rights, briefs, paperwork handled.</li>
+        <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg> Reports that read like insights, not noise.</li>
+      </ul>
+      <div class="cta-row">
+        <a href="contact.html" class="btn btn-primary magnetic">Start a campaign
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="brands.html" class="btn btn-ghost">Brand details</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== WORK RAIL ===== -->
+  <section class="work-strip section-tight">
+    <div class="container wide">
+      <div class="section-meta">
+        <div class="num">002 / WORK</div>
+        <div class="label">Selected campaigns</div>
+      </div>
+    </div>
+
+    <div class="work-rail" id="workRail">
+      <a class="work-card" href="work.html">
+        <div class="work-thumb t-ember">
+          <span class="abstract"></span>
+          <span class="tag">Skincare</span>
+          <div class="metric">
+            <div class="big">3.4×</div>
+            <div class="lbl">Saved posts vs benchmark</div>
+          </div>
+        </div>
+        <div class="meta-row"><span>Aurelia</span><span>12 creators</span><span>Q1 2026</span></div>
+        <h3>A serum launch that sold out in 9 days.</h3>
+      </a>
+      <a class="work-card" href="work.html">
+        <div class="work-thumb t-sage">
+          <span class="abstract"></span>
+          <span class="tag">Dermacosmetics</span>
+          <div class="metric">
+            <div class="big">62%</div>
+            <div class="lbl">Conversion to site</div>
+          </div>
+        </div>
+        <div class="meta-row"><span>Derme&nbsp;Co</span><span>8 creators</span><span>Feb 2026</span></div>
+        <h3>Rebuilding trust around sensitive skin.</h3>
+      </a>
+      <a class="work-card" href="work.html">
+        <div class="work-thumb t-lilac">
+          <span class="abstract"></span>
+          <span class="tag">Ritual</span>
+          <div class="metric">
+            <div class="big">18.1M</div>
+            <div class="lbl">Organic reach</div>
+          </div>
+        </div>
+        <div class="meta-row"><span>Nuage</span><span>5 creators</span><span>Jan 2026</span></div>
+        <h3>A slow-morning ritual, 5 creators, one story.</h3>
+      </a>
+      <a class="work-card" href="work.html">
+        <div class="work-thumb t-butter">
+          <span class="abstract"></span>
+          <span class="tag">Makeup</span>
+          <div class="metric">
+            <div class="big">94%</div>
+            <div class="lbl">Positive sentiment</div>
+          </div>
+        </div>
+        <div class="meta-row"><span>BELLINI</span><span>10 creators</span><span>Dec 2025</span></div>
+        <h3>Reintroducing a heritage brand to Gen Z.</h3>
+      </a>
+      <a class="work-card" href="work.html">
+        <div class="work-thumb t-ink">
+          <span class="abstract"></span>
+          <span class="tag">Wellness</span>
+          <div class="metric">
+            <div class="big">2.7×</div>
+            <div class="lbl">Revenue lift</div>
+          </div>
+        </div>
+        <div class="meta-row"><span>Lumia</span><span>6 creators</span><span>Nov 2025</span></div>
+        <h3>A sleep brand that borrowed the night.</h3>
+      </a>
+      <a class="work-card" href="work.html">
+        <div class="work-thumb t-bone">
+          <span class="abstract"></span>
+          <span class="tag">Haircare</span>
+          <div class="metric">
+            <div class="big">41k</div>
+            <div class="lbl">Saves in 72 hours</div>
+          </div>
+        </div>
+        <div class="meta-row"><span>Pilgrim</span><span>9 creators</span><span>Oct 2025</span></div>
+        <h3>Turning a bottle into a Sunday ritual.</h3>
+      </a>
+    </div>
+
+    <div class="rail-actions container wide">
+      <a href="work.html" class="btn btn-ghost">See all work
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+      </a>
+      <div class="rail-nav">
+        <button id="railPrev" aria-label="Previous">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M11 5l-7 7 7 7"/></svg>
+        </button>
+        <button id="railNext" aria-label="Next">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== NICHE IMAGE SECTION ===== -->
+  <section style="padding-top:0;">
+    <div class="container wide">
+      <div class="section-meta">
+        <div class="num">003 / NICHES</div>
+        <div class="label">Where we work</div>
+      </div>
+    </div>
+    <div class="container wide">
+      <div class="niche-grid">
+        <div class="niche-card reveal">
+          <img src="assets/beauty.png" alt="Beauty and Makeup" loading="lazy" />
+          <span class="niche-tag">Makeup · Beauty</span>
+          <div class="niche-label">
+            Beauty &amp;<br/>Makeup
+          </div>
+        </div>
+        <div class="niche-card reveal delay-1">
+          <img src="assets/skincare.png" alt="Skincare and Ritual" loading="lazy" />
+          <span class="niche-tag">Skincare · Ritual · Dermacosmetics</span>
+          <div class="niche-label">
+            Skincare &amp;<br/>Ritual
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== MANIFESTO SNIPPET ===== -->
+  <section class="manifesto-snippet">
+    <div class="container wide">
+      <div class="section-meta">
+        <div class="num">004 / MANIFESTO</div>
+        <div class="label">Why we built this</div>
+      </div>
+      <blockquote class="reveal">
+        The industry kept chasing <em>reach</em>.<br/>
+        Audiences kept leaning toward <em>resonance</em>.<br/>
+        So we built something slower, sharper —<br/>
+        a room where creators get paid like professionals<br/>
+        and brands buy <em>influence</em>, not impressions.
+      </blockquote>
+      <div class="sig reveal delay-2" style="margin-top:56px;display:flex;gap:24px;align-items:center;flex-wrap:wrap;">
+        — The Origo Team
+        <a href="manifesto.html" class="btn btn-ghost" style="padding:10px 18px;font-size:12px;">Read the full manifesto
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== LIGHT MARQUEE ===== -->
+  <div class="marquee light" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Skincare</span><span class="dot ember-dot"></span>
+      <span>Dermacosmetics</span><span class="dot ember-dot"></span>
+      <span>Makeup &amp; Beauty</span><span class="dot ember-dot"></span>
+      <span>Ritual</span><span class="dot ember-dot"></span>
+      <span>Wellness</span><span class="dot ember-dot"></span>
+      <span>Haircare</span><span class="dot ember-dot"></span>
+      <span>Skincare</span><span class="dot ember-dot"></span>
+      <span>Dermacosmetics</span><span class="dot ember-dot"></span>
+      <span>Makeup &amp; Beauty</span><span class="dot ember-dot"></span>
+      <span>Ritual</span><span class="dot ember-dot"></span>
+      <span>Wellness</span><span class="dot ember-dot"></span>
+      <span>Haircare</span><span class="dot ember-dot"></span>
+    </div>
+  </div>
+
+  <!-- ===== JOURNAL PREVIEW ===== -->
+  <section>
+    <div class="container wide">
+      <div class="section-meta">
+        <div class="num">005 / JOURNAL</div>
+        <div class="label">Field notes on creator economy</div>
+      </div>
+
+      <div class="journal-grid">
+        <a class="j-card reveal" href="journal-article.html">
+          <div class="j-thumb g1"></div>
+          <div class="j-meta"><span class="tag">Essay</span><span>8 min read</span><span>Apr 2026</span></div>
+          <h3>The quiet death of the follower count.</h3>
+          <p>Why the creator economy is moving past vanity metrics and what it means for the next wave of beauty brands.</p>
+        </a>
+        <a class="j-card reveal delay-1" href="journal-article.html">
+          <div class="j-thumb g2"></div>
+          <div class="j-meta"><span class="tag">Playbook</span><span>5 min</span></div>
+          <h3>Briefing a creator without killing the voice.</h3>
+        </a>
+        <a class="j-card reveal delay-2" href="journal-article.html">
+          <div class="j-thumb g3"></div>
+          <div class="j-meta"><span class="tag">Interview</span><span>12 min</span></div>
+          <h3>A conversation with the dermatologist turned creator.</h3>
+        </a>
+        <a class="j-card reveal delay-3" href="journal-article.html">
+          <div class="j-thumb g4"></div>
+          <div class="j-meta"><span class="tag">Data</span><span>6 min</span></div>
+          <h3>What 200 beauty campaigns taught us about saves.</h3>
+        </a>
+      </div>
+
+      <div style="margin-top:52px;text-align:center;">
+        <a href="journal.html" class="btn btn-ghost">Open the journal
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== BIG CTA ===== -->
+  <section class="big-cta">
+    <div class="container wide" style="position:relative;">
+      <span class="eyebrow" style="color:rgba(243,235,220,.55);">
+        <span class="sq"></span> Start here
+      </span>
+      <h2 class="reveal" style="margin-top:24px;">
+        Whether you<br/>
+        <span class="italic">make</span> it,<br/>
+        or <span class="ember">market</span> it —<br/>
+        there's a conversation<br/>worth starting.
+      </h2>
+      <p class="reveal delay-1">
+        Creators: apply to the founding cohort.<br/>
+        Brands: tell us about your next campaign.
+      </p>
+      <div class="actions reveal delay-2">
+        <a href="apply.html" class="btn btn-ember magnetic">Apply as Creator
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 5l7 7-7 7"/></svg>
+        </a>
+        <a href="contact.html" class="btn btn-ghost" style="color:var(--bone);border-color:rgba(243,235,220,.28);">Talk to us</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="container wide">
+      <div class="footer-huge" aria-hidden="true">
+        Origo<span class="italic">.</span>
+      </div>
+
+      <div class="footer-grid">
+        <div>
+          <div class="brand" style="margin-bottom:18px;">
+            <img src="assets/logo-mark.png" alt="" class="brand-mark" />
+            <span class="brand-name">ORIGO</span>
+          </div>
+          <p style="max-width:36ch;color:var(--ink-2);">
+            A creator marketing agency for beauty, skincare, and ritual brands.
+            Small, selective, unfashionably honest.
+          </p>
+          <p class="mono" style="margin-top:24px;">@origomedia.co · hello@origomedia.co</p>
+        </div>
+        <div>
+          <h4>Creators</h4>
+          <ul>
+            <li><a href="creators.html">Why Origo</a></li>
+            <li><a href="apply.html">Apply to the cohort</a></li>
+            <li><a href="journal.html">Creator journal</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Brands</h4>
+          <ul>
+            <li><a href="brands.html">Packages</a></li>
+            <li><a href="work.html">Case studies</a></li>
+            <li><a href="contact.html">Start a campaign</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Agency</h4>
+          <ul>
+            <li><a href="manifesto.html">Manifesto</a></li>
+            <li><a href="journal.html">Journal</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>© <span id="year"></span> Origo Media</div>
+        <div>Made with care · Mumbai · Everywhere</div>
+        <div class="social">
+          <a href="https://instagram.com/origomedia.co" aria-label="Instagram" target="_blank" rel="noopener">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg>
+          </a>
+          <a href="#" aria-label="LinkedIn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 10v7M8 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+          </a>
+          <a href="mailto:hello@origomedia.co" aria-label="Email">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div id="toast" class="toast"></div>
+  <script src="script.js"></script>
+</body>
+</html>

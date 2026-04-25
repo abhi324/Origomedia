@@ -117,65 +117,45 @@ export default function JoinForm() {
         animate={{ opacity: 1 }}
         className="fixed inset-0 z-[100] bg-[#1a1a1a] flex items-center justify-center p-6 overflow-hidden"
       >
-        {/* Background Ambient Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#4A6357]/20 blur-[120px] rounded-full" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-[#4A6357]/20 blur-[120px] rounded-full pointer-events-none" />
 
         <motion.div
-          initial={{ scale: 0.8, opacity: 0, y: 40 }}
+          initial={{ scale: 0.95, opacity: 0, y: 30 }}
           animate={{ scale: 1, opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="max-w-4xl text-center relative z-10"
+          transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl text-center relative z-10"
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-          >
-            <span className="text-[#F5E68E] text-[10px] font-inter font-black tracking-[0.4em] md:tracking-[1em] uppercase mb-12 block md:ml-[1em]">The Threshold is Open</span>
-          </motion.div>
-
-          <h2 className="text-4xl sm:text-7xl lg:text-9xl font-cormorant font-bold text-white mb-10 leading-[0.85] tracking-tight">
-            Welcome to the <br />
-            <span className="italic font-normal text-[#F5E68E]">Vanguard.</span>
-          </h2>
-
-          <motion.p
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.8 }}
-            className="text-white/40 text-xl md:text-2xl font-cormorant italic max-w-2xl mx-auto leading-relaxed mb-16"
-          >
-            "You have not just joined an agency; <br /> you have claimed your place in the new architecture of influence."
-          </motion.p>
-
           <motion.div
             initial={{ opacity: 0, scale: 0 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 1.2, type: "spring", stiffness: 100 }}
-            className="mb-20"
+            transition={{ delay: 0.3, type: "spring", stiffness: 110 }}
+            className="mx-auto mb-10 w-14 h-14 rounded-full bg-[#F5E68E]/15 border border-[#F5E68E]/40 flex items-center justify-center"
           >
-            <div className="w-16 h-16 rounded-full border border-[#F5E68E]/30 flex items-center justify-center mx-auto relative group">
-              <div className="absolute inset-0 rounded-full bg-[#F5E68E]/10 animate-ping" />
-              <div className="w-2 h-2 rounded-full bg-[#F5E68E]" />
-            </div>
+            <svg className="w-6 h-6 text-[#F5E68E]" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5">
+              <path d="M5 13l4 4L19 7" />
+            </svg>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.5 }}
+          <span className="text-[#F5E68E] text-[10px] font-montserrat font-bold tracking-[0.4em] uppercase mb-6 block">
+            Application received
+          </span>
+
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-cormorant font-bold text-white mb-6 leading-[1.0]">
+            Thanks. We&rsquo;ll be <br />
+            <span className="italic font-normal text-[#F5E68E]">in touch.</span>
+          </h2>
+
+          <p className="text-white/60 text-base sm:text-lg font-inter max-w-md mx-auto leading-relaxed mb-12">
+            We review every application by hand. If you&rsquo;re a fit, expect to hear from us within a week.
+          </p>
+
+          <Link
+            href="/"
+            className="inline-block px-10 py-4 border border-white/20 text-white/70 hover:text-white hover:border-white transition-all text-[11px] font-montserrat font-bold uppercase tracking-widest rounded-xl"
           >
-            <Link
-              href="/"
-              className="px-12 py-5 border border-white/10 text-white/50 hover:text-white hover:border-white transition-all text-[10px] font-inter font-black uppercase tracking-[0.5em] rounded-full"
-            >
-              Return to Nexus
-            </Link>
-          </motion.div>
+            Back to home
+          </Link>
         </motion.div>
-
-        {/* Decorative Vertical Line */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-px h-32 bg-gradient-to-t from-white/10 to-transparent" />
       </motion.div>
     );
   }

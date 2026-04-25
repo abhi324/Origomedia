@@ -1,15 +1,20 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram } from "lucide-react";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
+  const links = [
+    { label: "About", href: "/about" },
+    { label: "FAQ", href: "/faq" },
+    { label: "Join", href: "/join" },
+    { label: "Contact", href: "mailto:origomedia.co@gmail.com" },
+  ];
+
   return (
-    <footer id="contact" className="w-full bg-[#3D5449] text-white py-14 sm:py-24 px-4 sm:px-6 relative overflow-hidden">
-      {/* Decorative Brand Accent Lines */}
+    <footer id="contact" className="w-full bg-[#3D5449] text-white py-14 sm:py-20 px-5 sm:px-8 relative overflow-hidden">
       <div className="absolute top-0 left-0 right-0 h-1 flex">
         <div className="flex-1 bg-[#F5E68E]" />
         <div className="flex-1 bg-[#E09486]" />
@@ -17,55 +22,54 @@ export default function Footer() {
         <div className="flex-1 bg-[#8FBCC4]" />
       </div>
 
-      <div className="max-w-7xl mx-auto flex flex-col items-center">
-
-        {/* Logo Section */}
-        <div className="mb-16 flex flex-col items-center gap-8">
+      <div className="max-w-6xl mx-auto flex flex-col items-center">
+        <div className="mb-12 sm:mb-16 flex flex-col items-center gap-5">
           <img
             src="/logo-v2.png"
             alt="ORIGO"
-            className="w-32 h-32 md:w-48 md:h-48 object-contain mix-blend-multiply brightness-[1.1]"
+            className="w-20 h-20 sm:w-28 sm:h-28 object-contain mix-blend-multiply brightness-[1.1]"
           />
-          <span className="font-montserrat font-medium text-5xl md:text-6xl tracking-[0.4em] uppercase pl-[0.4em]">ORIGO</span>
+          <span className="font-montserrat font-medium text-3xl sm:text-4xl tracking-[0.3em] sm:tracking-[0.4em] uppercase pl-[0.3em] sm:pl-[0.4em]">
+            ORIGO
+          </span>
         </div>
 
-        {/* Links Grid — Refined Modern Aesthetic */}
-        <div className="flex flex-wrap justify-center gap-x-16 gap-y-8 mb-20">
-          {["Contact", "FAQ", "Privacy Policy", "Terms of Service"].map((link) => (
+        <nav className="flex flex-wrap justify-center gap-x-10 sm:gap-x-14 gap-y-4 mb-14 sm:mb-16">
+          {links.map((link) => (
             <Link
-              key={link}
-              href={`/${link.toLowerCase().replace(/ /g, '-')}`}
-              className="text-white/40 hover:text-white transition-all text-[11px] uppercase font-montserrat font-semibold tracking-[0.2em]"
+              key={link.label}
+              href={link.href}
+              className="text-white/50 hover:text-white transition-all text-[11px] uppercase font-montserrat font-semibold tracking-[0.2em]"
             >
-              {link}
+              {link.label}
             </Link>
           ))}
-        </div>
+        </nav>
 
-        {/* Contact Email Section */}
-        <div className="mb-20 text-center group cursor-pointer">
-          <p className="text-[#8FBCC4] text-[10px] uppercase tracking-[0.6em] font-montserrat font-black mb-4">Inquiries</p>
+        <div className="mb-14 sm:mb-16 text-center group">
+          <p className="text-[#8FBCC4] text-[10px] uppercase tracking-[0.4em] font-montserrat font-bold mb-3">
+            Get in touch
+          </p>
           <a
             href="mailto:origomedia.co@gmail.com"
-            className="text-xl sm:text-2xl md:text-4xl lg:text-5xl font-instrument hover:text-[#F5E68E] transition-all duration-500 relative inline-block break-all sm:break-normal"
+            className="text-lg sm:text-2xl md:text-3xl font-cormorant hover:text-[#F5E68E] transition-all duration-500 break-all sm:break-normal"
           >
             origomedia.co@gmail.com
-            <div className="absolute -bottom-2 left-0 right-0 h-px bg-white/20 scale-x-0 group-hover:scale-x-100 transition-transform duration-700" />
           </a>
         </div>
 
-        {/* Bottom Metadata */}
-        <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8 text-white/20 text-[10px] uppercase font-montserrat font-medium tracking-[0.15em] pt-10 sm:pt-12 border-t border-white/5 w-full justify-between text-center sm:text-left">
-          <div>© {currentYear} ORIGO MEDIA GROUP. ALL RIGHTS RESERVED.</div>
+        <div className="flex flex-col sm:flex-row items-center gap-5 sm:gap-8 text-white/30 text-[10px] uppercase font-montserrat font-medium tracking-[0.15em] pt-8 sm:pt-10 border-t border-white/10 w-full justify-between text-center">
+          <div>© {currentYear} Origo Media Group</div>
           <div className="flex gap-6 items-center">
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+            <a
+              href="https://www.instagram.com/origomedia.co?igsh=MTI3czA0dmU5ZDBzNg=="
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Origo on Instagram"
+              className="flex items-center gap-2 hover:text-white transition-colors"
+            >
               <Instagram className="w-4 h-4" />
-            </a>
-            <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              <svg viewBox="0 0 24 24" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" /></svg>
-            </a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
-              <Linkedin className="w-4 h-4" />
+              <span className="text-[10px] tracking-[0.2em]">@origomedia.co</span>
             </a>
           </div>
         </div>

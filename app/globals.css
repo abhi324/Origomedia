@@ -4,10 +4,11 @@
 
 :root {
   --foreground: #1a1a1a;
-  --background: #ffffff;
+  --background: #EFEFED;
   --origo-dark: #3D5449;
-  --origo-peach: #FCF9F5;
+  --origo-beige: #EFEFED;
   --fluid-padding: clamp(1.25rem, 5vw, 2.5rem);
+  --grain-svg: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n' x='0' y='0'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
 }
 
 * {
@@ -19,7 +20,7 @@ html,
 body {
   width: 100%;
   max-width: 100vw;
-  overflow-x: hidden !important;
+  overflow-x: hidden;
   position: relative;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
@@ -28,36 +29,44 @@ body {
 
 body {
   color: var(--foreground);
-  background: var(--background);
-  font-family: 'Inter', sans-serif;
-  /* Paper Texture Overlay */
-  background-image: url("https://www.transparenttextures.com/patterns/felt.png");
+  background-color: #EFEFED;
+  background-image: var(--grain-svg);
+  background-size: 180px 180px;
+  background-repeat: repeat;
+  font-family: var(--font-inter), 'Inter', sans-serif;
 }
 
-/* Global Fit-to-Screen Media */
 img, video, canvas, svg {
   max-width: 100%;
   height: auto;
 }
 
-/* Force border-box for everything */
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-/* Base Grain Overlay - Kept for global visual depth */
+/* Grain overlay — global subtle dust on top of everything */
 body::after {
   content: "";
   position: fixed;
   inset: 0;
-  width: 100%;
-  height: 100%;
   pointer-events: none;
-  z-index: 100;
-  opacity: 0.02;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  z-index: 9999;
+  opacity: 0.04;
+  background-image: var(--grain-svg);
+  background-size: 200px 200px;
+  background-repeat: repeat;
 }
 
+/* ── Card / box background ── */
+.grain-bg {
+  background-color: #FAFAF8;
+}
+
+/* Lighter variant for Navbar */
+.grain-bg-light {
+  background-color: #FAFAF8;
+}
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-cormorant), serif;
@@ -68,11 +77,6 @@ h1, h2, h3, h4, h5, h6 {
   word-break: break-word;
 }
 
-.font-inter { font-family: 'Inter', sans-serif; }
-.font-cormorant { font-family: var(--font-cormorant), serif; }
-.font-montserrat { font-family: var(--font-montserrat), sans-serif; }
-
-/* Premium Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -90,51 +94,21 @@ h1, h2, h3, h4, h5, h6 {
   background: #2D3F37;
 }
 
-/* Lenis Recommended Styles */
-html.lenis {
-  height: auto;
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
 
-.lenis.lenis-smooth {
-  scroll-behavior: auto !important;
+.animate-marquee {
+  animation: marquee 30s linear infinite;
+  will-change: transform;
 }
 
-.lenis.lenis-smooth [data-lenis-prevent] {
-  overscroll-behavior: contain;
-}
-
-.lenis.lenis-stopped {
-  overflow: hidden;
-}
-
-.lenis.lenis-scrolling iframe {
-  pointer-events: none;
-}
-
-/* Premium Animations */
-.glass-panel {
-  background: rgba(247, 245, 240, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(61, 84, 73, 0.1);
-}
-
-.editorial-grid {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  gap: 2rem;
-}
-
-/* Stagger reveals */
-.reveal-text {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
-}
-
-.reveal-text span {
-  display: inline-block;
-  transform: translateY(110%);
-  transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
-}
-
-.reveal-text.active span {
-  transform: translateY(0);
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

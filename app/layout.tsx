@@ -23,23 +23,50 @@ const montserrat = Montserrat({
 export const metadata = {
   metadataBase: new URL("https://origomedia.co"),
   title: {
-    default: "ORIGO | Beauty & Skincare Influencer Marketing Agency",
+    default: "ORIGO | Influencer Marketing Agency",
     template: "%s | ORIGO"
   },
-  description: "ORIGO bridges the gap between visionary creators and institutional excellence in beauty and skincare through precision-matched influencer marketing.",
-  keywords: ["Beauty Influencer Agency", "Skincare Marketing Agency", "Nano Influencer Network", "Micro Creator Partnerships", "Beauty Brand Growth", "Intentional Influence"],
+  description: "ORIGO is an influencer marketing agency for beauty and skincare. We connect brands with vetted nano and micro creators, curated by fit.",
+  keywords: [
+    "beauty influencer agency",
+    "skincare marketing agency",
+    "nano influencer agency India",
+    "micro creator agency",
+    "beauty creator network",
+    "skincare influencer marketing",
+    "dermacosmetics creators",
+    "makeup creators",
+    "ORIGO Media",
+    "origomedia",
+  ],
   authors: [{ name: "ORIGO MEDIA GROUP" }],
+  creator: "ORIGO MEDIA GROUP",
+  publisher: "ORIGO MEDIA GROUP",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
   openGraph: {
-    title: "ORIGO | Bridging Vision and Voice",
-    description: "Specialized influencer marketing for beauty and skincare. We curate intentional collaborations that resonate.",
+    title: "ORIGO | Turn your content into income.",
+    description: "A creator-first agency for beauty and skincare. Nano and micro creators, curated for fit.",
     url: "https://origomedia.co",
     siteName: "ORIGO",
     images: [
       {
-        url: "https://origomedia.co/logo-v2.png",
+        url: "/logo-v2.png",
         width: 1200,
         height: 630,
-        alt: "ORIGO Logo",
+        alt: "ORIGO — Beauty & skincare influencer marketing agency",
       },
     ],
     locale: "en_US",
@@ -47,13 +74,16 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "ORIGO | Growth Starts from the Right Origin",
-    description: "Connecting premium brands with elite Creators.",
-    images: ["https://origomedia.co/logo-v2.png"],
+    title: "ORIGO | Growth starts with the right origin.",
+    description: "We don't chase volume. We curate fit.",
+    images: ["/logo-v2.png"],
   },
   icons: {
     icon: "/logo-v2.png",
     apple: "/logo-v2.png",
+  },
+  verification: {
+    // Add Google Search Console / Bing Webmaster tokens here when available.
   },
 };
 
@@ -82,18 +112,43 @@ export default function RootLayout({
               __html: JSON.stringify({
                 "@context": "https://schema.org",
                 "@type": "Organization",
-                "name": "ORIGO MEDIA GROUP",
+                "@id": "https://origomedia.co/#organization",
+                "name": "ORIGO",
+                "legalName": "ORIGO MEDIA GROUP",
+                "alternateName": "Origo Media",
                 "url": "https://origomedia.co",
-                "logo": "https://origomedia.co/logo-v2.png",
-                "description": "Premium brand and creator networking agency.",
+                "logo": {
+                  "@type": "ImageObject",
+                  "url": "https://origomedia.co/logo-v2.png",
+                  "width": 512,
+                  "height": 512
+                },
+                "description": "An influencer marketing agency for beauty and skincare, connecting brands with vetted nano and micro creators.",
                 "contactPoint": {
                   "@type": "ContactPoint",
                   "email": "origomedia.co@gmail.com",
-                  "contactType": "customer service"
+                  "contactType": "customer service",
+                  "areaServed": "IN",
+                  "availableLanguage": ["en", "hi"]
                 },
                 "sameAs": [
-                  "https://instagram.com/origomedia"
+                  "https://www.instagram.com/origomedia.co"
                 ]
+              })
+            }}
+          />
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "@id": "https://origomedia.co/#website",
+                "url": "https://origomedia.co",
+                "name": "ORIGO",
+                "description": "Beauty & skincare influencer marketing agency connecting brands with nano and micro creators.",
+                "publisher": { "@id": "https://origomedia.co/#organization" },
+                "inLanguage": "en-US"
               })
             }}
           />

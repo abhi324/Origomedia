@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+Disallow: /api/
+Disallow: /_next/
+
+Host: https://origomedia.co
 Sitemap: https://origomedia.co/sitemap.xml
