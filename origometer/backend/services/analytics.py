@@ -45,6 +45,10 @@ class CreatorAnalytics:
     image_sample_size: int
     reel_sample_size: int
 
+    # True when scraping couldn't sample posts and metrics were derived from
+    # industry-tier benchmarks (HypeAuditor/Modash methodology).
+    is_benchmark_estimated: bool
+
     # Niche
     primary_niche: str
     niches: list[dict]
@@ -94,6 +98,7 @@ def build_analytics(raw: RawCreatorData) -> CreatorAnalytics:
         reel_estimated_reach=raw.reel_estimated_reach,
         image_sample_size=raw.image_sample_size,
         reel_sample_size=raw.reel_sample_size,
+        is_benchmark_estimated=raw.is_benchmark_estimated,
         primary_niche=top_niche,
         niches=niches,
         data_source=raw.data_source,

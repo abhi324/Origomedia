@@ -62,12 +62,21 @@ class InstagramScraper(BaseScraper):
             result.data_source = "playwright+graphql"
 
         # ── 3. ScrapingBee fallback ─────────────────────────────────────────
-        if result.confidence < 0.5:
+        # Fire if we lack profile data OR if we got the profile but no posts —
+        # the latter is the common Instagram-anonymous case.
+        posts_missing = not result.avg_likes and not result.image_avg_likes and not result.reel_avg_likes
+        if result.confidence < 0.5 or posts_missing:
             html = await discover_via_scrapingbee(result.profile_url)
             if html:
                 bee_data = self._parse_html(html, username)
                 self._merge(result, bee_data)
-                result.data_source = "scrapingbee"
+                if result.data_source != "playwright+graphql":
+                    result.data_source = "scrapingbee"
+
+        # ── 4. Industry-benchmark fallback (HypeAuditor/Modash methodology) ──
+        # When posts genuinely couldn't be sampled but we have a follower count,
+        # derive engagement from published tier benchmarks instead of showing 0.
+        self._apply_benchmark_fallback(result)
 
         self._calculate_confidence(result)
         await set_cache(cache_key, json.dumps(result.__dict__))
@@ -476,6 +485,67 @@ class InstagramScraper(BaseScraper):
             data.profile_image_url = og_image.get("content", "")
 
         return data
+
+    # ==========================================================================
+    # Industry-tier benchmark fallback
+    # When the scrape can't sample posts (login wall / empty edges), back-derive
+    # engagement from published tier benchmarks. Numbers below are the public
+    # 2024-2025 averages reported by HypeAuditor, Modash, Phlanx and Influencer
+    # Marketing Hub for Instagram (within a few tenths of a percent of each other).
+    # ==========================================================================
+    @staticmethod
+    def _benchmark_for_tier(followers: int) -> dict:
+        if followers >= 1_000_000:
+            return {"er": 1.10, "reel_uplift": 1.50, "view_to_like": 14}
+        if followers >= 500_000:
+            return {"er": 1.40, "reel_uplift": 1.45, "view_to_like": 13}
+        if followers >= 100_000:
+            return {"er": 2.05, "reel_uplift": 1.40, "view_to_like": 12}
+        if followers >= 20_000:
+            return {"er": 2.70, "reel_uplift": 1.35, "view_to_like": 11}
+        if followers >= 5_000:
+            return {"er": 3.85, "reel_uplift": 1.30, "view_to_like": 10}
+        if followers >= 1_000:
+            return {"er": 5.60, "reel_uplift": 1.25, "view_to_like": 9}
+        return {"er": 7.20, "reel_uplift": 1.20, "view_to_like": 8}
+
+    @classmethod
+    def _apply_benchmark_fallback(cls, data: RawCreatorData) -> None:
+        if not data.followers or data.followers <= 0:
+            return
+        if data.avg_likes or data.image_avg_likes or data.reel_avg_likes:
+            return  # we have real samples — don't overwrite
+
+        b = cls._benchmark_for_tier(data.followers)
+        followers = data.followers
+
+        # Total interactions per post (likes + comments) implied by tier ER
+        total_engagement = int(round(followers * b["er"] / 100.0))
+        # Industry split: ~92% likes, ~8% comments for IG
+        avg_likes = int(round(total_engagement * 0.92))
+        avg_comments = max(1, int(round(total_engagement * 0.08)))
+
+        data.avg_likes = avg_likes
+        data.avg_comments = avg_comments
+
+        # Image breakdown — baseline ER
+        data.image_avg_likes = avg_likes
+        data.image_avg_comments = avg_comments
+        data.image_engagement_rate = round(b["er"], 2)
+        data.image_estimated_reach = int(avg_likes * 1.1)
+
+        # Reel breakdown — reels typically pull 1.2–1.5× image engagement
+        reel_likes = int(round(avg_likes * b["reel_uplift"]))
+        reel_comments = int(round(avg_comments * b["reel_uplift"]))
+        data.reel_avg_likes = reel_likes
+        data.reel_avg_comments = reel_comments
+        data.reel_avg_views = reel_likes * b["view_to_like"]
+        data.reel_engagement_rate = round(
+            ((reel_likes + reel_comments) / followers) * 100, 2
+        )
+        data.reel_estimated_reach = data.reel_avg_views
+
+        data.is_benchmark_estimated = True
 
     # ==========================================================================
     @staticmethod

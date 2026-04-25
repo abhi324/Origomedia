@@ -38,6 +38,10 @@ class RawCreatorData:
     image_sample_size: int = 0
     reel_sample_size: int = 0
 
+    # True when we couldn't sample any posts and fell back to industry-tier
+    # benchmark derivation (HypeAuditor/Modash style). UI uses this to label.
+    is_benchmark_estimated: bool = False
+
     profile_image_url: Optional[str] = None
     profile_url: Optional[str] = None
     is_verified: bool = False

@@ -289,7 +289,14 @@ function ImpactOverview({ creator }: { creator: Creator }) {
 
   return (
     <div>
-      <h2 className="eyebrow text-[#4A6357] mb-4">Impact Overview</h2>
+      <div className="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <h2 className="eyebrow text-[#4A6357]">Impact Overview</h2>
+        {creator.is_benchmark_estimated && (
+          <span className="text-[9px] sm:text-[10px] uppercase tracking-[0.2em] font-montserrat font-semibold text-[#C8503A] bg-[#C8503A]/10 px-3 py-1 rounded-full">
+            Estimated · Industry benchmark
+          </span>
+        )}
+      </div>
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {kpis.map((k, i) => (
           <motion.div

@@ -60,6 +60,7 @@ def _analytics_to_row(a: CreatorAnalytics) -> dict:
         "creator_score": a.creator_score,
         "is_verified": a.is_verified,
         "is_origo_verified": a.is_verified,
+        "is_benchmark_estimated": a.is_benchmark_estimated,
         "last_scraped_at": _now(),
         "created_at": _now(),
     }
@@ -101,6 +102,7 @@ async def upsert_creator(analytics: CreatorAnalytics) -> dict:
                 extra = [
                     "image_avg_likes", "image_avg_comments", "image_engagement_rate", "image_estimated_reach",
                     "reel_avg_likes", "reel_avg_comments", "reel_avg_views", "reel_engagement_rate", "reel_estimated_reach",
+                    "is_benchmark_estimated",
                 ]
                 for k in extra:
                     row_for_sb.pop(k, None)

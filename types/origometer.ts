@@ -47,6 +47,7 @@ export interface Creator {
 
   image_sample_size?: number;
   reel_sample_size?: number;
+  is_benchmark_estimated?: boolean;
 
   primary_niche: NicheType;
   niches: NicheScore[];
