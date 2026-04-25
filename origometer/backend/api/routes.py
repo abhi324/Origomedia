@@ -20,7 +20,7 @@ SCRAPERS = {
 # Cached creator rows scraped before this datetime are treated as stale and
 # re-scraped on next lookup. Bump this whenever you change the engagement-
 # rate / avg-likes math so users see fresh numbers without manually flushing.
-CALC_VERSION_BOUNDARY = datetime(2026, 4, 25, 23, 0, 0)
+CALC_VERSION_BOUNDARY = datetime(2026, 4, 26, 2, 0, 0)
 
 
 def _scrape_is_stale(last_scraped_iso: Optional[str]) -> bool:
