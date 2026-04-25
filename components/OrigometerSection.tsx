@@ -147,8 +147,12 @@ export default function OrigometerSection() {
               </div>
 
               <div className="p-5 sm:p-8">
-                {/* Search row — real form */}
-                <form onSubmit={handleSubmit} className="flex items-center gap-2 mb-6">
+                {/* Search row — stacks vertically on small phones so the
+                    button never gets clipped by the brand-tracked label. */}
+                <form
+                  onSubmit={handleSubmit}
+                  className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 mb-6"
+                >
                   <div className="flex-1 flex items-center gap-2 px-3 sm:px-4 py-3 rounded-lg border border-gray-300/70 bg-white/80 focus-within:border-[#3D5449] focus-within:ring-1 focus-within:ring-[#3D5449] transition-all">
                     <span className="font-cormorant font-semibold text-[#4A6357] shrink-0">
                       @
@@ -173,7 +177,7 @@ export default function OrigometerSection() {
                   <button
                     type="submit"
                     disabled={loading || !username.trim()}
-                    className="px-4 py-3 rounded-lg bg-[#3D5449] text-white text-[10px] uppercase font-montserrat font-bold tracking-widest flex items-center gap-2 hover:bg-[#2D3F37] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
+                    className="w-full sm:w-auto px-5 py-3 rounded-lg bg-[#3D5449] text-white text-[10px] uppercase font-montserrat font-bold tracking-widest flex items-center justify-center gap-2 hover:bg-[#2D3F37] active:scale-[0.98] transition-all disabled:opacity-50 disabled:cursor-not-allowed shrink-0"
                   >
                     {loading ? (
                       <span className="inline-block w-3 h-3 border-2 border-white/40 border-t-white rounded-full animate-spin" />
