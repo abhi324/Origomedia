@@ -1,3 +1,4 @@
+from datetime import datetime
 from fastapi import APIRouter, HTTPException, Query, BackgroundTasks
 from pydantic import BaseModel
 from typing import Optional, Literal
@@ -15,6 +16,22 @@ Platform = Literal["instagram"]
 SCRAPERS = {
     "instagram": InstagramScraper,
 }
+
+# Cached creator rows scraped before this datetime are treated as stale and
+# re-scraped on next lookup. Bump this whenever you change the engagement-
+# rate / avg-likes math so users see fresh numbers without manually flushing.
+CALC_VERSION_BOUNDARY = datetime(2026, 4, 25, 20, 0, 0)
+
+
+def _scrape_is_stale(last_scraped_iso: Optional[str]) -> bool:
+    if not last_scraped_iso:
+        return True
+    try:
+        # Normalize "...Z", "...+00:00", and microsecond/no-microsecond variants.
+        s = last_scraped_iso.replace("Z", "").split("+")[0].split(".")[0]
+        return datetime.fromisoformat(s) < CALC_VERSION_BOUNDARY
+    except Exception:
+        return True
 
 
 class LookupRequest(BaseModel):
@@ -42,12 +59,13 @@ async def lookup_creator(req: LookupRequest, background_tasks: BackgroundTasks):
     if not req.force_refresh:
         cached = await repository.get_creator(platform, username)
         # Treat cache as stale if it doesn't have the new bhrisa-breakdown fields
-        # (happens when the row was written before the schema migration ran).
-        if cached and (
+        # OR if it was scraped before the calculation-logic boundary above.
+        breakdown_ok = cached and (
             cached.get("image_avg_likes") is not None
             or cached.get("reel_avg_likes") is not None
             or (cached.get("total_posts") == 0)
-        ):
+        )
+        if breakdown_ok and not _scrape_is_stale(cached.get("last_scraped_at")):
             return {"source": "cache", "data": cached}
 
     scraper_cls = SCRAPERS.get(platform)

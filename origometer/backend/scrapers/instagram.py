@@ -16,14 +16,13 @@ comments). By listening for that response we get the same data Instagram's UI us
 import asyncio
 import json
 import re
-import statistics
 from typing import Optional
 from playwright.async_api import async_playwright, TimeoutError as PWTimeout, Response
 from bs4 import BeautifulSoup
 
 from scrapers.base import BaseScraper, RawCreatorData
 from scrapers.search_discovery import discover_via_serpapi, discover_via_scrapingbee
-from utils.normalizer import parse_metric
+from utils.normalizer import parse_metric, trimmed_mean
 from utils.rate_limiter import throttle, is_cached, set_cache
 from utils.user_agents import random_desktop
 import logging
@@ -342,15 +341,17 @@ class InstagramScraper(BaseScraper):
 
         followers = data.followers or 0
 
+        # Trimmed mean (drop top/bottom 10%) — robust to one viral or one
+        # dead post and matches what HypeAuditor / Modash / Phlanx report.
         if all_likes:
-            data.avg_likes = int(statistics.median(all_likes))
+            data.avg_likes = trimmed_mean(all_likes)
         if all_comments:
-            data.avg_comments = int(statistics.median(all_comments))
+            data.avg_comments = trimmed_mean(all_comments)
 
         # ── Image breakdown ─────────────────────────────────────────────────
         if img_likes:
-            data.image_avg_likes = int(statistics.median(img_likes))
-            data.image_avg_comments = int(statistics.median(img_comments)) if img_comments else None
+            data.image_avg_likes = trimmed_mean(img_likes)
+            data.image_avg_comments = trimmed_mean(img_comments) if img_comments else None
             if followers:
                 data.image_engagement_rate = round(
                     ((data.image_avg_likes + (data.image_avg_comments or 0)) / followers) * 100, 2
@@ -359,9 +360,9 @@ class InstagramScraper(BaseScraper):
 
         # ── Reel breakdown ──────────────────────────────────────────────────
         if reel_likes:
-            data.reel_avg_likes = int(statistics.median(reel_likes))
-            data.reel_avg_comments = int(statistics.median(reel_comments)) if reel_comments else None
-            data.reel_avg_views = int(statistics.median(reel_views)) if reel_views else None
+            data.reel_avg_likes = trimmed_mean(reel_likes)
+            data.reel_avg_comments = trimmed_mean(reel_comments) if reel_comments else None
+            data.reel_avg_views = trimmed_mean(reel_views) if reel_views else None
             if followers:
                 data.reel_engagement_rate = round(
                     ((data.reel_avg_likes + (data.reel_avg_comments or 0)) / followers) * 100, 2
