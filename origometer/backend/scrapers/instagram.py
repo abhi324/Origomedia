@@ -21,7 +21,11 @@ from playwright.async_api import async_playwright, TimeoutError as PWTimeout, Re
 from bs4 import BeautifulSoup
 
 from scrapers.base import BaseScraper, RawCreatorData
-from scrapers.search_discovery import discover_via_serpapi, discover_via_scrapingbee
+from scrapers.search_discovery import (
+    discover_via_serpapi,
+    discover_via_scrapingbee,
+    fetch_ig_profile_json_via_scrapingbee,
+)
 from utils.normalizer import parse_metric, trimmed_mean
 from utils.rate_limiter import throttle, is_cached, set_cache
 from utils.user_agents import random_desktop
@@ -66,12 +70,22 @@ class InstagramScraper(BaseScraper):
         # the latter is the common Instagram-anonymous case.
         posts_missing = not result.avg_likes and not result.image_avg_likes and not result.reel_avg_likes
         if result.confidence < 0.5 or posts_missing:
-            html = await discover_via_scrapingbee(result.profile_url)
-            if html:
-                bee_data = self._parse_html(html, username)
-                self._merge(result, bee_data)
-                if result.data_source != "playwright+graphql":
-                    result.data_source = "scrapingbee"
+            # 3a. Try the JSON API through ScrapingBee's residential proxy —
+            # this gives us the *real* posts (likes/comments) so ER matches
+            # bhrisa/Phlanx instead of falling back to tier benchmarks.
+            user_json = await fetch_ig_profile_json_via_scrapingbee(username)
+            if user_json:
+                bee_full = self._from_user_json(user_json, username)
+                self._merge(result, bee_full)
+                result.data_source = "scrapingbee+json"
+            else:
+                # 3b. Last resort: HTML page via ScrapingBee → OG meta only.
+                html = await discover_via_scrapingbee(result.profile_url)
+                if html:
+                    bee_data = self._parse_html(html, username)
+                    self._merge(result, bee_data)
+                    if result.data_source != "playwright+graphql":
+                        result.data_source = "scrapingbee"
 
         # ── 4. Industry-benchmark fallback (HypeAuditor/Modash methodology) ──
         # When posts genuinely couldn't be sampled but we have a follower count,
