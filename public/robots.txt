@@ -3,6 +3,18 @@ Allow: /
 
 Disallow: /api/
 Disallow: /_next/
+Disallow: /origometer/admin/
+Disallow: /origometer/admin
+
+# Don't waste crawl budget on bot/scraper user-agents
+User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: MJ12bot
+Disallow: /
 
 Host: https://origomedia.co
 Sitemap: https://origomedia.co/sitemap.xml

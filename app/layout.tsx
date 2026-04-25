@@ -83,7 +83,14 @@ export const metadata = {
     apple: "/logo-v2.png",
   },
   verification: {
-    // Add Google Search Console / Bing Webmaster tokens here when available.
+    // Set NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION in .env.local with the token
+    // from Search Console (the "google-site-verification=<token>" value).
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
+    // Set NEXT_PUBLIC_BING_SITE_VERIFICATION with the token from Bing
+    // Webmaster Tools (the "msvalidate.01=<token>" value). Optional.
+    other: process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION
+      ? { "msvalidate.01": process.env.NEXT_PUBLIC_BING_SITE_VERIFICATION }
+      : undefined,
   },
 };
 
